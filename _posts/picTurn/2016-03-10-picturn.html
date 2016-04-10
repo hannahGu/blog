@@ -1,0 +1,423 @@
+---
+title: 图片轮播：index变*
+---
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>图片轮播：index变*</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/prism.css"/>  
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/base.css"/>   
+        <style>
+            #show{
+                height:600px;
+            }
+            #content *{
+                margin:0;
+                padding:0;
+            }
+            #content .pic{
+                background-color: black;
+                height:500px;
+                width:500px;
+                opacity: 1;
+                position:absolute;
+                /*display:none;*/
+            }
+            #content ul{
+                position:relative;
+            }
+            #content li{
+                height:500px;
+                width:500px;
+                overflow: hidden;
+                position:absolute;
+            }
+            #content li.loading{background:url(img/loading.gif) 50% 50% no-repeat;}
+            #content .pic img{
+                width:500px;
+                height:500px;
+            }
+            #content .pic li p{
+                background: #080808;
+                position:absolute;
+                width:500px;
+                top:0;
+                left:0;
+                color:#fff;
+                font-size: 20px;
+                height:40px;
+                line-height:40px;
+            }
+            #content{
+                height:500px;
+                width:500px;
+                overflow: hidden;
+                position:relative;
+                margin:0 auto;
+            }
+            #content .left{
+                /*background-color: pink;*/
+                height:500px;
+                width:250px;
+                /*opacity: 0;*/
+                position:absolute;
+                z-index: 9999;
+                text-align: center;
+                cursor:pointer;
+            }
+            #content .right{
+                left:250px;
+                /*background-color: yellow;*/
+                height:500px;
+                width:250px;
+                /*opacity: 0;*/
+                position:absolute;
+                z-index: 9999;
+                text-align: center;
+                cursor:pointer;
+            }
+            
+            #content .lebtn,#content .ribtn{
+                position: absolute;
+                left:50%;top:50%;width:50px;height:50px;margin:-25px -25px;
+                background: #000;
+                border-radius: 50px;
+                opacity: 0;
+            }
+        </style>
+    </head>
+    
+        <div id="show">
+            <div id="content">
+
+                <div class="pic">
+                    <ul>
+                        <li style="z-index:1;">
+                            <p>1111111111</p>
+                            <img src="http://img1.gtimg.com/news/pics/hv1/106/238/825/53706421.jpg" alt="111"/>
+                        </li>
+                        <li>
+                            <p>22222222222</p>
+                            <img src="http://img1.gtimg.com/news/pics/hv1/105/238/825/53706420.jpg" alt="222"/>
+                        </li>
+                        <li>
+                            <p>3333333333</p>
+                            <img src="http://img1.gtimg.com/news/pics/hv1/101/238/825/53706416.jpg" alt="333"/>
+                        </li>
+                        <li>
+                            <p>4444444444</p>
+                            <img src="img/4.jpg" alt="444"/>
+                        </li>
+                        <li>
+                            <p>5555555555</p>
+                            <img src="img/5.jpg" alt="555"/>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="left">
+                    <div class="lebtn"></div>
+                </div>
+                <div class="right">
+                    <div class="ribtn"></div>
+                </div>
+            </div>
+        </div>
+        <pre id="show_code">
+            <code class="language-js">
+//            z-index最大值: 
+//            IE FireFox Safari的z-index最大值是2147483647 。 
+//            Opera的最大值是2147483584.。 
+//            IE Safari Opera在超过其最大值时按最大值处理。 
+//            FireFox 在超过最大值时会数据溢出正负不定,但有一点可以肯定绝对不会高于2147483647层 
+//
+//            最小值 
+//            IE FireFox Safari的z-index最小值是-2147483648 
+//            Opera的z-index最小值-2147483584 
+//            FireFox在-2147483648&lt;=z-index&lt;0时层不显示 在z-index&lt;-2147483648时溢出实际数字正负不定 
+//            IE Safari Opera在z-index&lt;0时显示,在小于其最小值时都按其最小值处理 
+            function byClass(sClass,oParent){
+                var son = (oParent || document).getElementsByTagName("*");
+                var list = [];
+                for(var i=0;i&lt;son.length;i++){
+                    if(son[i].className == sClass){
+                        list.push(son[i]);
+                    }
+                }
+                return list;
+            }
+            
+            window.onload = function(){
+                var oContent = document.getElementById("content");
+                var oRiBtn = byClass('ribtn',oContent)[0];
+                var oLeBtn = byClass('lebtn',oContent)[0];
+                var oRight = byClass('right',oContent)[0];
+                var oLeft = byClass('left',oContent)[0];
+                var oPic = byClass('pic',oContent)[0];
+                var oLi = oPic.getElementsByTagName("li");
+                var zShow = 10;
+                var now = 0;
+                
+                oRiBtn.onmouseover = oRight.onmouseover = function(){
+                    startMove(oRiBtn,'opacity',100);
+                    //oRiBtn.style.opacity = 1;
+                }
+                oRiBtn.onmouseout = oRight.onmouseout = function(){
+                    startMove(oRiBtn,'opacity',0);
+                    //oRiBtn.style.opacity = 0;
+                }
+                oLeBtn.onmouseover = oLeft.onmouseover = function(){
+                    startMove(oLeBtn,'opacity',100);
+                    //oLeBtn.style.opacity = 1;
+                }
+                oLeBtn.onmouseout = oLeft.onmouseout = function(){
+                    startMove(oLeBtn,'opacity',0);
+                    //oLeBtn.style.opacity = 0;
+                }
+                
+                oLeBtn.onclick = function(){
+                    
+                    if(now==0){
+                        alert("the first one");
+                    }else{
+                        now --;
+                    }
+                    for(var i=0;i&lt;oLi.length;i++){
+                        oLi[i].className = '';
+                    }
+                    Tab(oLi[now]);
+                }
+                oRiBtn.onclick = function(){
+                    
+                    if(now==oLi.length-1){
+                        alert("the last one");
+                    }else{
+                        now ++;
+                    }
+                    for(var i=0;i&lt;oLi.length;i++){
+                        oLi[i].className = '';
+                    }
+                    Tab(oLi[now]);
+                    
+                }
+                
+                function Tab(obj){
+                    obj.className = "loading";
+                    obj.style.zIndex = zShow++;
+                    obj.style.opacity = 0;
+                    startMove(obj,'opacity',100);
+                    var oP = obj.getElementsByTagName('p')[0];
+                    var iHeight = oP.offsetHeight;
+                    oP.style.height = 0;
+                    //console.log(iHeight);
+                    startMove(oP,'height',iHeight);
+                }
+            }
+            
+            
+            
+            function getStyle(obj, name)
+            {
+                    if(obj.currentStyle)
+                    {
+                            return obj.currentStyle[name];
+                    }
+                    else
+                    {
+                            return getComputedStyle(obj, false)[name];
+                    }
+            }
+
+            function startMove(obj, attr, iTarget, fnEnd)
+            {
+                    clearInterval(obj.timer);
+                    obj.timer=setInterval(function (){
+                            var cur=0;
+
+                            if(attr=='opacity')
+                            {
+                                    cur=Math.round(parseFloat(getStyle(obj, attr))*100);
+                            }
+                            else
+                            {
+                                    cur=parseInt(getStyle(obj, attr));
+                            }
+
+                            var speed=(iTarget-cur)/6;
+                            speed=speed>0?Math.ceil(speed):Math.floor(speed);
+
+                            if(cur==iTarget)
+                            {
+                                    clearInterval(obj.timer);
+
+                                    if(fnEnd)fnEnd();
+                            }
+                            else
+                            {
+                                    if(attr=='opacity')
+                                    {
+                                            obj.style.filter='alpha(opacity:'+(cur+speed)+')';
+                                            obj.style.opacity=(cur+speed)/100;
+                                    }
+                                    else
+                                    {
+                                            obj.style[attr]=cur+speed+'px';
+                                    }
+                            }
+                    }, 30);
+            }
+            </code>
+        </pre>
+        <script src="{{ site.baseurl }}/public/js/prism.js"></script>
+        <script>
+//            z-index最大值: 
+//            IE FireFox Safari的z-index最大值是2147483647 。 
+//            Opera的最大值是2147483584.。 
+//            IE Safari Opera在超过其最大值时按最大值处理。 
+//            FireFox 在超过最大值时会数据溢出正负不定,但有一点可以肯定绝对不会高于2147483647层 
+//
+//            最小值 
+//            IE FireFox Safari的z-index最小值是-2147483648 
+//            Opera的z-index最小值-2147483584 
+//            FireFox在-2147483648<=z-index<0时层不显示 在z-index<-2147483648时溢出实际数字正负不定 
+//            IE Safari Opera在z-index<0时显示,在小于其最小值时都按其最小值处理 
+            function byClass(sClass,oParent){
+                var son = (oParent || document).getElementsByTagName("*");
+                var list = [];
+                for(var i=0;i<son.length;i++){
+                    if(son[i].className == sClass){
+                        list.push(son[i]);
+                    }
+                }
+                return list;
+            }
+            
+            window.onload = function(){
+                var oContent = document.getElementById("content");
+                var oRiBtn = byClass('ribtn',oContent)[0];
+                var oLeBtn = byClass('lebtn',oContent)[0];
+                var oRight = byClass('right',oContent)[0];
+                var oLeft = byClass('left',oContent)[0];
+                var oPic = byClass('pic',oContent)[0];
+                var oLi = oPic.getElementsByTagName("li");
+                var zShow = 10;
+                var now = 0;
+                
+                oRiBtn.onmouseover = oRight.onmouseover = function(){
+                    startMove(oRiBtn,'opacity',100);
+                    //oRiBtn.style.opacity = 1;
+                }
+                oRiBtn.onmouseout = oRight.onmouseout = function(){
+                    startMove(oRiBtn,'opacity',0);
+                    //oRiBtn.style.opacity = 0;
+                }
+                oLeBtn.onmouseover = oLeft.onmouseover = function(){
+                    startMove(oLeBtn,'opacity',100);
+                    //oLeBtn.style.opacity = 1;
+                }
+                oLeBtn.onmouseout = oLeft.onmouseout = function(){
+                    startMove(oLeBtn,'opacity',0);
+                    //oLeBtn.style.opacity = 0;
+                }
+                
+                oLeBtn.onclick = function(){
+                    
+                    if(now==0){
+                        alert("the first one");
+                    }else{
+                        now --;
+                    }
+                    for(var i=0;i<oLi.length;i++){
+                        oLi[i].className = '';
+                    }
+                    Tab(oLi[now]);
+                }
+                oRiBtn.onclick = function(){
+                    
+                    if(now==oLi.length-1){
+                        alert("the last one");
+                    }else{
+                        now ++;
+                    }
+                    for(var i=0;i<oLi.length;i++){
+                        oLi[i].className = '';
+                    }
+                    Tab(oLi[now]);
+                    
+                }
+                
+                function Tab(obj){
+                    obj.className = "loading";
+                    obj.style.zIndex = zShow++;
+                    obj.style.opacity = 0;
+                    startMove(obj,'opacity',100);
+                    var oP = obj.getElementsByTagName('p')[0];
+                    var iHeight = oP.offsetHeight;
+                    oP.style.height = 0;
+                    //console.log(iHeight);
+                    startMove(oP,'height',iHeight);
+                }
+            }
+            
+            
+            
+            function getStyle(obj, name)
+            {
+                    if(obj.currentStyle)
+                    {
+                            return obj.currentStyle[name];
+                    }
+                    else
+                    {
+                            return getComputedStyle(obj, false)[name];
+                    }
+            }
+
+            function startMove(obj, attr, iTarget, fnEnd)
+            {
+                    clearInterval(obj.timer);
+                    obj.timer=setInterval(function (){
+                            var cur=0;
+
+                            if(attr=='opacity')
+                            {
+                                    cur=Math.round(parseFloat(getStyle(obj, attr))*100);
+                            }
+                            else
+                            {
+                                    cur=parseInt(getStyle(obj, attr));
+                            }
+
+                            var speed=(iTarget-cur)/6;
+                            speed=speed>0?Math.ceil(speed):Math.floor(speed);
+
+                            if(cur==iTarget)
+                            {
+                                    clearInterval(obj.timer);
+
+                                    if(fnEnd)fnEnd();
+                            }
+                            else
+                            {
+                                    if(attr=='opacity')
+                                    {
+                                            obj.style.filter='alpha(opacity:'+(cur+speed)+')';
+                                            obj.style.opacity=(cur+speed)/100;
+                                    }
+                                    else
+                                    {
+                                            obj.style[attr]=cur+speed+'px';
+                                    }
+                            }
+                    }, 30);
+            }
+        </script>
+    
+</html>

@@ -1,0 +1,210 @@
+---
+title: 幻灯片效果,自动，手动
+---
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" href="{{ site.baseurl }}/public/css/prism.css"/>
+<link rel="stylesheet" href="{{ site.baseurl }}/public/css/base.css"/>    
+<title>幻灯片效果,自动，手动</title>
+<style>
+    #show{
+        height:200px;
+    }
+    #box{
+        position:relative;
+    }
+    #sub_contain{
+        width:490px;
+        height:170px;
+        margin:0 auto;
+        position:relative;
+        overflow:hidden;
+        /*border:5px solid red;*/
+    }
+    #box .list{
+        height:170px;
+        width:2450px;//这个宽度必须指定！？
+        text-decoration: none;
+        position:absolute;
+        padding:0;
+        margin:0;
+        
+    }
+    #box li{
+        float:left;
+        width:490px;
+        height:170px;
+    }
+    #left_area,#right_area{
+        width:245px;
+        height:170px;
+        position: absolute;
+    }
+    #left_area{
+        top:0;
+        left:0;
+    }
+    #right_area{
+        top:0;
+        left:245px;
+    }
+</style>
+<script type="text/javascript">
+    window.onload = function ()
+    
+    {
+        //////加左右2个层，自动控制和手动控制并存
+        var oBox = document.getElementById("box");
+        var osubBox = document.getElementById("sub_contain");
+        var oList = oBox.getElementsByTagName("ul")[0];
+        var oLi = oBox.getElementsByTagName("li");
+        var oLeft = document.getElementById("left_area");
+        var oRight = document.getElementById("right_area");
+        var timer = null;
+        var bOrder = true;
+        var aTmp = [];
+        var aBtn = null;
+        var count = 0;
+        var speed = 490;
+        var len_li = oLi[0].offsetWidth;
+        var min = -4*len_li;
+        var max = 0;
+        
+        start_move(oList,'');
+        osubBox.onmouseover = function(){
+            clearInterval(oList.timer);
+        }
+        osubBox.onmouseout = function(){
+            start_move(oList,'');
+        }
+        
+        oLeft.onclick = function(){
+            start_move(oList,'L');
+        }
+        oRight.onclick = function(){
+            start_move(oList,'R');
+        }
+        
+        
+        function start_move(obj,filter){
+            
+            var now_left = obj.offsetLeft;
+            clearInterval(obj.timer);
+            
+            if(filter == 'R'){
+                if(now_left==min){
+                    alert("the last");
+                }else{
+                    obj.style.left = now_left - 490 + 'px';
+                }
+            }else if(filter == 'L'){
+                console.log(now_left);
+                console.log(max);
+                if(now_left == max){
+                    alert("the first");
+                }else{
+                    obj.style.left = now_left + 490 + 'px';
+                }
+            }else{   
+                obj.timer = setInterval(function(){
+                    now_left = obj.offsetLeft;
+                    if(now_left==min){
+                        obj.style.left = 0;
+                    }else{
+                        obj.style.left = now_left - 490 +"px";
+                    }
+                },3000);
+            } 
+        }
+        
+    };
+    
+</script>
+</head>
+<body>
+    <div id="show">
+        <div id="box">
+            <div id="sub_contain">
+                <ul class="list">
+                    <li><img src="img/01.jpg" /></li>
+                    <li><img src="img/02.jpg"/></li>
+                    <li><img src="img/03.jpg" /></li>
+                    <li><img src="img/04.jpg" /></li>
+                    <li><img src="img/05.jpg" /></li>
+                </ul>
+                <div id='left_area'></div>
+                <div id='right_area'></div>
+            </div>
+
+            <!--<ul class="count"><li class="">1</li><li class="">2</li><li class="">3</li><li class="current">4</li><li class="">5</li></ul>-->
+        </div>
+    </div>
+    <pre id="show_code">
+        <code class="language-js">
+            window.onload = function ()
+
+            {
+                //////加左右2个层，自动控制和手动控制并存
+                var oBox = document.getElementById("box");
+                var osubBox = document.getElementById("sub_contain");
+                var oList = oBox.getElementsByTagName("ul")[0];
+                var oLi = oBox.getElementsByTagName("li");
+                var oLeft = document.getElementById("left_area");
+                var oRight = document.getElementById("right_area");
+                var timer = null;
+                var bOrder = true;
+                var aTmp = [];
+                var aBtn = null;
+                var count = 0;
+                var speed = 490;
+                var len_li = oLi[0].offsetWidth;
+
+                start_move(oList,'');
+                osubBox.onmouseover = function(){
+                    clearInterval(timer);
+                }
+                osubBox.onmouseout = function(){
+                    start_move(oList,'');
+                }
+
+                oLeft.onclick = function(){
+                    start_move(oList,'L');
+                }
+                oRight.onclick = function(){
+                    start_move(oList,'R');
+                }
+            };
+            function start_move(obj,filter){
+
+                    var now_left = obj.offsetLeft;
+                    clearInterval(timer);
+
+                    if(filter == 'R'){
+                        if(now_left==-4*len_li){
+                            alert("the last");
+                        }else{
+                            obj.style.left = now_left - 490 + 'px';
+                        }
+                    }else if(filter == 'L'){
+                        if(now_left == 0){
+                            alert("the first");
+                        }else{
+                            obj.style.left = now_left + 490 + 'px';
+                        }
+                    }else{   
+                        timer = setInterval(function(){
+                            now_left = obj.offsetLeft;
+                            if(now_left==-4*len_li){
+                                obj.style.left = 0;
+                            }else{
+                                obj.style.left = now_left - 490 +"px";
+                            }
+                        },3000);
+                    } 
+                }
+            </code>
+    </pre>
+    <script src="{{ site.baseurl }}/public/js/prism.js"></script>
+</body>
+
+</html>

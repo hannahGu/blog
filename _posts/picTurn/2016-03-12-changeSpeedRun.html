@@ -1,0 +1,109 @@
+---
+title: 变速运动
+---
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>变速运动</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css//prism.css"/>
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/base.css"/>
+        <style>
+            #show{
+                height:300px;
+                position:relative;
+            }
+            #div1{
+                width:200px;
+                height:120px;
+                background: red;
+                position:absolute;
+            }
+            #div2{
+                width:1px;
+                height:300px;
+                position:absolute;
+                left:100px;
+                background: #000;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="show">
+            <div id='div1'>TODO write content</div>
+            <div id='div2'></div>
+        </div>
+        <pre id="show_code">
+            <code class="language-js language-css">
+            
+                #div1{
+                    width:200px;
+                    height:120px;
+                    background: red;
+                    position:absolute;
+                }
+                #div2{
+                    width:1px;
+                    height:300px;
+                    position:absolute;
+                    left:100px;
+                    background: #000;
+                }
+
+            
+            <hr>
+            function getStyle(obj,attr){
+                return obj.crruentStyle? parseInt(obj.currentStyle[attr]):parseInt(getComputedStyle(obj,false)[attr]);
+            }
+            window.onload = function(){
+                var oDiv = document.getElementById("div1");
+                var timer = null;
+                var now = 0;
+                var speed = 0;
+                var target = 100;
+                clearInterval(timer);
+                timer = setInterval(function(){
+                    now = parseInt(oDiv.offsetLeft);
+                    
+                    if(now == target){
+                        clearInterval(timer);
+                    }else{
+                        speed = speed>0?  Math.ceil((target - now)/6):Math.floor((target - now)/6);
+                        oDiv.style.left = now + speed + 'px';
+                    }
+                },30);
+            }
+            </code>
+        </pre>
+        <script src="{{ site.baseurl }}/public/js/prism.js"></script>
+        <script>
+            function getStyle(obj,attr){
+                return obj.crruentStyle? parseInt(obj.currentStyle[attr]):parseInt(getComputedStyle(obj,false)[attr]);
+            }
+            window.onload = function(){
+                var oDiv = document.getElementById("div1");
+                var timer = null;
+                var now = 0;
+                var speed = 0;
+                var target = 100;
+                clearInterval(timer);
+                timer = setInterval(function(){
+                    now = parseInt(oDiv.offsetLeft);
+                    
+                    if(now == target){
+                        clearInterval(timer);
+                    }else{
+                        speed = speed>0?  Math.ceil((target - now)/6):Math.floor((target - now)/6);
+                        oDiv.style.left = now + speed + 'px';
+                    }
+                },30);
+            }
+        </script>
+    </body>
+</html>
