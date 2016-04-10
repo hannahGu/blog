@@ -1,3 +1,6 @@
+---
+title: 正则例子
+---
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -9,11 +12,39 @@ and open the template in the editor.
         <title>TODO supply a </title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/prism.css"/>
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/base.css"/>
     </head>
     <body>
         <textarea id="txt1" rows="10" cols="40"></textarea>
         <input id="btn" value="click"type="button"/>
         <textarea id="txt2" rows="10" cols="40"></textarea>
+        <pre id="show_code">
+            <code class="language-js">
+                window.onload = function(){
+                    var oTxt1 = document.getElementById("txt1");
+                    var oBtn = document.getElementById("btn");
+                    var oTxt2 = document.getElementById("txt2");
+                    oBtn.onclick = function(){
+                        oTxt2.value = oTxt1.value.replace(/<[^<>]+>/g,"");
+                    }
+                }
+                var str2 = "021-56563664 gdgdgasdgasggfhgfhgf23224346 rtrtr456 dfdgfd224354";
+                ////phone number
+                var re2 = /(0\d{2,3}-)?[1-9]\d{7}/g;
+                ///mail
+                var re3 = /^\w+@[a-z0-9]+\.[a-z]+$/i;
+                //console.log(str2.match(re2));1 
+                var t1= 'eroeuea4@136.com';
+                var t2 = 'er#oeuea4@136.com';
+                var t3 = 'eroeuea4@136.3435';
+                console.log(re3.test(t1));
+                console.log(re3.test(t2)); 
+                console.log(re3.test(t3));
+             
+            </code>
+        </pre>
+        <script src="{{ site.baseurl }}/public/js/prism.js"></script>
         <script>
             window.onload = function(){
                 var oTxt1 = document.getElementById("txt1");

@@ -1,0 +1,53 @@
+---
+title: 正则介绍
+---
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>正则函数</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/prism.css"/>
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/base.css"/>
+    </head>
+    <body>
+        <pre id="show_code">
+            <code class="language-js">
+                \d数字  \D除了数字
+                *任意字符
+                \w英文 数字 下划线   \W除了前面三者
+                \s 空白字符  \S
+                
+                [abc]abc任取其中一个 [0-9]范围  [^a-z]除了a~z
+                ()分组
+                
+                {n}正好出现n次   {n,}至少n次
+                {n,m}n<=x<=m
+                ？{0,1}  +{1,}
+                
+                var str = "t4fghrh a 1342ctt345d6 cc 123 ";
+                var re = /\d/;
+                var re1 =/\d+/g;
+                console.log(str.search(re));//1 index
+                console.log(str.match(re1));//["4","1342","345","6","123"]//满足的都返回
+                console.log(/z/.test(str));//false 检查str中z 字母是否存在
+                console.log(str.replace(/\d+/g,'num'));//tnumfghrh a numcttnumdnum cc num 替换后记得赋值
+            </code>
+        </pre>
+        <script src="{{ site.baseurl }}/public/js/prism.js"></script>
+        <script>
+             var str = "t4fghrh a 1342ctt345d6 cc 123 ";
+             var re = /\d/;
+             var re1 =/\d+/g;
+             console.log(str.search(re));//1 index
+             console.log(str.match(re1));//["4","1342","345","6","123"]//满足的都返回
+             console.log(/z/.test(str));//false 检查str中z 字母是否存在
+             console.log(str.replace(/\d+/g,'num'));//tnumfghrh a numcttnumdnum cc num 替换后记得赋值
+        </script> 
+    </body>
+</html>
