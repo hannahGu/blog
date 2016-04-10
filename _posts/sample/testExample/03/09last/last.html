@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            #content *{
+                padding:0;
+                margin:0;
+            }
+            #content{
+                background-color: #000;
+                width:300px;
+                color:#fff;
+                text-align: center;
+                margin:0 auto;
+                padding:20px 10px;
+                font:normal 15px/1.5 Arial;
+            }
+            #content span{
+                font-size: 15px;
+                display:inline-block;
+                background-color: #fff;
+                width:35px;
+                padding:2px 5px;
+                color:#000;
+                font-weight: bold;
+            }
+            #content input{
+                margin-top:20px;
+                background-color: #008558;
+                color:#fff;
+                font-size: 20px;
+                text-align: center;
+                width:280px;
+                line-height: 45px;
+                height:45px;
+                border-radius: 5px;
+                border:1px #666 solid;
+                border-top:0 none;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="content">
+            <span>02</span><label>minuite</label>
+            <span>02</span><label>second</label>
+            <input type="button" value="START"/>
+        </div>
+        <script>
+            window.onload = function(){
+                var oSpan = document.getElementsByTagName('span');
+                var oInput = document.getElementsByTagName('input')[0];
+                var timer = null;
+                function becomeTwo(num){
+                    if(num<10){
+                        return '0'+num
+                    }else{
+                        return num;
+                    }
+                }
+                oInput.onclick = function(){
+                    if(this.value == 'START'){
+                        this.value = 'PAUSE';
+                        this.style.backgroundColor = 'red';
+                        timer = setInterval(function(){
+                            var second = parseInt(oSpan[1].innerHTML);
+                            var minute = parseInt(oSpan[0].innerHTML);
+                            if(second>0){
+                                oSpan[1].innerHTML = becomeTwo(second-1);
+                            }
+                            
+                            else if(!second && !minute ){
+                                clearInterval(timer);
+                            }
+                            else{
+                                oSpan[1].innerHTML = 60;
+                                oSpan[0].innerHTML = becomeTwo(minute-1);
+                            }
+                            
+                        },1000);
+                    }else{
+                        this.value = 'START';
+                        this.style.backgroundColor = '#008558';
+                        clearInterval(timer);
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>

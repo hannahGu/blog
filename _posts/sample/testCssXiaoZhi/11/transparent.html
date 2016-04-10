@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body{
+                font:normal 12px/1.5em Arial;
+                background: url(../top1.jpg);
+            }
+            .list_box{
+                position: relative;
+                float:left;
+                width:200px;
+                margin-right: 15px;
+                border:1px solid #e8e8e8;
+            }
+            .year_list{
+                background-color: #dcdcdc;
+            }
+            .list_box *{
+                margin:0;
+                padding:0;
+                list-style: none;
+            }
+            .list_box h3{
+                height:24px;
+                margin-bottom:8px;
+                line-height: 24px;
+                text-indent:10px;
+                color:#ffffff;
+                background-color: #666666;
+            }
+            .list_box li{
+                position: relative;
+                z-index: 2;
+                float:left;
+                width:100%;
+                height:22px;
+                line-height: 22px;
+                text-indent: 10px;
+                border-bottom: 1px dashed #e8e8e8;
+            }
+            .name_list{
+                filter:alpha(opacity=10);
+                opacity: 0.1;
+            }
+            .name_list .content{
+                position: relative;
+            }
+            .name_list .content li{
+                color:#ffffff;
+            }
+            .name_list .bg{
+                position: absolute;
+                top:24px;
+                left:0;
+                width:200px;
+                height:284px;
+                background-color: #dcdcdc;
+                opacity:0.6;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="name_list list_box">
+            <h3>member name</h3>
+            <div class="content">
+                <ul>
+                    <li>Ming</li>
+                    <li>Shi</li>
+                </ul>
+            </div>
+            <div class="bg"></div>
+        </div>
+        <div class="year_list list_box">
+            <h3>event list</h3>
+            <div class="content">
+                <ul>
+                    <li>event in 1991</li>
+                    <li>event in 1992</li>
+                    <li>event in 1993</li>
+                    <li>event in 1994</li>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>

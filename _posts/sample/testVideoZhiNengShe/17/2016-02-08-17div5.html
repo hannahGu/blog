@@ -1,0 +1,142 @@
+---
+title: 同时控制多物体运动
+---
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>同时控制多物体运动</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/prism.css"/>
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/base.css"/>
+        <style>
+            #content{
+                height:400px;
+            }
+            #content div{
+                width:200px;
+                height:200px;
+                background: red;
+                margin-right: 10px;
+                display:inline-block;
+            }
+            #content div:nth-of-type(3){
+                opacity:0.3;
+                filter:alpha(opacity:30);
+            }
+            #content div:nth-of-type(4){
+                vertical-align:top;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="content">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div>1234</div>
+        </div>
+        <pre id="show_code">
+            <code class="language-js">
+                同时控制多物体运动
+                function getStyle(obj,attr){
+                    return obj.crruentStyle? parseInt(obj.currentStyle[attr]):parseInt(getComputedStyle(obj,false)[attr]);
+                }
+                function startMove(obj,attr,iTarget){ 
+                    var speed = 0;
+
+                    clearInterval(obj.timer);
+                    obj.timer = setInterval(function(){
+                        if(attr == 'opacity'){
+                            var now = alpha;
+                        }else{
+                            var now = getStyle(obj,attr);
+                        }
+                        if(now == iTarget){
+                            clearInterval(obj.timer);
+                        }else{
+                            speed = (iTarget - now)/6;
+                            speed = speed>0 ? Math.ceil(speed):Math.floor(speed);
+                            if(attr == 'opacity'){
+                                alpha += speed;
+                                obj.style.opacity = alpha/100;
+                                obj.style.filter = 'alpha(opacity:'+alpha+ ')';
+                            }else{
+                                obj.style[attr] = now + speed + 'px';
+                            }
+                        }
+                    },30);
+                }
+            </code>
+        </pre>
+        <script src="{{ site.baseurl }}/public/js/prism.js"></script>
+        <script>
+            var alpha = 30;
+            window.onload = function(){
+                var oMain = document.getElementById("content");
+                var oDiv = oMain.getElementsByTagName('div');
+                oDiv[0].onmouseover = function(){
+                    startMove(this,'width',400);
+                }
+                oDiv[0].onmouseout = function(){
+                    startMove(this,'width',200);
+                }
+                oDiv[1].onmouseover = function(){
+                    startMove(this,'height',400);
+                }
+                oDiv[1].onmouseout = function(){
+                    startMove(this,'height',200);
+                }
+                
+                oDiv[2].onmouseover = function(){
+                    startMove(this,'opacity',100);
+                }
+                oDiv[2].onmouseout = function(){
+                    startMove(this,'opacity',30);
+                }
+                
+                oDiv[3].onmouseover = function(){
+                    startMove(this,'fontSize',40);
+                }
+                oDiv[3].onmouseout = function(){
+                    startMove(this,'fontSize',10);
+                }
+                
+            }
+            
+            function getStyle(obj,attr){
+                return obj.crruentStyle? parseInt(obj.currentStyle[attr]):parseInt(getComputedStyle(obj,false)[attr]);
+            }
+            function startMove(obj,attr,iTarget){ 
+                var speed = 0;
+
+                clearInterval(obj.timer);
+                obj.timer = setInterval(function(){
+                    if(attr == 'opacity'){
+                        var now = alpha;
+                    }else{
+                        var now = getStyle(obj,attr);
+                    }
+                    if(now == iTarget){
+                        clearInterval(obj.timer);
+                    }else{
+                        speed = (iTarget - now)/6;
+                        speed = speed>0 ? Math.ceil(speed):Math.floor(speed);
+                        if(attr == 'opacity'){
+                            alpha += speed;
+                            obj.style.opacity = alpha/100;
+                            obj.style.filter = 'alpha(opacity:'+alpha+ ')';
+                        }else{
+                            obj.style[attr] = now + speed + 'px';
+                        }
+                    }
+                },30);
+            }
+        </script>
+    </body>
+</html>

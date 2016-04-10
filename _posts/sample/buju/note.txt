@@ -1,0 +1,83 @@
+1
+file:///D:/wamp/www/jbook/test1/test1/article/testcssxiaozhi/09/biaodan.html
+
+2
+file:///D:/wamp/www/jbook/test1/test1/article/testcssxiaozhi/08/heng.html
+
+3
+http://localhost/jbook/test1/test1/article/baidumap.php
+4
+file:///D:/wamp/www/jbook/test1/test1/article/sample/03/7calculate/calculate.html
+
+
+css js
+5
+file:///D:/wamp/www/jbook/test1/test1/article/sample/01/changeAttr.html
+6
+file:///D:/wamp/www/jbook/test1/test1/article/sample/02/checkbox/checkboxn.html
+7
+file:///D:/wamp/www/jbook/test1/test1/article/sample/02/checkbox/checkboxn.html
+8
+file:///D:/wamp/www/jbook/test1/test1/article/sample/03/8clock/clockn.html
+9
+file:///D:/wamp/www/jbook/test1/test1/article/sample/04/2gundong.html
+10
+file:///D:/wamp/www/jbook/test1/test1/article/sample/04/9star1.html
+13
+file:///D:/wamp/www/jbook/test1/test1/article/sample/06/tcenter1.html
+14
+file:///D:/wamp/www/jbook/test1/test1/article/sample/phone/easy1.html
+20
+file:///D:/wamp/www/jbook/test1/test1/article/testvideo-zhinengshe/re/re2.html
+
+
+donghua bushi localhost???
+15
+http://localhost/jbook/test1/test1/article/testvideozhinengshe/17/17div5.html
+16
+file:///D:/wamp/www/jbook/test1/test1/article/testvideo-zhinengshe/20/chuan.html
+17
+file:///D:/wamp/www/jbook/test1/test1/article/testvideo-zhinengshe/21/dot.html
+18
+file:///D:/wamp/www/jbook/test1/test1/article/testvideo-zhinengshe/23/scale.html
+19
+http://localhost/jbook/test1/test1/article/testvideozhinengshe/gundong/gungong2.html
+21fei yusu
+http://localhost/jbook/test1/test1/article/testvideozhinengshe/16/16sport.html
+
+
+
+专业技能
+精通HTML，Javascript，CSS
+熟悉HTML5，CSS3，ECMAScript5
+熟练使用jQuery bootstrap,Ajax，MVC开发
+熟悉HTTP协议基本知识
+熟悉python，php，SQL Server
+
+工作经历 2013年至今 微盟电子
+
+2014.06--今 行程记录及完善其他功能 
+项目描述：酒店管理系统，酒店提供给客户娱乐、客房服务、点餐和问卷调查等服务。
+使用技术：JQuery，bootstrap，php，MVC
+项目收获：根据用户需求，设计并实现行程记录从前端交互到后台管理的整个流程，熟悉了MVC。通过给已存在页面修bug，增加新功能，了解他人的思路，知道如何与人合作，熟悉jquery.form、jquery。dataTables.js等插件
+
+2013.11--今 车辆状况分析脚本
+项目描述：车辆管理系统，测试管理页面和对车辆回报数据分析。
+使用技术：Python，selenium
+项目收获：编写自动化测试脚本，熟悉了python，了解整个系统的功能；对车辆回报给数据库的数据进行分析，熟悉了My SQL，Linux，设计了从数据导入、数据过滤、数据分析到生成报告的整个流程。
+
+日常作品
+参看
+
+
+
+
+自我评价
+性格开朗，感染力强，有激情
+热爱技术
+能坚持，有毅力
+Web前端表现层及与前后端交互的架构设计和开发
+配合后台开发人员实现产品界面和功能
+最后
+感谢您花时间阅读我的简历，期待能有机会和您共事。
+

@@ -1,0 +1,144 @@
+---
+title: table中查找指定内容
+---
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>table中查找指定内容</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/prism.css"/>
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/base.css"/>
+        <style>
+            table{
+                margin-top:10px;
+                border-collapse: collapse;
+            }
+            table thead{
+                font-weight: bold;
+            }
+            table td{
+                border:1px solid #000;
+                padding:4px 12px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="show">
+            <input id="shuru" type="text"/>
+            <input id="click" value="Apply" type="button"/>
+            查找name
+            <table>
+                <thead>
+                    <td>id</td>
+                    <td>age</td>
+                    <td>name</td>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>12</td>
+                        <td>Angle</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>132</td>
+                        <td>Banle</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>42</td>
+                        <td>CC</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <pre id="show_code">
+            <code class="language-js">
+            table中查找指定内容
+            window.onload = function(){
+                var tab = document.getElementsByTagName("table")[0];
+                for(var i=0;i&lt;tab.tBodies[0].rows.length;i++){
+                    var oldc = '';
+                    if(i%2){
+                        tab.tBodies[0].rows[i].style.background = 'red';
+                    }
+                    
+                    tab.tBodies[0].rows[i].onmouseover = function(){
+                        oldc = this.style.backgroundColor;
+                        this.style.backgroundColor = 'green';
+                    }
+                    tab.tBodies[0].rows[i].onmouseout = function(){
+                        this.style.backgroundColor = oldc;
+                    }
+                }
+                
+                var oShuru = document.getElementById("shuru");
+                var btn = document.getElementById("click");
+                //var id = tab.tBodies[0].rows.length+1;
+                btn.onclick = function(){
+                    var text = oShuru.value.toLowerCase();
+                    var arr = text.split(' ');
+                    for(var i=0;i&lt;tab.tBodies[0].rows.length;i++){
+                        tab.tBodies[0].rows[i].style.display = "none";
+                        var value = tab.tBodies[0].rows[i].cells[2].innerHTML.toLowerCase();
+                        for(var j=0;j&lt;arr.length;j++){
+                            if(value.search(arr[j])!=-1){
+                            tab.tBodies[0].rows[i].style.display = 'table-row';//block时，行的内容宽度仅与第一列宽度相同
+                        }
+                        }
+                        
+                    }
+                   
+                   
+                }   
+            }
+            </code>
+        </pre>
+        <script src="{{ site.baseurl }}/public/css/prism.js"></script>
+        <script>
+            window.onload = function(){
+                var tab = document.getElementsByTagName("table")[0];
+                for(var i=0;i<tab.tBodies[0].rows.length;i++){
+                    var oldc = '';
+                    if(i%2){
+                        tab.tBodies[0].rows[i].style.background = 'red';
+                    }
+                    
+                    tab.tBodies[0].rows[i].onmouseover = function(){
+                        oldc = this.style.backgroundColor;
+                        this.style.backgroundColor = 'green';
+                    }
+                    tab.tBodies[0].rows[i].onmouseout = function(){
+                        this.style.backgroundColor = oldc;
+                    }
+                }
+                
+                var oShuru = document.getElementById("shuru");
+                var btn = document.getElementById("click");
+                //var id = tab.tBodies[0].rows.length+1;
+                btn.onclick = function(){
+                    var text = oShuru.value.toLowerCase();
+                    var arr = text.split(' ');
+                    for(var i=0;i<tab.tBodies[0].rows.length;i++){
+                        tab.tBodies[0].rows[i].style.display = "none";
+                        var value = tab.tBodies[0].rows[i].cells[2].innerHTML.toLowerCase();
+                        for(var j=0;j<arr.length;j++){
+                            if(value.search(arr[j])!=-1){
+                            tab.tBodies[0].rows[i].style.display = 'table-row';//block时，行的内容宽度仅与第一列宽度相同
+                        }
+                        }
+                        
+                    }
+                   
+                   
+                }   
+            }
+        </script>
+    </body>
+</html>

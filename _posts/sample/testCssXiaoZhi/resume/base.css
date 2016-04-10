@@ -1,0 +1,8 @@
+#div1{
+    background-color: red;
+}
+
+@media print{
+    color:purple;
+    background-color:pink;
+}

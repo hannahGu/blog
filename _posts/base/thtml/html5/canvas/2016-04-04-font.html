@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>字体</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body{
+                background:#ccc;
+            }
+            canvas{
+                background: pink;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="c1" width="400" height="400"></canvas>
+        <script>
+            window.onload = function(){
+               var oC = document.getElementById("c1");
+               var oCC = oC.getContext("2d");
+               oCC.font = '60px impact';
+               //第二个参数是样式，随便写什么，但必须写，否则60px无用
+               oCC.textBaseline = 'top';//默认样式只能看到文字的最下面
+               
+               var w = oCC.measureText('中国人').width;//
+               oCC.fillText("中国人",(oC.width-w)/2,(oC.height -60)/2);
+               //居中方法，left为画布宽减去图形宽后除以2，同理top
+               oCC.strokeText("yes 中国人",0,200);
+            }
+        </script>
+    </body>
+</html>

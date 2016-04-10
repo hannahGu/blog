@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            #div1{
+                width:100px;
+                height:100px;
+                background: yellowgreen;
+                position:absolute;
+            }
+            #div2{
+                width:700px;
+                height:500px;
+                position: relative;
+                background-color: #ccc;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div id="div2">
+            <div id="div1"></div>
+        </div>
+        <script>
+            window.onload = function(){
+                var oDiv = document.getElementById("div1");
+                var oDiv2 = document.getElementById("div2");
+                var disX = 0;
+                var disY = 0;
+                oDiv.onmousedown = function(ev){
+                    var event = ev || window.event;
+                    disX = event.clientX - oDiv.offsetLeft;
+                    disY = event.clientY - oDiv.offsetTop;
+                    
+                     document.onmousemove = function(ev){
+                         //鼠标出不了div，如果换成oDiv.onmousemove,速度快时，鼠标会出div
+                        var event = ev || window.event;
+                        var l = event.clientX - disX;
+                        var t= event.clientY - disY;
+                        if(l<50){
+                            l = 0;
+                        }else if(l>oDiv2.offsetWidth-oDiv.offsetWidth){
+                            l = oDiv2.offsetWidth-oDiv.offsetWidth;
+                        }
+                        if(t<50){
+                            t = 0;
+                        }else if(t>oDiv2.offsetHeight-oDiv.offsetHeight){
+                            t = oDiv2.offsetHeight-oDiv.offsetHeight;
+                        }
+                        oDiv.style.left = l + 'px';
+                        oDiv.style.top = t + 'px';
+                    }
+                    document.onmouseup = function(){
+                        document.onmousemove = null;
+                         document.onmouseup = null;
+                    }
+                    
+                }
+               
+                
+            }
+        </script>
+    </body>
+</html>

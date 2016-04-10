@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a </title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <textarea id="txt1" rows="10" cols="40"></textarea>
+        <input id="btn" value="click"type="button"/>
+        <textarea id="txt2" rows="10" cols="40"></textarea>
+        <script>
+            window.onload = function(){
+                var oTxt1 = document.getElementById("txt1");
+                var oBtn = document.getElementById("btn");
+                var oTxt2 = document.getElementById("txt2");
+                oBtn.onclick = function(){
+                    oTxt2.value = oTxt1.value.replace(/<[^<>]+>/g,"");
+                }
+            }
+            var str2 = "021-56563664 gdgdgasdgasggfhgfhgf23224346 rtrtr456 dfdgfd224354";
+            ////phone number
+            var re2 = /(0\d{2,3}-)?[1-9]\d{7}/g;
+            ///mail
+            var re3 = /^\w+@[a-z0-9]+\.[a-z]+$/i;
+            //console.log(str2.match(re2));1 
+            var t1= 'eroeuea4@136.com';
+            var t2 = 'er#oeuea4@136.com';
+            var t3 = 'eroeuea4@136.3435';
+            console.log(re3.test(t1));
+            console.log(re3.test(t2)); 
+            console.log(re3.test(t3));
+             
+        </script>
+    </body>
+</html>

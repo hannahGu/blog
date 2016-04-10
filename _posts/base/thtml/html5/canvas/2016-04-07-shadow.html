@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body{
+                background: #ccc;
+            }
+            canvas{
+                background: #fff;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="c1" width="400" height="400"></canvas>
+        <script>
+            window.onload = function(){
+                var oC = document.getElementById("c1");
+                var oCC = oC.getContext("2d");
+                oCC.font = '60px impact';
+                oCC.textBaseline = 'top';
+                oCC.shadowOffsetX = 10;//x轴偏移
+                oCC.shadowOffsetY = 10;//y轴偏移
+                oCC.shadowBlur = 2;//值越大越模糊
+                oCC.shadowColor = 'yellow';//必须
+                var w = oCC.measureText("课堂12").width;
+                oCC.fillText("课堂12",(oC.width-w)/2,(oC.height-60)/2);
+            }
+        </script>
+    </body>
+</html>

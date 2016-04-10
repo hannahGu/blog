@@ -1,0 +1,128 @@
+---
+title: nav 二级菜单位移法
+---
+
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>nav 二级菜单位移法</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/prism.css"/>
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/base.css"/>
+        <style>
+            #contain{
+                position:relative;
+            }
+            #nav{
+                width:800px;
+                margin:0 auto;
+            }
+            #nav>div{
+                display:inline-block;
+                padding:4px 10px;
+                
+            }
+            #son ul{
+                display:none;
+                list-style: none;
+                position: absolute;
+                padding:0;
+                margin:0;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="contain">
+            <div id="nav">
+                <div><label>home  |</label>
+
+                </div>
+                <div><label>Tech  |</label>
+
+                </div>
+                <div><label>support  |</label>
+
+                </div>
+                <div><label>Contact</label>
+
+                </div>
+            </div>
+            <div id="son">
+                <ul>
+                    <li>000</a>
+                    <li>001</a>
+                    <li>002</a>
+                </ul>
+                <ul>
+                    <li>100</a>
+                    <li>101</a>
+                    <li>102</a>
+                </ul>
+                <ul>
+                    <li>200</a>
+                    <li>201</a>
+                    <li>202</a>
+                </ul>
+                <ul>
+                    <li>300</a>
+                    <li>301</a>
+                    <li>302</a>
+                </ul>
+            </div>
+        </div>
+        <pre id="show_code">
+            <code class="language-js">
+                1.mouseover mouseout 都不可少
+                2.给二级菜单相对位移
+
+                window.onload = function(){
+                    var oNav = document.getElementById("nav");
+                    var oSon = document.getElementById("son");
+                    var oDiv = oNav.getElementsByTagName('div');
+                    var oUl = oSon.getElementsByTagName('ul');
+
+                    for(var i=0;i&lt;oDiv.length;i++){
+                        oDiv[i].index = i;
+                        oDiv[i].onmouseover = function(){
+                            oUl[this.index].style.display= 'block';
+                            oUl[this.index].style.left= this.offsetLeft+'px';
+                        }
+                        oDiv[i].onmouseout = function(){
+                            for(var j=0;j&lt;Div.length;j++){
+                            oUl[this.index].style.display= 'none';
+                            }
+                        }
+                    }  
+                }
+            </code>
+        </pre>
+        <script src="{{ site.baseurl }}/public/js/prism.js"></script>
+        <script>
+            window.onload = function(){
+                var oNav = document.getElementById("nav");
+                var oSon = document.getElementById("son");
+                var oDiv = oNav.getElementsByTagName('div');
+                var oUl = oSon.getElementsByTagName('ul');
+                
+                for(var i=0;i<oDiv.length;i++){
+                    oDiv[i].index = i;
+                    oDiv[i].onmouseover = function(){
+                        oUl[this.index].style.display= 'block';
+                        oUl[this.index].style.left= this.offsetLeft+'px';
+                    }
+                    oDiv[i].onmouseout = function(){
+                        for(var j=0;j<oDiv.length;j++){
+                        oUl[this.index].style.display= 'none';
+                        }
+                    }
+                }  
+            }
+        </script>
+    </body>
+</html>

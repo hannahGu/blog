@@ -1,0 +1,42 @@
+---
+title:worker simple 
+---
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>worker simple </title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/prism.css"/>
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/base.css"/>
+    </head>
+    <body>
+        <div>TODO write content</div>
+        <pre id="show_code">
+            <code class="language-js">
+                window.onload = function(){
+                    var worker = new Worker("{{ site.baseurl }}/public/worker/worker1.js");
+                    worker.postMessage("Hello");
+                    worker.onmessage = function(evt){
+                        console.log(evt.data);
+                    }
+                }
+            </code>
+        </pre>
+<       <script src="{{ site.baseurl }}/public/js/prism.js"></script>
+        <script>
+            window.onload = function(){
+                var worker = new Worker("{{ site.baseurl }}/public/worker/worker1.js");
+                worker.postMessage("Hello");
+                worker.onmessage = function(evt){
+                    console.log(evt.data);
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,91 @@
+---
+title: Tab选项卡
+---
+
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Tab选项卡</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/prism.css"/>
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/base.css"/>
+        <style>
+            #introduction{
+                display:none;
+            }
+            .active_btn{
+                background: pink;
+            }
+            #container div{
+                display:none;
+            }
+            #container .active_div{
+                display:block;
+            }
+            
+        </style>
+    </head>
+    <body>
+        
+        <div id='container'>
+            <input type='button' value='11'/>
+            <input type='button' value='22'/>
+            <input type='button' value='33'/>
+            <input type='button' value='44'/>
+            <div>1111</div>
+            <div>2222</div>
+            <div>3333</div>
+            <div>4444</div>
+        </div>
+        <pre id="show_code">
+            <code class="language-js">
+            tab选项卡 自定义属性在html中加index，不能兼容所有的browser，最好通过js加
+
+            window.onload= function(){
+                var oInput= document.getElementsByTagName("input");
+                var oContainer = document.getElementById("container");
+                var oDiv = oContainer.getElementsByTagName("div");
+                
+                for(var i=0;i&lt;oInput.length;i++){
+                    oInput[i].index = i;
+                    oInput[i].onclick = function(){
+                        for(var i=0;i&lt;oInput.length;i++){
+                            oInput[i].className = "";
+                            oDiv[i].className = "";
+                        }
+                        this.className = 'active_btn';
+                        oDiv[this.index].className='active_div';
+                    }
+                }
+            }
+            </code>
+        </pre>
+        <script src="{{ site.baseurl }}/public/js/prism.js"></script>
+        <script>
+            window.onload= function(){
+                var oInput= document.getElementsByTagName("input");
+                var oContainer = document.getElementById("container");
+                var oDiv = oContainer.getElementsByTagName("div");
+                
+                for(var i=0;i<oInput.length;i++){
+                    oInput[i].index = i;
+                    oInput[i].onclick = function(){
+                        for(var i=0;i<oInput.length;i++){
+                            oInput[i].className = "";
+                            oDiv[i].className = "";
+                        }
+                        this.className = 'active_btn';
+                        oDiv[this.index].className='active_div';
+                    }
+                }
+            }
+            
+        </script>
+    </body>
+</html>

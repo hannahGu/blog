@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            .feedback{
+                width:398px;
+                padding:1px;
+                border:1px solid #e8e8e8;
+                background-color: #ffffff;
+            }
+            .feedback *{
+                margin:0;
+                padding:0;
+                font:normal 12px/1.5em '宋体',Arial;
+            }
+            .feedback h3{
+                height:24px;
+                line-height: 24px;
+                font-weight: bold;
+                font-size: 13px;
+                text-indent: 12px;
+                color:#ffffff;
+                background-color: #999999;
+            }
+            .feedback .content{
+                padding:0 10px;
+            }
+            .feedback fieldset{
+                padding-left:12px;
+                margin-top:10px;
+                border:0 none;
+                border-top:1px solid #999999;
+            }
+            .feedback legend{
+                padding:0 5px;
+                color:#333333;
+            }
+            .feedback .frm_cont{
+                margin-top:8px;
+            }
+            .feedback label{
+                float:left;
+                width:80px;
+                height:22px;
+                line-height: 24px;
+                text-align: right;
+                color:#ababab;
+                cursor:pointer;
+            }
+            .feedback .base_info input{
+                width: 100px;
+                height:17px;
+                padding:3px 2px 0;
+                border:1px solid #dedede;
+            }
+            .feedback .email input{
+                width:150px;
+            }
+            .feedback .url input{
+                width: 240px;
+            }
+            .feedback .up_file input{
+                width:auto;
+                height:auto;
+            }
+            .feedback .tips{
+                padding:5px 0 0 80px;
+                color:#ff3260;
+            }
+            .feedback textarea{
+                width:240px;
+                height:66px;
+                padding-left: 2px;
+                line-height: 22px;
+                border:1px solid #dedede;
+            }
+            .feedback .btns{
+                padding:5px 0;
+                text-align: center;
+            }
+            .feedback .btns button{
+                height:22px;
+                margin: 0 5px;
+                letter-spacing: 3px;
+                padding-left: 3px;
+                cursor: pointer;
+            }
+            .up_file input{
+                /*border:1px solid #0000ff;*/
+            }
+        </style>
+    </head>
+    <body>
+        <div class="feedback">
+            <h3>Feedback</h3>
+            <div class="content">
+                <form method="post" action="">
+                    <fieldset class="base_info">
+                        <legend>user info</legend>
+                        <div class="frm_cont userName">
+                            <label for="userName">username:</label>
+                            <input type="text" value="" id="userName"/>
+                        </div>
+                        <div class="frm_cont email">
+                            <label for="email">mail:</label>
+                            <input type="text" value="@" id="email"/>
+                        </div>
+                        <div class="frm_cont url">
+                            <label for="url">url:</label>
+                            <input type="text" value="" id="url"/>
+                        </div>
+                    </fieldset>
+                    <fieldset class="feedback_content">
+                        <legend>feedback content</legend>
+                        <div class="frm_cont up_file">
+                            <label for="up_file">related pic:</label>
+                            <input type="file" id="up_file"/>
+                            <p class="tips">We only support .jpg .gif png</p>
+                        </div>
+                        <div class="frm_cont msg">
+                            <label for="msg">message:</label>
+                            <textarea rows="4" cols="40" id="msg"></textarea>
+                            <p class="tips">Please enter your message</p>
+                        </div> 
+                    </fieldset>
+                    <div class="btns">
+                        <button type="submit">Submit</button>
+                        <button type="reset">teset</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

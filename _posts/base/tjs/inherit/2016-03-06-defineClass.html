@@ -1,0 +1,263 @@
+---
+title: 定义对象的若干法子
+---
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>定义对象的若干法子</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/prism.css"/>
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/base.css"/>
+    </head>
+    <body>
+        <div>define Class</div>
+        <pre id="show_code">
+            <code class="language-js">
+            ///////////////factory model
+            function show(){
+                console.log(this.name);
+            }
+            function Car1(name ,time){
+                var obj = new Object();//定义对象必须做，否则属性怎么挂到对象上
+                obj.name = name;
+                obj.time = time;
+                obj.show = show;
+                return obj;
+            }
+            var s1 = Car1('Green',12);
+            s1.show();//Green
+            
+            //////////////////构造函数方式
+            function Car2(name,time){
+                this.name = name;
+                this.time = time;
+                this.show = function(){
+                    console.log(this.name);
+                }
+            }
+            var s2 =new Car2("Tom",12);///new 注意了
+            s2.show();//Tom
+            
+            //////////////////prototype
+            function Car3(){}
+            Car3.prototype.name = 'Uu';
+            Car3.prototype.time = ['14'];
+            Car3.prototype.show = function(){
+                console.log(this.name);
+            }
+            var s30 = new Car3();
+            var s31 = new Car3();
+            console.log('PROTOTYPE');
+            s30.show();//Uu
+            s31.show();//Uu
+            s30.time.push(15);
+            console.log(s30.time);//["14",15]
+            console.log(s31.time);//["14",15]
+            
+            //////////////////混合构造和原型 推荐使用
+            function Car4(name,time){
+                this.name = name;
+                this.time = time;
+            }
+            Car4.prototype.show = function(){///方法位于外面
+                console.log(this.name);
+            }
+            var s40 = new Car4('Za',14);
+            var s41 = new Car4('Zac',15);
+            console.log("MIXED");
+            s40.show();
+            s41.show();
+            /////////////动态原型 推荐使用
+            function Car5(name,time){
+                this.name = name;
+                this.time = time;
+                if(typeof Car5._initialized == 'undefined'){
+                    Car5.prototype.show = function(){
+                        console.log(this.name);
+                    }
+                    Car5._initialized = true;
+                }
+            }
+            var s50 = new Car5('zo',20);
+            var s51 = new Car5('qw',22);
+            console.log("ACTIVE PROTOTYPE");
+            s50.show();
+            s51.show();
+            ////////////////////////////实例
+            //var str = "hello";
+            //str += "world";效率低，经过如下6个步骤
+//            创建存储 "hello " 的字符串。
+//            创建存储 "world" 的字符串。
+//            创建存储连接结果的字符串。
+//            把 str 的当前内容复制到结果中。
+//            把 "world" 复制到结果中。
+//            更新 str，使它指向结果
+
+//            var arr = new Array();
+//            arr[0] = "hello ";
+//            arr[1] = "world";
+//            var str = arr.join("");//2步
+//            创建存储结果的字符串
+//            把每个字符串复制到结果中的合适位置
+
+            function stringBuffer(){
+                this._string_ = new Array();
+            }
+            stringBuffer.prototype.append = function(str){//append good name！
+                this._string_.push(str);
+            }
+            stringBuffer.prototype.toString = function(){
+                return this._string_.join(""); //和return this._string_是不一样的
+            }
+            console.log("STRINGBUFFER");
+            
+           ///test effection
+           var d1 = new Date();
+           var str = "";
+           for(var i=0;i&lt;10000;i++){
+               str += "test";
+           }
+           var d2 = new Date();
+           console.log(d2.getTime()-d1.getTime()+'millseconds use tradition');
+           //VS
+           var s6 = new stringBuffer();
+           var d3 = new Date();
+           for(var i=0;i&lt;10000;i++){
+               s6.append('test');
+           }
+           s6.toString();
+           var d4 = new Date();
+           console.log(d4.getTime()-d3.getTime()+'millseconds use new');
+           ///////（此法过时）  每次刷新这2个值都和之前不一样
+           //http://www.w3school.com.cn/tiy/t.asp?f=jseg_pro_object_defining_example_performance_test
+           </code>
+        </pre>
+        <script src="{{ site.baseurl }}/public/js/prism.js"></script>
+        <script>
+            ///////////////factory model
+            function show(){
+                console.log(this.name);
+            }
+            function Car1(name ,time){
+                var obj = new Object();//定义对象必须做，否则属性怎么挂到对象上
+                obj.name = name;
+                obj.time = time;
+                obj.show = show;
+                return obj;
+            }
+            var s1 = Car1('Green',12);
+            s1.show();//Green
+            
+            //////////////////构造函数方式
+            function Car2(name,time){
+                this.name = name;
+                this.time = time;
+                this.show = function(){
+                    console.log(this.name);
+                }
+            }
+            console.log("CAR2");
+            var s2 =new Car2("Tom",12);///new 注意了
+            s2.show();//Tom
+            
+            //////////////////prototype
+            function Car3(){}
+            Car3.prototype.name = 'Uu';
+            Car3.prototype.time = ['14'];
+            Car3.prototype.show = function(){
+                console.log(this.name);
+            }
+            var s30 = new Car3();
+            var s31 = new Car3();
+            console.log('PROTOTYPE');
+            s30.show();//Uu
+            s31.show();//Uu
+            s30.time.push(15);
+            console.log(s30.time);//["14",15]
+            console.log(s31.time);//["14",15]
+            
+            //////////////////混合构造和原型 推荐使用
+            function Car4(name,time){
+                this.name = name;
+                this.time = time;
+            }
+            Car4.prototype.show = function(){///方法位于外面
+                console.log(this.name);
+            }
+            var s40 = new Car4('Za',14);
+            var s41 = new Car4('Zac',15);
+            console.log("MIXED");
+            s40.show();
+            s41.show();
+            /////////////动态原型 推荐使用
+            function Car5(name,time){
+                this.name = name;
+                this.time = time;
+                if(typeof Car5._initialized == 'undefined'){
+                    Car5.prototype.show = function(){
+                        console.log(this.name);
+                    }
+                    Car5._initialized = true;
+                }
+            }
+            var s50 = new Car5('zo',20);
+            var s51 = new Car5('qw',22);
+            console.log("ACTIVE PROTOTYPE");
+            s50.show();
+            s51.show();
+            ////////////////////////////实例
+            //var str = "hello";
+            //str += "world";效率低，经过如下6个步骤
+//            创建存储 "hello " 的字符串。
+//            创建存储 "world" 的字符串。
+//            创建存储连接结果的字符串。
+//            把 str 的当前内容复制到结果中。
+//            把 "world" 复制到结果中。
+//            更新 str，使它指向结果
+
+//            var arr = new Array();
+//            arr[0] = "hello ";
+//            arr[1] = "world";
+//            var str = arr.join("");//2步
+//            创建存储结果的字符串
+//            把每个字符串复制到结果中的合适位置
+
+            function stringBuffer(){
+                this._string_ = new Array();
+            }
+            stringBuffer.prototype.append = function(str){//append good name！
+                this._string_.push(str);
+            }
+            stringBuffer.prototype.toString = function(){
+                return this._string_.join(""); //和return this._string_是不一样的
+            }
+            console.log("STRINGBUFFER");
+            
+           ///test effection
+           var d1 = new Date();
+           var str = "";
+           for(var i=0;i<10000;i++){
+               str += "test";
+           }
+           var d2 = new Date();
+           console.log(d2.getTime()-d1.getTime()+'millseconds use tradition');
+           //VS
+           var s6 = new stringBuffer();
+           var d3 = new Date();
+           for(var i=0;i<10000;i++){
+               s6.append('test');
+           }
+           s6.toString();
+           var d4 = new Date();
+           console.log(d4.getTime()-d3.getTime()+'millseconds use new');
+           ///////（此法过时）  每次刷新这2个值都和之前不一样
+           //http://www.w3school.com.cn/tiy/t.asp?f=jseg_pro_object_defining_example_performance_test
+        </script>
+    </body>
+</html>

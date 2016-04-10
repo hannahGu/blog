@@ -1,0 +1,47 @@
+---
+title: 服务器发送
+---
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>服务器发送</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/prism.css"/>
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/base.css"/>
+    </head>
+    <body>
+        <div id="result"></div>
+        <pre id="show_code">
+            <code class="language-js">
+                if(typeof(EventSource) !="undefined"){
+                    var source = new EventSource('demo.php');
+                     source.onmessage = function(evt){
+                         console.log(evt.data);
+                         //document.getElementById('result').innerHTML += evt.data + "<br/>";
+                     } 
+                 }else{
+                     console.log('not support eventsource');
+                 }
+            </code>
+        </pre>
+        <script src="{{ site.baseurl }}/public/js/prism.js"></script>
+        <script>
+            if(typeof(EventSource) !="undefined"){
+               var source = new EventSource('{{ site.baseurl }}/public/serverSent/demo.php');
+                source.onmessage = function(evt){
+                    console.log(evt.data);
+                    //document.getElementById('result').innerHTML += evt.data + "<br/>";
+                } 
+            }else{
+                console.log('not support eventsource');
+            }
+            
+        </script>
+    </body>
+</html>

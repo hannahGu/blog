@@ -1,0 +1,92 @@
+---
+title: 基本知识点
+---
+
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>基本知识点</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/prism.css"/>
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/base.css"/>
+        <style>
+            #introduction{
+                display:none;
+            }
+            #show{
+                margin-top: 10px;
+                border:1px solid #000;
+                width:200px;
+                height:150px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id='container'>
+            <input type='text' id='num1'/>
+            <input type='text' id='num2'/>
+            <input type="button" id="click" value="click" />
+            
+            <div id='show'></div>
+        </div>
+        <pre id="show_code">
+            <code class="language-js">
+            innerHTML:识别html，格式就是title样式
+            9+7+"a" = "16a",
+            "a"+9+7 = "a97"原因先前2个相加变成a9再和第三个相加变成a97
+            基本数据类型：number string boolean function object undefined(有定义未赋值,未定义)（null空值）
+            js组成：ECMAScript DOM Browser
+                ECMAScript：翻译，是解释器，ECMAScript 是一种开放的、国际上广为接受的脚本语言规范。
+                JavaScript 是 ECMAScript 规范的一种实现。 
+                DOM：Document Object Model,操作html的能力， document
+                BOM：Browser.........
+            类型转换：
+                显示转换，强制转换
+                    parseInt不仅可以str to num，而且去掉字符“12px34”=》12，从左往右看，直到遇到非数字跳出
+                    NaN ；not a number，NaN 不等于NaN，判断时候用isNaN（）来看结果
+                隐式类型转换
+                    ==先转换类型，然后比较
+                    ===不转换，直接比
+                    -减法， / *
+            闭包：子函数可以使用父函数的局部变量
+            命名：
+                数组：a
+                布尔：b
+                浮点数：f
+                函数：fn
+                整数：i
+                对象：o
+                正则：re
+                字符串：s
+            </code>
+        </pre>
+        <script src="{{ site.baseurl }}/public/js/prism.js"></script>
+        <script>
+            window.onload= function(){
+                alert("5"*"12");
+                var oNum1 = document.getElementById("num1");
+                var oNum2 = document.getElementById("num2");
+                var oBtn = document.getElementById("click");
+                
+                oBtn.onclick = function(){
+                    var n1 = parseInt(oNum1.value);
+                    var n2 = parseInt(oNum2.value);
+                    if(isNaN(n1)){
+                        alert("n1 wrong");
+                    }
+                    else if(isNaN(n2)){
+                        alert("n2 no a number");
+                    }else{
+                        alert(n1+n2);
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>

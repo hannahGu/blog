@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>平铺</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body{
+                background:#ccc;
+            }
+            canvas{
+                background: pink;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="c1" width="1000" height="1000"></canvas>
+        <script>
+            window.onload = function(){
+               var oC = document.getElementById("c1");
+               var oCC = oC.getContext("2d");
+               var obj = oCC.createLinearGradient(0,0,150,200);
+               //oCC.createLinearGradient(x1,y1,x2,y2);
+               obj.addColorStop(0,'red');//0起点
+               obj.addColorStop(0.4,'yellow');
+               obj.addColorStop(1,'green');//1终点
+               
+               oCC.fillStyle = obj;
+               oCC.fillRect(0,0,100,200);//obj应用到哪儿
+            }
+        </script>
+    </body>
+</html>

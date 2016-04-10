@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style type="text/css">
+            .zebraHover{
+                background-color: pink;
+            }
+            .bRed{
+                font-size: 24px;
+            }
+        </style>
+    </head>
+    <body>
+        <p id="disclaimer">Who lost their recording contract today?</p>
+        <span class="spoiler">The Zaxntines!</span>
+        <div id="div1">div1<input type="button" id="button1" value="btn1"/></div>
+        <div id="div2">div2<input type="button" id="button2" value="btn2"/></div>
+        <div id="div3">div3</div>
+        <ul id="order">
+            <li>11</li>
+            <li>22</li>
+            <li>33</li>
+            <li>44</li>
+            <li>55</li>
+        </ul>
+        <script type="text/javascript" src="jquery.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+               
+                
+                $("#button1").click(function(){
+                    $("#disclaimer").toggle(function(){
+                    $(this).animate({'height':'+=150px'},4000,'easeOutElastic');
+                    },function(){
+                        $(this).animate({'height':'-=150px'},4000,'swing');
+                    });
+                });
+                $('<input type="button" value="NO" />').insertAfter("#div1");
+                
+//                $("ul li").mouseover(function(){
+//                    $(this).addClass("zebraHover");
+//                });
+//                $("ul li").mouseout(function(){
+//                    $(this).removeClass("zebraHover");
+//                });
+                $("ul li").click(function(){
+                    $(this).toggleClass("zebraHover bRed");
+                });
+                $(".spoiler").hide(1000);
+                $("<input type='button' class='revealer' value='Tell me!'/>").insertBefore('.spoiler');
+                $(".revealer").click(function(){
+                    $(this).hide(1000);
+                    $(this).next().fadeIn();
+                });
+                
+                $("#order li").hover(function(){
+                    $(this).animate({paddingLeft:'+=15px'},200);
+                },function(){
+                    $(this).animate({paddingLeft:'-=15px'},200);
+                });
+                
+                
+                /////////////////////////////
+//                $("#btn1").click(function(){
+//                    $("#disclaimer").animate({},200,"linear");
+//                });
+//                $("#btn2").click(function(){
+//                    $("#disclaimer").animate({},200,"swing");
+//                });
+            });
+            
+            
+        </script>
+    </body>
+</html>

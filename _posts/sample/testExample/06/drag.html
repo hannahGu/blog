@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body{
+                font:normal 14px/1.5em Arial;
+                color:#fff;
+                background: #000;
+            }
+            #div1{
+                border:1px solid #000;
+                width:240px;
+                height:200px;
+                position: absolute; 
+                top:50%;
+                left:50%;
+                margin-left:-120px;
+                margin-top:-100px;
+                background: #999;
+            }
+            #div1 h2{
+                text-align: right;
+                border-bottom: 1px solid #fff;
+                padding:10px ;
+                margin:0;
+                background: #666;
+                cursor:pointer;
+            }
+            #div1 p{
+                margin-left:10px;
+            }
+            #div1 p span{
+                color:yellow;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="div1">
+            <h2>show history</h2>
+            <p>
+                <label>Drag: </label><span></span>
+            </p>
+            <p>
+                <label>offsetLeft: </label><span></span>
+            </p>
+            <p>
+                <label>offsetTop: </label><span></span>
+            </p>
+        </div>
+        <script>
+            window.onload = function(){
+                var oDiv = document.getElementById("div1");
+                var oP = document.getElementsByTagName('p');
+                var foots = [];
+                oDiv.onmousedown = function(event){
+                    var event = event || window.event;
+                    var disX = event.clientX - oDiv.offsetLeft;
+                    var disY = event.clientY - oDiv.offsetTop;
+                    
+                    document.onmousemove = function(event){
+                        var oSpan = oP[0].getElementsByTagName("span")[0];
+                        oSpan.innerHTML = 'true';
+                        var event = event || window.event;
+                        var x = event.clientX - disX;
+                        var y = event.clientY - disY;
+                        oDiv.style.left = x + 'px';
+                        oDiv.style.top = y + 'px';
+                        var foot = {};
+                        foot.x = x;
+                        foot.y = y;
+                        foots.push(foot);
+                    }
+                    document.onmouseup = function(){
+                        var oSpan = oP[0].getElementsByTagName("span")[0];
+                        oSpan.innerHTML = 'false';
+                        var oSpan1 = oP[1].getElementsByTagName("span")[0];
+                        oSpan1.innerHTML = oDiv.offsetLeft + 'px';
+                        var oSpan2 = oP[2].getElementsByTagName("span")[0];
+                        oSpan2.innerHTML = oDiv.offsetTop + 'px';
+                        document.onmousemove = null;
+                        document.onmouseup = null;
+                    }
+                }
+                var oH2 = document.getElementsByTagName("h2");
+                oH2.onclick = function(){
+                var i = 0;   
+                var timer = setInterval(function(){
+                    oDiv.style.left = foots[i].x + 'px';
+                    oDiv.style.top = foots[i].y + 'px';
+                    i++;
+                    if(i == foots.length){
+                        clearInterval(timer);
+                    }
+                },2000);
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            #content *{
+                padding:0;
+                margin:0;
+                list-style: none;
+            }
+            #content{
+                width:200px;
+                margin:0 auto;
+                font:normal 12px/1.5em Arial;
+                border:1px solid #000000;
+                border-radius: 5px;
+                
+            }
+            #content h2{
+                line-height: 30px;
+                height:30px;
+                border-bottom:1px solid #000000;
+                padding-left: 10px;
+            }
+            #content h2 span{
+                margin-right: 10px; 
+            }
+            #content li{
+                margin-left: 10px;
+                line-height: 23px;
+                height:23px;
+            }
+            #remind{
+                width:450px;
+                margin:20px auto;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="content">
+            <h2><input type="checkbox"/><span>全选</span><a href="javascript:;">反选</a></h2>
+            <ul id="list">
+                <li><input type="checkbox"/>choose 1</li>
+                <li><input type="checkbox"/>choose 2</li>
+                <li><input type="checkbox"/>choose 3</li>
+                <li><input type="checkbox"/>choose 4</li>
+                <li><input type="checkbox"/>choose 5</li>
+                <li><input type="checkbox"/>choose 6</li>
+                <li><input type="checkbox"/>choose 7</li>
+                <li><input type="checkbox"/>choose 8</li>
+                <li><input type="checkbox"/>choose 9</li>
+                <li><input type="checkbox"/>choose 10</li>
+            </ul> 
+        </div>
+        <div id="remind">1.change between all/none;2.update depend on choosed</div>
+        <script>
+            window.onload = function(){
+                var oH2 = document.getElementsByTagName('h2')[0];
+                var oSpan = oH2.getElementsByTagName('span')[0];
+                var oAll = oH2.getElementsByTagName('input')[0];
+                var oList = document.getElementById('list');
+                var oLi = oList.getElementsByTagName('input');
+                oAll.onclick = function(){
+                   if (oAll.checked){
+                       for(var i=0;i<oLi.length;i++){
+                           oLi[i].checked = true;
+                       }
+                       check_all(true);
+                   }
+                   else{
+                       for(var i=0;i<oLi.length;i++){
+                           oLi[i].checked = false;
+                       }
+                       check_all(false);
+                   }
+                }
+                
+                var opposite = oH2.getElementsByTagName('a')[0];
+                opposite.onclick = function(){
+                    for(var i=0;i<oLi.length;i++){
+                        if(oLi[i].checked){
+                            oLi[i].checked = false;
+                        }else{
+                            oLi[i].checked = true;
+                        }
+                    }
+                    check_all(true);
+                    check_all(false);
+                }
+                
+                for(var i=0;i<oLi.length;i++){
+                    oLi[i].onclick = function(){
+                        check_all(true);
+                        check_all(false);
+                    }
+                }
+                
+                /////
+                function check_all(arg){
+                    for(var i=0;i<oLi.length;i++){
+                        if(oLi[i].checked !==arg){
+                            return 0;
+                        }
+                    }
+                    if(arg){
+                        oSpan.innerHTML = '全不选';
+                        oAll.checked = true;
+                    }
+                    if(!arg){
+                        oSpan.innerHTML = '全选';
+                        oAll.checked = false;
+                    }
+                }
+                
+            }
+        </script>
+    </body>
+</html>

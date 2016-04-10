@@ -1,0 +1,104 @@
+---
+title: 伪类选择器
+---
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>伪类选择器</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/prism.css"/>
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/base.css"/>
+        <style>
+            .demo {
+                width: 300px;
+                border: 1px solid #ccc;
+                padding: 10px;			
+            }
+            .demo ul{
+                overflow:hidden;
+                list-style: none;
+            }
+            .demo li {
+                border: 1px solid #ccc;
+                padding: 2px;
+                float: left;
+                margin-right:4px;
+            }
+            .demo a {
+                float: left;
+                display: block;
+                height: 20px;
+                line-height: 20px;
+                width: 20px;
+                -moz-border-radius: 10px;
+                -webkit-border-radius: 10px;
+                border-radius: 10px;
+                text-align: center;
+                background: #f36;
+                color: green;
+                text-decoration: none;
+            }
+            a.selected:hover {color: #000;}
+            #demo li:nth-child(2){color:red;}
+            #demo li:nth-of-type(2){color:yellow;}
+            p:selection{
+                color:red;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="demo clearfix">
+            <ul class="clearfix">
+                <li class="first selected" id="first"><a href="" class="selected">1</a></li>
+                <li class="links even"><a href="#">2</a></li>
+                <li class="links odd"><a href="">3</a></li>
+                <li class="links even"><a href="">4</a></li>
+                <li class="links odd"><a href="">5</a></li>
+                <li class="links even"><a href="">6</a></li>
+                <li class="links odd"><a href="">7</a></li>
+                <li class="links even"><a href="">8</a></li>
+                <li class="links odd"><a href="">9</a></li>
+                <li class="links even last" id="last"><a href="">10</a></li>
+            </ul>
+        </div>
+        
+        <div> 
+            <ul id="demo"> 
+            <p>zero</p> 
+            <li>one</li> 
+            <li>two</li> 
+            </ul>
+        </div> 
+        <pre id="show_code">
+            <code class="language-js">
+                伪类 2个点
+                :hover用于当用户把鼠标移动到元素上面时的效果；
+                :active用于用户点击元素那一下的效果（正发生在点的那一下，松开鼠标左键此动作也就完成了）
+                :focus用于元素成为焦点，这个经常用在表单元素上。
+
+                #demo li:nth-child(2){color:red;} 首先是第二个元素，然后必须是li
+                #demo li:nth-of-type(2){color:yellow;}第二个li，（第一个li和第二个li之间可以有若干任何元素）
+                :first-child
+                :last-child
+                :nth-child(-n+5)这个是选择第5个前面的
+                “:nth-child(2n)”也等于":nth-child(even)"效果
+                :only-of-type是表示一个元素他有很多个子元素，只选择p，且p是唯一的，p:only-of-type{background-color:red;}
+                :empty是用来选择没有任何内容的元素,作用目前没发现***
+                否定选择器（:not） 对form中所有input加边框，但又不想submit也起变化 input:not([type="submit"]) {border: 1px solid red;}
+
+                伪元素： 4个点
+                ::first-line选择元素的第一行，比如说改变每个段落的第一行文本的样式 p::first-line {font-weight:bold;}
+                ::first-letter选择文本块的第一个字母，首字下沉 p::first-letter {font-size: 56px;float:left;margin-right:3px;}
+                ::before和::after 两个常用"content"配合使用，见过最多的就是清除浮动，
+                ::selection用来改变浏览网页选中文的默认效果(必须4个点)
+            </code>
+        </pre>
+        <script src="{{ site.baseurl }}/public/js/prism.js"></script>
+    </body>
+</html>

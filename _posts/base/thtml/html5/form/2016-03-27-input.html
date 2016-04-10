@@ -1,0 +1,56 @@
+---
+title: 没有用到js，浏览器端直接检测
+---
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>没有用到js，浏览器端直接检测</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/prism.css"/>
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/base.css"/>
+    </head>
+    <body>
+        <form>
+            <label>url</label>
+            <input type="url" name="url"/>
+            <label>email</label>
+            <input type="email" name="email"/>
+            <input type="range" min="1" max="10" id="num"/>
+            <input type="submit" name="btn" value="btn"/>
+        </form>
+        <pre id="show_code">
+            <code class="language-js">
+                没有用到js，浏览器端直接检测
+                <input type="url" name="url"/>
+                <label>email</label>
+                <input type="email" name="email"/>
+                <input type="range" min="1" max="10" id="num"/>
+                <input type="submit" name="btn" value="btn"/>
+                
+                window.onload = function(){
+                    var oNum = document.getElementById("num");
+                    oNum.onclick = function(){
+                        console.log(oNum.value);
+                    }
+
+                }
+            </code>
+        </pre>
+        <script src="{{ site.baseurl }}/public/js/prism.js"></script>
+        <script>
+            window.onload = function(){
+                var oNum = document.getElementById("num");
+                oNum.onclick = function(){
+                    console.log(oNum.value);
+                }
+                
+            }
+        </script>
+    </body>
+</html>

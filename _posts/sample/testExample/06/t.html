@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>TODO write content</div>
+        <script>
+            window.onload = function(){
+                var re = /^\s*$/g;
+                var ss="";
+                var ss1=" df";
+                var ss2 = "active";
+                var reClass = '/(^| )' + ss2 + '( |$)/';
+                console.log(reClass.test("active"));
+                console.log(reClass.test(" active"));
+                console.log(reClass.test(" active "));
+                console.log(reClass.test(" active      "));
+                
+                    var GB2312UnicodeConverter = {
+                    ToUnicode: function (str) {
+                        return escape(str).toLocaleLowerCase().replace(/%u/gi, '\\u');
+                    }
+                    , ToGB2312: function (str) {
+                        return unescape(str.replace(/\\u/gi, '%u'));
+                    }
+                };
+                var str = '上海', unicode;
+                    document.write(str + '<br/>');
+                    unicode = GB2312UnicodeConverter.ToUnicode(str);
+                    document.write('汉字转换为Unicode代码：' + unicode + '<br/><br/>');
+
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,76 @@
+---
+title: Recursion
+---
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Recursion</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/prism.css"/>
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/base.css"/>
+    </head>
+    <body>
+        <div>递归</div>
+        <pre id="show_code">
+            <code class="language-js">
+            //"use strict";
+            /////////////arguments.callee
+            function factorial(num){
+                if (num<=1){
+                    return 1;
+                }else{
+                    return num*arguments.callee(num-1);//会报错在严格模式下
+                }
+            }
+            var second = factorial;
+            factorial = null;
+            console.log(second(4));
+            <hr>
+            //////////////////////命名函数，可用于严格模式下
+            var anotherfactorial = (function f(num){
+                if(num<=1){
+                    return 1;
+                }else{
+                    return num*f(num-1);
+                }
+            });
+            var another = anotherfactorial;
+            anotherfactorial = null;
+            console.log(another(4));
+            </code>
+        </pre>
+        <script src="{{ site.baseurl }}/public/css/prism.js"></script>
+        <script>
+            //"use strict";
+            /////////////arguments.callee
+            function factorial(num){
+                if (num<=1){
+                    return 1;
+                }else{
+                    return num*arguments.callee(num-1);//会报错在严格模式下
+                }
+            }
+            var second = factorial;
+            factorial = null;
+            console.log(second(4));
+            
+            //////////////////////命名函数，可用于严格模式下
+            var anotherfactorial = function f(num){
+                if(num<=1){
+                    return 1;
+                }else{
+                    return num*f(num-1);
+                }
+            };
+            var another = anotherfactorial;
+            anotherfactorial = null;
+            console.log(another(4));
+        </script>
+    </body>
+</html>

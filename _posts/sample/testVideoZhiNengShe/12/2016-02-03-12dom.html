@@ -1,0 +1,66 @@
+---
+title: 根据输入增加列表项（最近最前原则）
+---
+
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>根据输入增加列表项（最近最前原则）</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/prism.css"/>
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/base.css"/>
+    </head>
+    <body>
+        <div id="show">
+            <input type="text" id="shuru"/>
+            <input type="button" id="click" value="click"/>
+            <ul></ul>
+        </div>
+        <pre id="show_code">
+            <code class="language-js">
+            根据输入增加列表项（最近最前原则）          
+            window.onload = function(){
+                var oInput = document.getElementById("shuru");
+                var oBtn = document.getElementById("click");
+                var oUl = document.getElementsByTagName("ul")[0];
+                
+                oBtn.onclick = function(){
+                    var oLi = document.createElement("li");
+                    var aLi = oUl.getElementsByTagName("li");
+                    oLi.innerHTML = oInput.value;
+                    if(aLi.length&gt;0){
+                        oUl.insertBefore(oLi,aLi[0]);
+                    }else{
+                        oUl.appendChild(oLi);
+                    }
+                };
+            }
+            </code>
+        </pre>
+        <script src="{{ site.baseurl }}/public/js/prism.js"></script>
+        <script>
+            window.onload = function(){
+                var oInput = document.getElementById("shuru");
+                var oBtn = document.getElementById("click");
+                var oUl = document.getElementsByTagName("ul")[0];
+                
+                oBtn.onclick = function(){
+                    var oLi = document.createElement("li");
+                    var aLi = oUl.getElementsByTagName("li");
+                    oLi.innerHTML = oInput.value;
+                    if(aLi.length>0){
+                        oUl.insertBefore(oLi,aLi[0]);
+                    }else{
+                        oUl.appendChild(oLi);
+                    }
+                };
+            }
+        </script>
+    </body>
+</html>

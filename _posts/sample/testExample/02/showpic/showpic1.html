@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            #content *{
+                padding:0;
+                margin:0;
+                list-style: none;
+            }
+            #content{
+                width:560px;
+                margin:0 auto;
+                padding-left:10px;
+                padding-top:10px;
+                border:1px solid #000000;
+            }
+            #content h2{
+                width:641px;
+                margin:20px auto;
+                text-align: center;
+            }
+            #content ul{
+                zoom:1;
+                display:block;
+            }
+            #content li{
+                width:100px;
+                height:100px;
+                margin-right:10px;
+                margin-bottom: 10px;
+                border:1px solid #000000;
+                background-color: #cccccc;
+                float:left;
+                cursor:crosshair;
+                text-align: center;
+                position:relative;
+            }
+            #content li strong{
+                display:block;
+            }
+            #content li img{
+                display:none;
+                position: absolute;
+                top:50%;
+                left:50%;
+                margin-left:-64px;
+                margin-top: -64px;
+                z-index: 9999;
+                border:1px #cccccc solid;
+            }
+            
+            #content ul:after{
+                display:block;
+                content:'';
+                clear:both;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="content">
+            <h2>All kinds of Car sign show</h2>
+            <ul>
+                <li><span><strong>BMW</strong>baoma1</span>
+                    <img src="1.jpg" alt="bmw1"/>
+                </li>
+                <li><span><strong>BMW</strong>baoma2</span>
+                    <img src="1.jpg" alt="bmw2"/>
+                </li>
+                <li><span><strong>BMW</strong>baoma3</span>
+                    <img src="1.jpg" alt="bmw3"/>
+                </li>
+                <li><span><strong>BMW</strong>baoma4</span>
+                    <img src="1.jpg" alt="bmw4"/>
+                </li>
+                <li><span><strong>BMW</strong>baoma5</span>
+                    <img src="1.jpg" alt="bmw5"/>
+                </li>
+                <li><span><strong>BMW</strong>baoma6</span>
+                    <img src="1.jpg" alt="bmw6"/>
+                </li>
+                <li><span><strong>BMW</strong>baoma7</span>
+                    <img src="1.jpg" alt="bmw7"/>
+                </li>
+                <li><span><strong>BMW</strong>baoma8</span>
+                    <img src="1.jpg" alt="bmw8"/>
+                </li>
+                <li><span><strong>BMW</strong>baoma9</span>
+                    <img src="1.jpg" alt="bmw9"/>
+                </li>
+                <li><span><strong>BMW</strong>baoma10</span>
+                    <img src="1.jpg" alt="bmw10"/>
+                </li>
+            </ul>
+        </div>
+        <script>
+            window.onload = function(){
+                var oLi = document.getElementsByTagName('li');
+                
+                for(var i=0;i<oLi.length;i++){
+                    oLi[i].onmouseover = function(){
+                        this.index = i;
+                        var oSpan = this.getElementsByTagName('span')[0];
+                        var oImg = this.getElementsByTagName('img')[0];
+                        oSpan.style.display = 'none';
+                        oImg.style.display = 'block';
+                    }
+                    oLi[i].onmouseout = function(){
+                        var oSpan = this.getElementsByTagName('span')[0];
+                        var oImg = this.getElementsByTagName('img')[0];
+                        oSpan.style.display = 'block';
+                        oImg.style.display = 'none';
+                    }
+                    
+                }
+                
+            }
+        </script>
+    </body>
+</html>

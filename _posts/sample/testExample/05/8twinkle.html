@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            #div1{
+                width:100px;
+                height:100px;
+                margin:20px auto;
+                background: red;
+                color:#fff;
+                text-align: center;
+                line-height: 100px;
+                cursor:pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="div1">click me</div>
+        <script>
+            window.onload = function(){
+                var oDiv = document.getElementById("div1");
+                var timer = null;
+                oDiv.onclick = function(){
+                    var i = 0;
+                    clearInterval(timer);
+                    timer = setInterval(function(){
+                        i++;
+                        oDiv.style.display = i % 2 ? "none":"block";
+                        if(i==6){
+                            clearInterval(timer);
+                        }
+                    },80);
+                }
+            }
+        </script>
+    </body>
+</html>

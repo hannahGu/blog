@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>平铺</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body{
+                background:#ccc;
+            }
+            canvas{
+                background: pink;
+            }
+        </style>
+    </head>
+    <body>
+
+        <canvas id="c1" width="1000" height="1000"></canvas>
+        
+        <script>
+            window.onload = function(){
+               var yImg = new Image();
+               var oC = null;
+               var oCC= null;
+               oC = document.getElementById("c1");
+               oCC = oC.getContext("2d");
+               yImg.onload = function(){
+                   draw(this);
+               }
+               yImg.src = '../img/1.jpg';
+               
+               function draw(obj){
+                  var bg = oCC.createPattern(obj,'repeat');
+                  oCC.fillStyle=bg;
+                  oCC.fillRect(0,0,900,900);
+               }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <section id="bio">
+            <h2>Who’s Hot Right Now?</h2>
+            <h3>Beau Dandy</h3>
+            <div>
+            <img src="images/1.jpg" width="100"
+            height="100" alt="Beau Dandy"/>
+            <p>Content about Beau Dandy</p>
+            </div>
+            <h3>Johnny Stardust</h3>
+            <div>
+            <img src="images/2.jpg" width="100"
+            height="100" alt="Johnny Stardust"/>
+            <p>Content about Johnny Stardust</p>
+            </div>
+            <h3>Glendatronix</h3>
+            <div>
+            <img src="images/3.jpg" width="100"
+            height="100" alt="Glendatronix"/>
+            <p>Content about Glendatronix</p>
+            </div>
+            </section>
+            Animating, Scrolling, and Resizing 61
+        <script type="text/javascript" src="jquery.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("#bio > div").hide();
+                $("#bio > div:first").show();
+                $("#bio h3").click(function(){
+                    $(this).next().toggle();
+                });
+            });
+        </script>
+    </body>
+</html>

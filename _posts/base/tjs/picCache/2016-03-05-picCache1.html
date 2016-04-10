@@ -1,0 +1,237 @@
+---
+title: 带Loading效果的图片切换
+---
+
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+<title>带Loading效果的图片切换</title>
+<link rel="stylesheet" href="{{ site.baseurl }}/public/css/prism.css"/>
+<link rel="stylesheet" href="{{ site.baseurl }}/public/css/base.css"/>
+<style type="text/css">
+body,div,ul,li{margin:0;padding:0;}
+li{list-style:none;}
+body{font:12px/1.5 \5fae\8f6f\96c5\9ed1;background:#000;}
+#big{position:relative;width:800px;height:auto!important;height:400px;min-height:400px;margin:20px auto;text-align:center;}
+#title{position:absolute;top:0;left:0;width:100%;background:#000;color:#fff;opacity:0.7;filter:alpha(opacity=70);font-size:20px;height:50px;}
+#title span{padding:0 5px;line-height:50px;display:block;}
+#big.loading{background:url(http://www.fgm.cc/learn/lesson7/img/loading.gif) 50% 50% no-repeat;}
+#masks_L,#masks_R{position:absolute;top:0;width:400px;height:100%;cursor:pointer;background:#f0f0f0;opacity:0;filter:alpha(opacity=0);}
+#masks_L{left:0;}
+#masks_R{right:0;}
+#btn_L,#btn_R{position:absolute;top:50%;margin-top:-40px;width:39px;height:80px;overflow:hidden;cursor:pointer;text-indent:-9999px;background:url(http://www.fgm.cc/learn/lesson7/img/btn.png) no-repeat;opacity:1;filter:alpha(opacity=100);}
+#btn_L{left:10px;background-position:0 0;}
+#btn_R{right:10px;background-position:-39px 0;}
+</style>
+<script type="text/javascript">
+function getStyle(obj, attr){return obj.currentStyle ? obj.currentStyle[attr] : getComputedStyle(obj, null)[attr]}
+window.onload = function ()
+{
+    var oBig = document.getElementById("big");
+    var oMasksL = document.getElementById("masks_L");
+    var oMasksR = document.getElementById("masks_R");
+    var oBtnL = document.getElementById("btn_L");
+    var oBtnR = document.getElementById("btn_R");
+    var oTitle = document.getElementById("title");
+    var oSpan = oTitle.getElementsByTagName("span")[0];
+    var iNow = 0;
+    var aData = [
+        {"imgSrc" : "http://img1.gtimg.com/news/pics/hv1/106/238/825/53706421.jpg", "title" : "7月26日，吊车将事故现场的车头残片吊至大型运输车辆上。"},
+        {"imgSrc" : "http://img1.gtimg.com/news/pics/hv1/105/238/825/53706420.jpg", "title" : "7月26日，一辆大卡车准备驶离事故现场。"},
+        {"imgSrc" : "http://img1.gtimg.com/news/pics/hv1/101/238/825/53706416.jpg", "title" : "7月26日，工人在给最后一节车厢盖上彩条布，准备运离现场。"},
+        {"imgSrc" : "http://img1.gtimg.com/news/pics/hv1/99/238/825/53706414.jpg", "title" : "7月26日，一名工人在事故现场最后一节车厢上作业。"},
+        {"imgSrc" : "http://img1.gtimg.com/news/pics/hv1/100/238/825/53706415.jpg", "title" : "7月26日，工人在给最后一节车厢盖上彩条布，准备运离现场。"}
+    ];
+    
+    oMasksL.onmouseover = oBtnL.onmouseover = function(){
+        startMove(oBtnL,'opacity',100);
+    }
+    oMasksL.onmouseout = oBtnL.onmouseout = function(){
+        startMove(oBtnL,'opacity',0);
+    }
+    oMasksR.onmouseover = oBtnR.onmouseover = function(){
+        startMove(oBtnR,'opacity',100);
+    }
+    oMasksR.onmouseout = oBtnR.onmouseout = function(){
+        startMove(oBtnR,'opacity',0);
+    }
+    
+    oBtnR.onclick = function(){
+        if(iNow == aData.length-1){
+            alert('the last');
+            return;
+        }
+        iNow ++;
+        loadImg();;
+    }
+    
+    oBtnL.onclick = function(){
+        if(iNow == 0){
+            alert('this is the first');
+            return;
+        }
+        iNow --;
+        loadImg();
+    }
+    
+    loadImg();
+    function loadImg(){
+        oBig.className = 'loading';
+        oSpan.style.opacity = oTitle.style.height = 0;
+        oSpan.style.filter = 'alpha(opacity=0)';
+        var aImg = oBig.getElementsByTagName("img");
+        aImg[0]&& oBig.removeChild(aImg[0]);
+        var oImg = new Image();//缓存的作用
+        var TmpImg = document.createElement("img");
+        oImg.onload = function(){
+            oBig.className = '';
+            TmpImg.src = oImg.src;
+            oBig.appendChild(TmpImg);
+            oSpan.innerHTML = aData[iNow].title;
+            startMove(oTitle,'height',50,function(){
+                startMove(oSpan,'opacity',100);
+            });
+        }
+        oImg.src = aData[iNow]["imgSrc"];
+    }
+    
+    function startMove(obj,attr,iTarget,fnEnd){
+        clearInterval(obj.timer);
+        obj.timer = setInterval(function(){
+            var iCur = parseFloat(getStyle(obj,attr));
+            if(attr == 'opacity'){
+                iCur = parseInt(iCur*100);
+            }
+            
+            var iSpeed = (iTarget - iCur)/5;
+            iSpeed = iSpeed>0 ? Math.ceil(iSpeed):Math.floor(iSpeed);
+            if(iCur == iTarget){
+                clearInterval(obj.timer);
+                fnEnd && fnEnd();
+            }else{
+                if(attr == "opacity"){
+                    obj.style.opacity = (iCur + iSpeed)/100;
+                    obj.style.filter = 'alpha(opacity='+ (iCur+iSpeed)+')';
+                }else{
+                    obj.style[attr] = iCur+iSpeed+'px';
+                }
+            }
+        },30);
+    }
+}
+</script>
+</head>
+    <body>
+        <div id="show">
+            <div id="big" class="">
+                <div id="masks_L"></div>
+                <div id="masks_R"></div>
+                <div id="btn_L">左</div>
+                <div id="btn_R">右</div>
+                <div id="title" >
+                    <span></span>
+                </div>
+            </div>
+        </div>
+        <pre id="show_code">
+            <code class="language-js">
+            带Loading效果的图片切换
+            function getStyle(obj, attr){return obj.currentStyle ? obj.currentStyle[attr] : getComputedStyle(obj, null)[attr]}
+            window.onload = function ()
+            {
+                var oBig = document.getElementById("big");
+                var oMasksL = document.getElementById("masks_L");
+                var oMasksR = document.getElementById("masks_R");
+                var oBtnL = document.getElementById("btn_L");
+                var oBtnR = document.getElementById("btn_R");
+                var oTitle = document.getElementById("title");
+                var oSpan = oTitle.getElementsByTagName("span")[0];
+                var iNow = 0;
+                var aData = [
+                    {"imgSrc" : "http://img1.gtimg.com/news/pics/hv1/106/238/825/53706421.jpg", "title" : "7月26日，吊车将事故现场的车头残片吊至大型运输车辆上。"},
+                    {"imgSrc" : "http://img1.gtimg.com/news/pics/hv1/105/238/825/53706420.jpg", "title" : "7月26日，一辆大卡车准备驶离事故现场。"},
+                    {"imgSrc" : "http://img1.gtimg.com/news/pics/hv1/101/238/825/53706416.jpg", "title" : "7月26日，工人在给最后一节车厢盖上彩条布，准备运离现场。"},
+                    {"imgSrc" : "http://img1.gtimg.com/news/pics/hv1/99/238/825/53706414.jpg", "title" : "7月26日，一名工人在事故现场最后一节车厢上作业。"},
+                    {"imgSrc" : "http://img1.gtimg.com/news/pics/hv1/100/238/825/53706415.jpg", "title" : "7月26日，工人在给最后一节车厢盖上彩条布，准备运离现场。"}
+                ];
+
+                oMasksL.onmouseover = oBtnL.onmouseover = function(){
+                    startMove(oBtnL,'opacity',100);
+                }
+                oMasksL.onmouseout = oBtnL.onmouseout = function(){
+                    startMove(oBtnL,'opacity',0);
+                }
+                oMasksR.onmouseover = oBtnR.onmouseover = function(){
+                    startMove(oBtnR,'opacity',100);
+                }
+                oMasksR.onmouseout = oBtnR.onmouseout = function(){
+                    startMove(oBtnR,'opacity',0);
+                }
+
+                oBtnR.onclick = function(){
+                    if(iNow == aData.length-1){
+                        alert('the last');
+                        return;
+                    }
+                    iNow ++;
+                    loadImg();;
+                }
+
+                oBtnL.onclick = function(){
+                    if(iNow == 0){
+                        alert('this is the first');
+                        return;
+                    }
+                    iNow --;
+                    loadImg();
+                }
+
+                loadImg();
+                function loadImg(){
+                    oBig.className = 'loading';
+                    oSpan.style.opacity = oTitle.style.height = 0;
+                    oSpan.style.filter = 'alpha(opacity=0)';
+                    var aImg = oBig.getElementsByTagName("img");
+                    aImg[0]&& oBig.removeChild(aImg[0]);
+                    var oImg = new Image();//缓存的作用
+                    var TmpImg = document.createElement("img");
+                    oImg.onload = function(){
+                        oBig.className = '';
+                        TmpImg.src = oImg.src;
+                        oBig.appendChild(TmpImg);
+                        oSpan.innerHTML = aData[iNow].title;
+                        startMove(oTitle,'height',50,function(){
+                            startMove(oSpan,'opacity',100);
+                        });
+                    }
+                    oImg.src = aData[iNow]["imgSrc"];
+                }
+
+                function startMove(obj,attr,iTarget,fnEnd){
+                    clearInterval(obj.timer);
+                    obj.timer = setInterval(function(){
+                        var iCur = parseFloat(getStyle(obj,attr));
+                        if(attr == 'opacity'){
+                            iCur = parseInt(iCur*100);
+                        }
+
+                        var iSpeed = (iTarget - iCur)/5;
+                        iSpeed = iSpeed&gt;0 ? Math.ceil(iSpeed):Math.floor(iSpeed);
+                        if(iCur == iTarget){
+                            clearInterval(obj.timer);
+                            fnEnd && fnEnd();
+                        }else{
+                            if(attr == "opacity"){
+                                obj.style.opacity = (iCur + iSpeed)/100;
+                                obj.style.filter = 'alpha(opacity='+ (iCur+iSpeed)+')';
+                            }else{
+                                obj.style[attr] = iCur+iSpeed+'px';
+                            }
+                        }
+                    },30);
+                }
+            }
+            </code>
+        </pre>
+        <script src="{{ site.baseurl }}/public/js/prism.js"></script>
+    </body>
+</html>

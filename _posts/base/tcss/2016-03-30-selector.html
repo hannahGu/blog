@@ -1,0 +1,86 @@
+---
+title: 基本选择器
+---
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/prism.css"/>
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/base.css"/>
+        <style>
+           .demo {
+                width: 300px;
+                border: 1px solid #ccc;
+                padding: 10px;			
+            }
+            .demo *{
+                border:1px solid blue;
+            }
+            ul{
+                list-style: none;
+                padding:0;
+                margin:0;
+                overflow: hidden;
+            }
+            
+            li {
+                float: left;
+                height: 20px;
+                line-height: 20px;
+                width: 20px;
+                -moz-border-radius: 10px;
+                -webkit-border-radius: 10px;
+                border-radius: 10px;
+                text-align: center;
+                background: #f36;
+                color: green;
+                margin-right: 5px;
+            }
+/*            .important {font-weight: bold; color: yellow;}
+            比下面一行起作用，class优先级高些，虽然位置在前面(位置越靠前优先级越低)
+	    li {background-color: grey;color: orange;} */
+            /*//在后面的起作用，相对于前面的li{}来说*/
+            
+            .active ~ li {background: green;color: yellow; border: 1px solid #ccc;}
+        </style>
+    </head>
+    <body>
+        <div class="demo">
+            <ul class="clearfix">
+                <li id="first" class="first">1</li>
+                <li class="active important">2</li>
+                <li class="important items">3</li>
+                <li class="important">4</li>
+                <li class="items">5</li>
+                <li>6</li>
+                <li>7</li>
+                <li>8</li>
+                <li>9</li>
+                <li id="last" class="last">10</li>
+            </ul>
+        </div>
+        <pre id="show_code">
+            <code class="language-css">
+                一、通配符选择器（＊）
+                二、元素选择器(E)
+                三、类选择器（.className）
+                四、id选择器（#ID）
+                五、后代选择器（Ｅ Ｆ）
+                六、子元素选择器(E>F)
+                七、相邻兄弟元素选择器(E + F)一个
+                八、通用兄弟选择器（Ｅ 〜 Ｆ）多个
+                九、群组选择器（selector1,selector2,...,selectorN）
+
+                一个元素2个class属性，按照在css中的位置后者优先
+            </code>
+        </pre>
+        <script src="{{ site.baseurl }}/public/js/prism.js"></script>
+    </body>
+</html>

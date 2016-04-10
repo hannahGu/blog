@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            .float{
+                border:1px dotted orange;
+                width:280px;
+                height:280px;
+            }
+            .item{
+                width:100px;
+                height:100px;
+                float:left;
+            }
+            .item:nth-child(1){
+                background: red;
+            }
+            .item:nth-child(2){
+                background: grey;
+            }
+            .item:nth-child(3){
+                margin-left: -20px;
+                background: blue;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="float">
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="item"></div>
+        </div>
+    </body>
+</html>

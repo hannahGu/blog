@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <ul>
+            <li>1</li>
+            <li class="red">2</li>
+            <li>3</li>
+            <li class="red">4</li>
+        </ul>
+        <script>
+            window.onload =function(){
+                function getElementByClass(oParent,name){
+                    var child = oParent.getElementsByTagName("*");///wrong?
+                    var list = [];
+                    for (var i =0;i<child.length;i++){
+                        if(child[i].className == name){
+                            list.push(child[i]);
+                        }
+                    }
+                    return list;
+                }
+                var oUl = document.getElementsByTagName("ul");
+                var box = getElementByClass(oUl,'red');
+                for(var i=0;i<box.length;i++){
+                    box[i].style.backgroundColor = 'red';
+                }
+            }
+        </script>
+    </body>
+</html>

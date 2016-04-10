@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body{
+                background-color: pink;
+            }
+            #content *{
+                padding:0;
+                margin:0;
+                list-style: none;
+                font:normal 14px/1.5em Arial;
+            }
+            #content{
+                width:486px;
+                margin:0 auto;
+                
+            }
+            #chBtn{
+                margin:10px 0;
+            }
+            #chBtn li{
+                width:6px;
+                height:6px;
+                margin-right: 4px;
+                float:left;
+                cursor: pointer;
+            }
+            #red{
+                background-color: #ffffff;
+                border:4px solid #ff0000;
+            }
+            #green{
+                background-color: #00ff00;
+                border:4px solid #00ff00;
+            }
+            #black{
+                background-color: #000000;
+                border:4px solid #000000;
+            }
+            #chBtn:after{
+                display:block;
+                content:'';
+                clear:both;
+            }
+            #nav{
+                border:1px solid #ffffff;
+                background-color: #ff0000;
+            }
+            #nav li{
+                border-right:1px solid #ffffff;
+                float:left; 
+            }
+            #nav li a{
+                display:block;
+                padding:4px 20px;
+                color:#ffffff;
+                text-decoration: none;
+            }
+            a:hover{
+                text-decoration: underline;
+            }
+            #nav .lst{
+                border-right:0 none;
+            }
+            #nav:after{
+                display:block;
+                content:'';
+                clear:both;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="content">
+            <ul id="chBtn">
+                <li class="active" id='red'></li>
+                <li id='green'></li>
+                <li id="black"></li>
+            </ul>
+            <ul id="nav">
+                <li><a href="javascript:;">News</a></li>
+                <li><a href="javascript:;">Entertain</a></li>
+                <li><a href="javascript:;">Sport</a></li>
+                <li><a href="javascript:;">Movies</a></li>
+                <li><a href="javascript:;">Music</a></li>
+                <li><a href="javascript:;" class="lst">Tour</a></li> 
+            </ul>
+        </div>
+        <script>
+            window.onload = function(){
+                var chBtn = document.getElementById('chBtn');
+                var oNav = document.getElementById('nav'); 
+                var oBtn = chBtn.getElementsByTagName('li');
+                var oBody = document.getElementsByTagName('body');
+                var oBtnColor = ['#ff0000','#00ff00','#000000'];
+                var oListColor = ['#FDD','#A3C5A8','#ccc'];
+                
+                for(var i=0;i<oBtn.length;i++){
+                    oBtn[i].index = i;
+                    oBtn[i].onclick = function(){
+                        for(var i=0;i<oBtn.length;i++){
+                            oBtn[i].className = '';
+                            oBtn[i].style['backgroundColor'] = oBtnColor[i];
+                        }
+                        this.className='active'; 
+                        this.style['backgroundColor']='#ffffff';
+                        oNav.style['backgroundColor'] = oBtnColor[this.index];
+                        oBody[0].style['backgroundColor'] = oListColor[this.index];
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>

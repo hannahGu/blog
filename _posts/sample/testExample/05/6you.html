@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body{
+                font:normal 16px/1.5em Arial;
+            }
+            body,ul,li{
+                margin:0;
+                padding:0;
+            }
+            div{
+                width:300px;
+                margin:0 auto;
+            }
+            #menu{position: absolute;width:100px;
+                  border-radius: 3px;border:1px solid #8f8f8f;padding:2px;
+                  list-style: none;background:#fff;
+            }
+            #menu .active{
+                background-color: #ccc;
+            }
+        </style>
+    </head>
+    <body>
+        <div>self defined the right menu</div>
+        <ul id="menu" style="display:block;top:218px;left:949px;">
+            <li><a href="javascript:;">cut</a></li>
+            <li><a href="javascript:;">copy</a></li>
+            <li><a href="javascript:;">vvv</a></li>
+        </ul>
+        <script>
+            window.onload = function(){
+                var oMenu = document.getElementById("menu");
+                var oLi = document.getElementsByTagName("li");
+                oMenu.style.display = 'none';
+                for(i=0;i<oLi.length;i++){
+                    oLi[i].onmouseover = function(){
+                        this.className = "active";
+                    }
+                    oLi[i].onmouseout = function(){
+                        this.className = "";
+                    }
+                }
+                document.oncontextmenu = function(event){
+                    var event = event || window.event;
+                    var style = oMenu.style;
+                    style.display = "block";
+                    style.top = event.clientY + 'px';
+                    style.left = event.clientX + 'px';
+                    return false;
+                }
+                document.onclick = function(){
+                    oMenu.style.display= "none";
+                }
+            }
+        </script>
+    </body>
+</html>

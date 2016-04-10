@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            *{
+                margin:0;
+                padding:0;
+            }
+            #outer{
+                width:210px;
+                margin:20px auto;
+            }
+            #tips{
+                display:none;
+                background-color:orange;
+                width:210px;
+                margin:0 auto;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="outer">
+            <input type="checkbox"/>
+            <label>auto login in two weeks</label>
+        </div>
+        <div id="tips">To protect you,do not login in public place.</div>
+        <script>
+            window.onload = function(){
+                var oId = document.getElementById('outer');
+                var oDiv = document.getElementById('tips');
+                oId.onmouseover = function(){
+                    oDiv.style.display = 'block';
+                }
+                oId.onmouseout = function(){
+                    oDiv.style.display = 'none';
+                }
+            }
+        </script>
+    </body>
+</html>

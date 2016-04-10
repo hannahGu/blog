@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            pre{
+                border:1px dotted #000;
+                background-color: #ccc;
+                color:green;
+                margin:0;
+                padding:5px 10px;
+                
+            }
+            #block{
+                width:100px;
+                height:100px;
+                background-color: red;
+                position:absolute;
+                left:150px;
+                top:200px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="content">
+            <pre>
+                up:↑  down:↓ left:← right:→
+                Ctrl + 1: backgroundColor is green
+                Ctrl + 2: backgroundColor is yellow
+                Ctrl + 3: backgroundColor is blue
+
+                Ctrl + ↑: amplify
+                Ctrl + ↓: lessen
+            </pre>
+            <div id="block"></div>
+        </div>
+        <script>
+            window.onload = function(){
+                var oDiv = document.getElementById("block");
+                //change background color 3
+                //move 4
+                //amplify lessen 2
+                var aCtrl = false;
+                document.onkeydown = function(event){
+                    var event = event || window.event;
+                    aCtrl = event.ctrlKey;
+                    switch (event.keyCode){
+                        
+                        case 38:
+                            if(aCtrl){
+                                ////////在现在的基础上变大，也就是说width越大，每次变大的程度越大
+                                var oldWidth = oDiv.offsetWidth;
+                                var oldHeight = oDiv.offsetHeight;
+                                
+                                oDiv.style.width = oDiv.offsetWidth*1.5 + 'px';
+                                oDiv.style.height = oDiv.offsetHeight*1.5 + 'px';
+                                
+                                oDiv.style.left = oDiv.offsetLeft - (oDiv.offsetWidth-oldWidth)/2 + 'px';
+                                oDiv.style.top = oDiv.offsetTop - (oDiv.offsetHeight-oldHeight)/2 + 'px';
+                            }else{
+                                oDiv.style.top = oDiv.offsetTop -10 + 'px';
+                            }
+                            break;
+                        case 40:
+                            if(aCtrl){
+                                var oldWidth = oDiv.offsetWidth;
+                                var oldHeight = oDiv.offsetHeight;
+                                oDiv.style.width = oDiv.offsetWidth*0.75 + 'px';
+                                oDiv.style.height = oDiv.offsetHeight*0.75 + 'px';
+                                
+                                oDiv.style.left = oDiv.offsetLeft - (oDiv.offsetWidth-oldWidth)/2 + 'px';
+                                oDiv.style.top = oDiv.offsetTop - (oDiv.offsetHeight-oldHeight)/2 + 'px';
+                            }else{
+                                oDiv.style.top = oDiv.offsetTop + 10 + 'px';
+                            }
+                            break;
+                            
+                        case 37:
+                            oDiv.style.left = oDiv.offsetLeft - 10 + 'px';
+                            break;
+                        case 39:
+                            oDiv.style.left = oDiv.offsetLeft + 10 + 'px';
+                            break;
+                            
+                        //////////////color    
+                        case 49:
+                            if(aCtrl){
+                                oDiv.style.backgroundColor = 'green';
+                            }
+                            break;
+                        case 50:
+                            if(aCtrl){
+                                oDiv.style.backgroundColor = 'yellow';
+                            }
+                            break;
+                        case 51:
+                            if(aCtrl){
+                                oDiv.style.backgroundColor = 'blue';
+                            }
+                            break;
+                    }
+                    limit();
+                    return false;
+                }
+                
+                function limit(){
+                    var doc = [document.documentElement.clientWidth, document.documentElement.clientHeight]
+                    if(oDiv.offsetTop<0){
+                        oDiv.style.top = 0;
+                    }
+                    if(doc[0]-oDiv.offsetLeft-oDiv.offsetWidth<0){
+                        oDiv.style.left = doc[0] - oDiv.offsetWidth + 'px';
+                    }
+                    if(doc[1]-oDiv.offsetTop-oDiv.offsetHeight<0){
+                        oDiv.style.top = doc[1] - oDiv.offsetHeight + 'px';
+                    }
+                    if(oDiv.offsetLeft<0){
+                        oDiv.style.left = 0;
+                    }   
+                }
+               
+            }
+        </script>
+    </body>
+</html>

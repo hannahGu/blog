@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            *{
+                padding:0;
+                margin:0;
+            }
+            #header,#footer{
+                width:960px;
+                height:30px;
+/*                background-color: greenyellow;*/
+            }
+            #container{
+                width:960px;
+                background: url(bj1.PNG) repeat-y 0 0;
+            }
+            .mainBox{
+                float:left;
+                width: 650px;
+            }
+            .sideBox{
+                float:right;
+                width:280px;
+            }
+            .mainBox,.sideBox{
+                padding:0 5px;
+                
+            }
+            #container:after{
+                display: block;
+                clear:both;
+                content:'';
+            }
+        </style>
+    </head>
+    <body>
+        <div id="header">head info</div>
+        <div id="container">
+            <div class="mainBox">
+                <p>main area</p>
+                <p>add the effection of word</p>
+                <p>two ranks the same height</p>
+                <p>no true</p>
+                <p>no true</p>
+                <p>no true</p>
+                <p>no true</p>
+                <p>no true</p>
+                <p>no true</p>
+            </div>
+            <div class="sideBox">side</div>
+        </div>
+        <div id="footer">bottom info</div>
+    </body>
+</html>

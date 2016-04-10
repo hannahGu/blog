@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>rotate</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body{
+                background:#ccc;
+            }
+            canvas{
+                background:#fff;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="c1" width="400" height="400"></canvas>
+        <script>
+            window.onload = function(){
+                var oC = document.getElementById("c1");
+                var oCC = oC.getContext("2d");
+                oCC.rotate(45*Math.PI/180);
+                oCC.fillRect(100,100,100,200);
+            }
+        </script>
+        <pre>旋转后，可能都找不到，请问旋转中心在哪儿或到底围绕什么旋转?
+            旋转中心是左上角，border_top所在位置为起始，顺时针旋转
+        </pre>
+    </body>
+</html>

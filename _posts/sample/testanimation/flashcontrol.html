@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <ul id="navigation">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Buy!</a></li>
+            <li><a href="#">Gift Ideas</a></li>
+        </ul>
+        <script type="text/javascript" src="jquery.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("<div id='navigation_blob'></div>").css({
+                    width:0,
+                    height:$("#navigation li:first a").height() + 10
+                }).appendTo("#navigation");
+                
+                $("#navigation a").hover(function(){
+                    console.log(111);
+                    $("#navigation_blob").animate({
+                        width:$(this).width()+10,
+                        left:$(this).position().left
+                    },{
+                        duration:'slow',
+                        queue:false
+                    });
+                    },function(){
+                        console.log(222);
+                        $("#navigation_blob").animate(
+                                {
+                                    width:$(this).width()+10,
+                                    left:$(this).position().left
+                                },{
+                                    duration:'slow',
+                                    queue:false
+                                }).animate({
+                                    left:$("#navigation li:first a").position().left
+                                },'fast');
+                    });
+                
+                
+                
+            });
+        </script>
+    </body>
+</html>

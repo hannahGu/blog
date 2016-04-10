@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            #content *{
+                margin:0;
+                padding:0;
+            }
+            #content{
+                width:440px;
+                margin:0 auto;
+                font:normal 12px/1.5em Arial;
+            }
+            #content span{
+                padding:2px 4px;
+                color:#999984;
+            }
+            #content button{
+                margin-top:8px;
+                padding:2px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="content">
+            <input type="text" value="1,2,3,4,5,6,7,8,9,10"/>
+            <span>enter num,add them together,use ',' to identify them</span>
+            <button>Add</button>
+        </div>
+        <script>
+            var oInput = document.getElementsByTagName('input')[0];
+            var oBtn = document.getElementsByTagName('button')[0];
+            oBtn.onclick = function(){
+                var sum = 0;
+                var val = oInput.value;
+                val = val.split(',');
+                console.log(typeof val);
+                for(var i=0;i<val.length;i++){
+                    sum += parseInt(val[i]);
+                }
+                console.log(sum);
+            }
+        </script>
+    </body>
+</html>

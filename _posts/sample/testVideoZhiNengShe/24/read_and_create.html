@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <input id="btn" type="button" value="click"/>
+        <ul id="ul1"></ul>
+        <script src="ajax.js"></script>
+        <script>
+            window.onload = function(){
+                var oBtn = document.getElementById("btn");
+                var oUl = document.getElementById("ul1");
+                oBtn.onclick = function(){
+                    ajax('data.txt?t="new Date().getTime()"',function(str){
+                        var ss = eval(str);
+                        for(var i=0;i<ss.length;i++){
+                            var oLi = document.createElement("li");
+                            oLi.innerHTML = 'user:<strong>'+ss[i].user+'</strong>  pwd:'+ss[i].pwd;
+                            oUl.appendChild(oLi);
+                        }
+                    },function(){console.log(55555);});
+                }
+                
+            }
+        </script>
+    </body>
+</html>

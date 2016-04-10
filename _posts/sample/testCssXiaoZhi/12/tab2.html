@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            #tab{
+                position:relative;
+                width:570px;
+            }
+            #tab div{
+                position:absolute;
+                top:26px;
+                left:0;
+                width:564px;
+                border:solid #d4d3d3;
+                border-width: 0 1px 1px;
+            }
+            #tab .block{
+                display:block;
+                padding-bottom: 10px;
+            }
+            #tab div{
+                display:none;
+            }
+            #tab .up{
+                background-color: red;
+            }
+            #tab h3{
+                float:left;
+                width:114px;
+                height:26px;
+                margin:0 -1px 0 0;
+                line-height: 26px;
+                font-size: 14px;
+                font-weight: normal;
+                text-align: center;
+                color:#00007f;
+                background: #eeeeee;
+                cursor:pointer;
+            }
+            #tab ul{
+                margin:15px 0 0;
+                padding:0;
+                list-style: none;
+            }
+            #tab li{
+                display: inline;
+                float:left;
+                width:47.9%;
+                height:22px;
+                margin:0 1%;
+                line-height: 22px;
+                text-indent: 10px;
+                border-bottom: 1px dashed #dedede;
+            }
+            #tab li a{
+                font-size: 12px;
+                text-decoration: none;
+                text-indent: 10px;
+                color:#333333;
+            }
+            #tab li a:hover{
+                text-decoration: underline;
+                color:#ff0000;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="tab">
+            <h3 class="up" onclick="goTo(1)">Choice 1</h3>
+            <div class="block">
+                <ul>
+                    <li><a href="#">1111</a></li>
+                    <li><a href="#">1112</a></li>
+                    <li><a href="#">1113</a></li>
+                </ul>
+            </div>
+            <h3 onclick="goTo(2)">Choice 2</h3>
+            <div>
+                <ul>
+                    <li><a href="#">2221</a></li>
+                    <li><a href="#">2222</a></li>
+                    <li><a href="#">2223</a></li>
+                </ul>
+            </div>
+            <h3 onclick="goTo(3)">Choice 3</h3>
+            <div>
+                <ul>
+                    <li><a href="#">3331</a></li>
+                    <li><a href="#">3332</a></li>
+                    <li><a href="#">3333</a></li>
+                </ul>
+            </div>
+        </div>
+        <script type="text/javascript">
+            function goTo(ao){
+                var h = document.getElementsByTagName("h3");
+                var d = document.getElementsByTagName("div");
+                var len = d.length;
+                for(var i = 0;i<len;i++){
+                    if((ao-1==i)&& (d[i].className == "")){
+                        d[i].className = " block";
+                        h[i].className = " up";
+                    }
+                    else{
+                        d[i].className = "";
+                        //console.log(h[i]);
+                        h[i].className = "";
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>

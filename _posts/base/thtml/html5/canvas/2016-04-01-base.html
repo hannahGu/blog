@@ -1,0 +1,43 @@
+---
+title: border width 2px之谜
+---
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body{background:#000;}
+            #c1{background:#fff;}
+            span{color:#fff;}
+        </style>
+    </head>
+    <body>
+        <canvas id="c1" width="400" height="400">
+            <span>not support canvas</span>
+        </canvas>
+        <!--default:width:300,height:150-->
+        <script>
+            window.onload = function(){
+                var oC = document.getElementById("c1");
+                var oCC = oC.getContext('2d');
+                
+                
+                oCC.fillStyle = 'red';
+                oCC.strokeStyle = '#0f0';
+                oCC.lineWidth = '10';
+               
+                oCC.fillRect(40.5,40.5,100,100);
+                //宽度默认为1px，从半像素像两边扩展
+                oCC.strokeRect(40.5,40.5,100,100);
+                //2个重叠，一个负责内部，一个负责边框,2个顺序很有关系，谁覆盖谁
+            }
+        </script>
+    </body>
+</html>

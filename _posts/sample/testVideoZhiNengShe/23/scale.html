@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            #parent{
+                width:500px;
+                height:20px;
+                position:relative;
+                background: #ccc;
+                margin:0 auto;
+            }
+            #div1{
+                position: absolute;
+                background: greenyellow;
+                height:20px;
+                width:20px;
+            }
+            #div2{
+                position: relative;
+                width:400px;
+                height:200px;
+                overflow: hidden;
+                border:1px solid #000;
+				margin:0 auto;
+            }
+            #div3{
+                position: absolute;
+                width:400px;
+               
+            }
+        </style>
+    </head>
+    <body>
+        <div id="parent">
+            <div id="div1"></div>
+        </div>
+        <div id="div2">
+            <div id="div3">
+                我为何选择这份工作、事业
+                在事业方面会以坚强的意志力及手腕获得成功。拥有良好的事务处理能力；具领导能力和成熟男性的思考能力，对工作坚持到底。你可以像皇帝一样开辟疆土，稳健守成。严于律已，一丝不苟，学业有所进展，考试会很顺利，达成自己的目标。如考虑转职业，适合从事事务员或公务员等工作。
+
+                我选的路是对的吗？
+                你处于一种充满创造力的工作状态中，你本身是个很多想法的人，呆板的工作内容和方式都不适合你。但是你的大胆会给你带来意想不到的好结果。不过不要什么话都听不进去，适当的吸取一下别人的良言。愚人这张牌蕴含了很大的两面性。你的潜力还是很大的。还在上学的话可能会在近期内转学，进入一个新的环境。
+
+
+                你将处于事业低潮期，始终达不到预期目标，需要耐心的等待。你甚至开始回忆过的奋斗，这让你丧失了对未来的原动力。学业易半途而废，得到不好的开端，最终导致不好的结局。让自己的心平静一下，也许你可以帮助你的幸运女神。
+            </div>
+        </div>
+        
+        <script>
+            window.onload = function(){
+                var oDiv = document.getElementById("div1");
+                var oDiv2 = document.getElementById("div2");
+                var oDiv3 = document.getElementById("div3");
+                var oParent = document.getElementById("parent");
+                var opacity = 0;
+                oDiv.onmousedown = function(event){
+                    var event = event || window.event;
+                    var disX = event.clientX - oDiv.offsetLeft;
+                    document.onmousemove = function(event){
+                        var event = event || window.event;
+                        var l = event.clientX - disX;
+                        
+                        if(l<0){
+                            l = 0;
+                        }else if(l>oParent.offsetWidth-oDiv.offsetWidth){
+                            l= oParent.offsetWidth-oDiv.offsetWidth;
+                        }
+                        oDiv.style.left = l + 'px';
+                        var scale = l/ (oParent.offsetWidth-oDiv.offsetWidth);
+                        oDiv3.style.top = -scale*(oDiv3.offsetHeight-oDiv2.offsetHeight) + 'px';;
+                    }
+                    document.onmouseup = function(){
+                        document.onmousemove = null;
+                        document.onmouseup = null;
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>

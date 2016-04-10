@@ -1,0 +1,91 @@
+---
+title: JS动画之木块单方向运动
+---
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>JS动画之木块单方向运动</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/prism.css"/>
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/base.css"/>
+        <style>
+            #content{
+                position: relative;
+                height:300px;
+            }
+            #div1{
+                background-color: #ff0000;
+                width:200px;
+                height:200px;
+                position:absolute;
+                left:0;
+                top:50px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="content">
+            <input id="click" type="button" value="click"/>
+            <div id="div1"></div>
+        </div>
+        <pre id="show_code">
+            <code class="language-js">
+                JS动画之木块单方向运动
+                window.onload = function(){
+                var oDiv = document.getElementById("div1");
+                var oClick = document.getElementById("click");
+                var speed = 1;
+                var timer = null;
+                oClick.onclick = function(){
+                    startMove();
+                    
+                }
+				
+                function startMove(){
+                    clearInterval(timer);
+                        timer=setInterval(function(){
+                            if(oDiv.offsetLeft>=300){
+                                clearInterval(timer);
+                            }
+                            else{
+                                oDiv.style.left = oDiv.offsetLeft+speed+ 'px';
+                            }  
+                        },30);
+                }
+            }
+            </code>
+        </pre>
+        <script src="{{ site.baseurl }}/public/js/prism.js"></script>
+        <script>
+            window.onload = function(){
+                var oDiv = document.getElementById("div1");
+                var oClick = document.getElementById("click");
+                var speed = 1;
+                var timer = null;
+                oClick.onclick = function(){
+                    startMove();
+                    
+                }
+				
+                function startMove(){
+                    clearInterval(timer);
+                        timer=setInterval(function(){
+                            if(oDiv.offsetLeft>=300){
+                                clearInterval(timer);
+                            }
+                            else{
+                                oDiv.style.left = oDiv.offsetLeft+speed+ 'px';
+                            }  
+                        },30);
+                }
+            }
+            
+        </script>
+    </body>
+</html>

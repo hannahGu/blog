@@ -1,0 +1,127 @@
+---
+title: 行间事件 行间属性
+---
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>行间事件 行间属性</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/prism.css"/>
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/base.css"/>
+        <style>
+            #div1{
+                width:200px;height:200px;background:red;
+            }
+            #all{
+                background:red;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="show">
+            <div id='div1' ></div>
+            <input type='button' value='apply' onclick='show()'/>
+            <br>
+            <br>
+            <input id='all' value='all' type='button'/>
+            <input id='allno' value='allno' type='button'/>
+            <input id='toggle' value='toggle' type='button'/>
+            <div id='div2'>
+                <input type='checkbox' value='111'/><br>
+                <input type='checkbox' value='111'/><br>
+                <input type='checkbox' value='111'/><br>
+                <input type='checkbox' value='111'/><br>
+                <input type='checkbox' value='111'/><br>
+                <input type='checkbox' value='111'/><br>
+                <input type='checkbox' value='111'/><br>
+                <input type='checkbox' value='111'/><br>
+            </div>
+        </div>
+        <pre id="show_code">
+            <code class="language-js">
+                函数传参数：参数是占位符，函数里有东西定不下来
+                操作属性的方法：1.otxt.value,2.otxt['value'],方括号中的是字符串，是变量
+                字面量（常量）：看到什么就是什么 VS 变量
+                行间样式：js 中style样式是加到行间的，obj.style取样式也只从行间取
+                style和className：style是修改行间样式，先修改style再修改class是不起作用的，建议只用两者中的一个
+                行间事件：行多,加的多，每一行除了id,class,还有onlcick=
+                提取行间事件：onclick相当于一个属性，可以用js改，oBtn.onclick=function（）
+                循环
+
+                function show(){
+                    var oDiv = document.getElementById("div1");
+                    alert("读行间值："+oDiv.style.background);//为空，没有值
+                }
+                window.onload = function(){
+                    var oDiv2 = document.getElementById("div2");
+                    var oInput = oDiv2.getElementsByTagName("input");
+                    var oAll = document.getElementById("all");
+                    var oAllno = document.getElementById("allno");
+                    var oToggle = document.getElementById("toggle");
+
+                    oAll.onclick = function(){
+                        for(var i=0;i&lt;oInput.length;i++){
+                            oInput[i].checked= true;
+                        }
+                    }
+                    oAllno.onclick = function(){
+                        for(var i=0;i&lt;oInput.length;i++){
+                            oInput[i].checked= false;
+                        }
+                    }
+                    oToggle.onclick = function(){
+                        for(var i=0;i&lt;oInput.length;i++){
+                            if(oInput[i].checked==true){
+                                oInput[i].checked= false;
+                            }else{
+                                oInput[i].checked= true;
+                            }
+                        }
+                    }
+
+                }
+            </code>
+        </pre>
+        <script src="{{ site.baseurl }}/public/js/prism.js"></script>
+        <script>
+            function show(){
+                var oDiv = document.getElementById("div1");
+                alert("读行间值："+oDiv.style.background);//为空，没有值
+            }
+            window.onload = function(){
+                var oDiv2 = document.getElementById("div2");
+                var oInput = oDiv2.getElementsByTagName("input");
+                var oAll = document.getElementById("all");
+                var oAllno = document.getElementById("allno");
+                var oToggle = document.getElementById("toggle");
+
+                oAll.onclick = function(){
+                    for(var i=0;i<oInput.length;i++){
+                        oInput[i].checked= true;
+                    }
+                }
+                oAllno.onclick = function(){
+                    for(var i=0;i<oInput.length;i++){
+                        oInput[i].checked= false;
+                    }
+                }
+                oToggle.onclick = function(){
+                    for(var i=0;i<oInput.length;i++){
+                        if(oInput[i].checked==true){
+                            oInput[i].checked= false;
+                        }else{
+                            oInput[i].checked= true;
+                        }
+                    }
+                }
+                
+            }
+        </script>
+    </body>
+</html>

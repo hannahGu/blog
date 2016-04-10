@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Change Attribute?</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            * {
+                padding:0;
+                margin:0;
+            }
+            #changeAttr{
+                width:370px;
+                /*width:auto or 100%, not center*/
+                margin:100px auto;
+                border:1px solid #000000;
+                padding:50px;
+                
+            }
+            #obj{
+                width:150px;
+                margin:20px auto;
+                height:150px;
+                background-color:black;
+            }
+        </style>
+    </head>
+    <body>
+        <div id='changeAttr'>
+            <h1>Change Attribute</h1>
+            <div id='content'>
+                <input id='chWidth' type='button' value='CH WIDTH'/>
+                <input id='chHeight' type='button' value='CH HIGHT'/>
+                <input id='chColor' type='button' value='CH COLOR'/>
+                <input id='chHide' type='button' value='CH HIDE'/>
+                <input id='chReset' type='button' value='CH RESET'/>
+                <div id='obj'></div>
+            </div>
+        </div>
+        <script>
+//            window.onload = function(){
+//                var chWidth = document.getElementById("chWidth");
+//                var chHeight = document.getElementById("chHeight");
+//                var chColor = document.getElementById("chColor");
+//                var chHide = document.getElementById("chHide");
+//                var chReset = document.getElementById("chReset");
+//                var obj = document.getElementById("obj");
+//                
+//                chWidth.onclick = function(){
+//                    obj.style.width = '300px';
+//                }
+//                chHeight.onclick = function(){
+//                    obj.style.height = '300px';
+//                }
+//                chColor.onclick = function(){
+//                    obj.style.backgroundColor = '#ff0000';
+//                }
+//                chHide.onclick = function(){
+//                    obj.style.display = 'none';
+//                }
+//                chReset.onclick = function(){
+//                    obj.style.width = '150px';
+//                    obj.style.height = '150px';
+//                    obj.style.backgroundColor = '#000000';
+//                    obj.style.display = 'block';
+//                }
+//            }
+
+            
+//            var changeStyle = function (elem, attr, value)
+//            {
+//                    elem.style[attr] = value
+//            };
+//            window.onload = function ()
+//            {
+//                    var oBtn = document.getElementsByTagName("input");
+//                    var oDiv = document.getElementById("obj");
+//                    var oAtt = ["width","height","background","display","display"];
+//                    var oVal = ["200px","200px","red","none","block"];
+//
+//                    for (var i = 0; i < oBtn.length; i++)
+//                    {
+//                            oBtn[i].index = i;
+//                            oBtn[i].onclick = function ()
+//                            {
+//                                    this.index == oBtn.length - 1 && (oDiv.style.cssText = "");
+//                                    console.log(this.index);
+//                                    changeStyle(oDiv, oAtt[this.index], oVal[this.index])
+//                            }	
+//                    }
+//            };
+        
+        
+        
+            var changeStyle = function(ele,attr,val){
+                ele.style[attr] = val;
+            };
+            window.onload = function(){
+                var oBtn = document.getElementsByTagName("input");
+                var oDiv = document.getElementById("obj");
+                var oAttr = ["width","height","backgroundColor","display","display"];
+                var oVal = ["200px","200px","red","none","block"];
+                
+                for(var i=0;i<oBtn.length;i++){
+                    oBtn[i].index = i; 
+                    oBtn[i].onclick = function(){
+                        
+                        this.index == oBtn.length - 1 && (oDiv.style.cssText = "");
+                        //console.log(this.index);
+                        changeStyle(oDiv,oAttr[this.index],oVal[this.index]);
+                    };	
+                } 
+            }
+            
+        </script>
+    </body>
+</html>

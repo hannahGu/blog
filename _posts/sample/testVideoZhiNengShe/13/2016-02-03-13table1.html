@@ -1,0 +1,170 @@
+---
+title: table行悬浮变色，且动态增加行,斑马线table
+---
+
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>table行悬浮变色，且动态增加行,斑马线table</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/prism.css"/>
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/base.css"/>
+        <style>
+            table{
+                margin-top:10px;
+                border-collapse: collapse;
+            }
+            table thead{
+                font-weight: bold;
+            }
+            table td{
+                border:1px solid #000;
+                padding:4px 12px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="show">
+            Name:<input id="name" type="text"/>
+            Age:<input id="age" type="text"/>
+            <input id="click" value="Apply" type="button"/>
+            <table>
+                <thead>
+                    <td>id</td>
+                    <td>age</td>
+                    <td>name</td>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>12</td>
+                        <td>Angle</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>132</td>
+                        <td>Banle</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>42</td>
+                        <td>CC</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <pre id="show_code">
+            <code class="language-js">
+            table行悬浮变色，且动态增加行,斑马线table
+            window.onload = function(){
+                var tab = document.getElementsByTagName("table")[0];
+                for(var i=0;i&lt;tab.tBodies[0].rows.length;i++){
+                    var oldc = '';
+                    if(i%2){
+                        //console.log(i);
+                        tab.tBodies[0].rows[i].style.background = 'red';
+                    }
+                    
+                    tab.tBodies[0].rows[i].onmouseover = function(){
+                        oldc = this.style.backgroundColor;
+                        this.style.backgroundColor = 'green';
+                    }
+                    tab.tBodies[0].rows[i].onmouseout = function(){
+                        this.style.backgroundColor = oldc;
+                    }
+                }
+                
+                var name = document.getElementById("name");
+                var age = document.getElementById("age");
+                var btn = document.getElementById("click");
+                var id = tab.tBodies[0].rows.length+1;
+                btn.onclick = function(){
+                    var tr = document.createElement("tr");
+                    
+                    var td = document.createElement("td");
+                    td.innerHTML = id++;
+                    tr.appendChild(td);
+                    
+                    td = document.createElement("td");
+                    td.innerHTML = age.value;
+                    tr.appendChild(td);
+                    
+                    td = document.createElement("td");
+                    td.innerHTML = name.value;
+                    tr.appendChild(td);
+                    
+                    var td = document.createElement("td");
+                    td.innerHTML = "&lt;a href='javascript:;'&gt;operate&lt;/a&gt;";
+                    tr.appendChild(td);
+                    
+                    var ooA = td.getElementsByTagName('a')[0];
+                    ooA.onclick = function(){
+                        tab.tBodies[0].removeChild(this.parentNode.parentNode);
+                    }
+                   tab.tBodies[0].appendChild(tr);  
+                }   
+            }
+            </code>
+        </pre>
+        <script src="{{ site.baseurl }}/public/js/prism.js"></script>
+        <script>
+            window.onload = function(){
+                var tab = document.getElementsByTagName("table")[0];
+                for(var i=0;i<tab.tBodies[0].rows.length;i++){
+                    var oldc = '';
+                    if(i%2){
+                        //console.log(i);
+                        tab.tBodies[0].rows[i].style.background = 'red';
+                    }
+                    
+                    tab.tBodies[0].rows[i].onmouseover = function(){
+                        oldc = this.style.backgroundColor;
+                        this.style.backgroundColor = 'green';
+                    }
+                    tab.tBodies[0].rows[i].onmouseout = function(){
+                        this.style.backgroundColor = oldc;
+                    }
+                }
+                
+                var name = document.getElementById("name");
+                var age = document.getElementById("age");
+                var btn = document.getElementById("click");
+                var id = tab.tBodies[0].rows.length+1;
+                btn.onclick = function(){
+                    var tr = document.createElement("tr");
+                    
+                    var td = document.createElement("td");
+                    td.innerHTML = id++;
+                    tr.appendChild(td);
+                    
+                    td = document.createElement("td");
+                    td.innerHTML = age.value;
+                    tr.appendChild(td);
+                    
+                    td = document.createElement("td");
+                    td.innerHTML = name.value;
+                    tr.appendChild(td);
+                    
+                    var td = document.createElement("td");
+                    td.innerHTML = "<a href='javascript:;'>operate</a>";
+                    tr.appendChild(td);
+                    
+                    var ooA = td.getElementsByTagName('a')[0];
+                    ooA.onclick = function(){
+                        tab.tBodies[0].removeChild(this.parentNode.parentNode);
+                    }
+                    
+                   tab.tBodies[0].appendChild(tr); 
+                   
+                   
+                }   
+            }
+        </script>
+    </body>
+</html>

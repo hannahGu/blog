@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link style="text/css" src='/animation/jquery-ui.css'/>
+        <style type="text/css">
+            #navigation {	
+                margin: 0 0 10px 0;
+                padding: 0;
+                list-style-type: none;	
+                position: relative;
+                z-index: 1;
+
+                /* overwrite base */
+                float: none;
+                width: 100%;
+        }
+
+        #navigation ul {
+                margin: 0;
+                padding: 0;
+        }
+
+        #navigation li {
+                display: inline;
+                margin: 0;
+                padding: 0;
+        }
+
+        #navigation a {
+                color: #015287;
+                display: inline-block;
+                padding: 5px;
+                text-decoration: none;
+        }
+
+        #navigation_blob {
+                top: 0;
+                background-color:red;
+                position: absolute;
+                z-index: -1;
+        }
+        </style>
+    </head>
+    <body>
+        <div>
+            <ul id="navigation">
+                <li><a href="#">11</a></li>
+                <li><a href="#">22</a></li>
+                <li><a href="#">33</a></li>
+                <li><a href="#">44</a></li>
+            </ul>
+        </div>
+        <script type="text/javascript" src="jquery.js"></script>
+        <script type="text/javascript" src="animation/jquery-ui.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('<div id="navigation_blob"></dvi>').css({
+                    width:0,
+                    height:$('#navigation li').height()+10
+                }).appendTo('#navigation');
+                
+                $('#navigation li').hover(function(){
+                    $('#navigation_blob').animate({
+                        width:$(this).width()+10,
+                        left:$(this).position().left
+                    });
+                },function(){
+                    $('#navigation_blob').animate({
+                        width:$(this).width()+10,
+                        left:$(this).position().left
+                    });
+                });
+            });
+              
+        </script>
+    </body>
+</html>

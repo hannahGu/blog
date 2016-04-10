@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            #div1{
+                width:150px;
+                height:150px;
+                background: #ff0000;
+                position: absolute;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="div1"></div>
+        <script>
+            function Drap(ele){
+                var that = this;
+                this.disX = 0;
+                this.disY = 0;
+                this.oDiv = document.getElementById(ele);
+                this.oDiv.onmousedown = function(event){
+                    that.fnDown(event);
+                };
+            }
+            Drap.prototype.fnDown = function(event){
+               var that = this;
+                var event = event || window.event;
+                this.disX = event.clientX - this.oDiv.offsetLeft;
+                this.disY = event.clientY - this.oDiv.offsetTop;
+                document.onmousemove = function(event){
+                    that.fnMove(event);
+                }
+                document.onmouseup = function(){
+                    that.fnUp();
+                }
+            }
+            Drap.prototype.fnMove  = function(event){
+                var event = event || window.event;
+                this.oDiv.style.left = event.clientX - this.disX + 'px';
+                this.oDiv.style.top = event.clientY - this.disY + 'px';
+            }
+            Drap.prototype.fnUp  = function(event){
+                document.onmousemove = null;
+                document.onmouseup = null
+            }
+            var opp = new Drap("div1");
+        </script>
+    </body>
+</html>

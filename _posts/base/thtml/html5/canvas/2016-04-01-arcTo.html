@@ -1,0 +1,42 @@
+---
+title: 曲线一
+---
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>arcTo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body{
+                background:#ccc;
+            }
+            canvas{
+                background:#fff;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="c1" width="400" height="400"></canvas>
+        <script>
+            window.onload = function(){
+                var oC = document.getElementById("c1");
+                var oCC = oC.getContext("2d");
+                
+                oCC.moveTo(100,200);//方法可把窗口的左上角移动到一个指定的坐标(x0,y0)
+                
+                oCC.arcTo(100,100,200,100,50);
+                //artTo(x1,y1,x2,y2,r)
+                //连接（x0，y0）（x1，y1）成line1和（x1,y1）(x2,y2)成line2
+                //做半径为r的圆与lin1和line2相切
+                //连接（x0 y0） 和2个切点间的弧线
+                oCC.stroke();
+            }
+        </script>
+    </body>
+</html>

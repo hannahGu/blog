@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            table{
+                width:300px;
+                border:1px solid #000000;
+                border-collapse: collapse;
+                font:normal 12px/1.5em Arial;
+                background: url(../lan.png) repeat 0 0;
+            }
+            caption{
+                text-align: left;
+            }
+            th{
+                color:#f4f4f4;
+                border:1px solid #000000;
+                backgound-color:#999999;
+            }
+            td{
+                text-align: center;
+                border:1px solid #000000;
+                background-color: #e8e8e8;
+            }
+            tfoot td{
+                text-align: right;
+                background-color: #ffffff;
+            }
+            colgroup{
+                width:180px;
+                color:#ff0000;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="content">
+            <table>
+                <caption>TABLE HEAD</caption>
+                <colgroup span="1"></colgroup>
+                <thead>
+                    <tr>
+                        <th>T1</th>
+                        <th>T2</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <td colspan="2">show total info</td>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <tr>
+                        <td>AAA</td>
+                        <td>BBB</td>
+                    </tr>
+                    <tr>
+                        <td>CCC</td>
+                        <td>DDD</td>
+                    </tr>
+                    <tr>
+                        <td>EEE</td>
+                        <td>FFF</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

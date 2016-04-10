@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            #container{
+                width:300px;
+                border:1px solid salmon;
+                margin:0 auto;
+                font:normal 15px/1.5em Arial;
+            }
+            #container label{
+                text-align: right;
+                width:80px;
+            }
+            #container label,#container input{
+                float:left;
+                height:30px;
+            }
+            #container h2{
+                font-size: 18px;
+                padding:6px 10px;
+                margin:0;
+                color:salmon;
+                border-bottom: 1px solid salmon;
+            }
+            #container p:after{
+                display:block;
+                clear:both;
+                content:'';
+            }
+            #click{background-color:salmon;
+                width:50px;
+                color:#fff;
+                line-height: 30px;   
+            }
+        </style>
+    </head>
+    <body>
+        <div id="container">
+            <h2>User Login</h2>
+            <p><label for="username">user:</label><input type="text" id="username"/></p>
+            <p><label for="password">password:</label><input type="text" id="password"/></p>
+            <p><label></label><input type="button" id="click" value="Login"/></p>
+        </div>
+        <script>
+            window.onload = function(){
+                var oInput = document.getElementsByTagName("input");
+                oInput[0].onfocus = oInput[1].onfocus = function(){
+                    this.style.backgroundColor = 'pink';
+                    this.style.borderColor = 'orange';
+                }
+                oInput[0].onblur = oInput[1].onblur = function(){
+                    this.style.backgroundColor = '';
+                    this.style.borderColor = '';
+                }
+            }
+        </script>
+    </body>
+</html>

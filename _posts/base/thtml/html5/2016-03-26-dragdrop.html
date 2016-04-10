@@ -1,0 +1,101 @@
+---
+title: dragdrop
+---
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>dragdrop</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/prism.css"/>
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/base.css"/>
+        <style>
+            #content{
+                height:400px;
+                position: relative;
+            }
+            #div1,#div2{
+                width:448px;
+                height:70px;
+                padding:10px;
+                border:1px solid #aaa;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="content">
+            <div id="div1"></div>
+            <div id="div2">
+                <img id="drag1" src="{{ site.baseurl }}/public/img/drapdrop/ziti.png" draggable="true" width="336" height="69"/>
+            </div>
+        </div>
+        
+        <pre id="show_code">
+            <code class="language-js">
+                html5 dragdrop
+                window.onload = function(){
+                    var oDiv1 = document.getElementById("div1");
+                    var oDiv2 = document.getElementById("div2");
+                    var oImg = document.getElementById("drag1");
+                    oDiv1.ondrop = function(ev){
+                        ev.preventDefault();
+                        var data = ev.dataTransfer.getData("Text");
+                        ev.target.appendChild(document.getElementById(data));
+                    }
+
+                    oDiv1.ondragover = function(ev){
+                        ev.preventDefault();
+                    }
+                    oDiv2.ondrop = function(ev){
+                        ev.preventDefault();
+                        var data = ev.dataTransfer.getData("Text");
+                        ev.target.appendChild(document.getElementById(data));
+                    }
+
+                    oDiv2.ondragover = function(ev){
+                        ev.preventDefault();
+                    }
+
+                    oImg.ondragstart = function(ev){
+                        ev.dataTransfer.setData("Text",ev.target.id);
+                    }
+                }
+            </code>
+        </pre>
+        <script src="{{ site.baseurl }}/public/js/prism.js"></script>
+        <script>
+            window.onload = function(){
+                var oDiv1 = document.getElementById("div1");
+                var oDiv2 = document.getElementById("div2");
+                var oImg = document.getElementById("drag1");
+                oDiv1.ondrop = function(ev){
+                    ev.preventDefault();
+                    var data = ev.dataTransfer.getData("Text");
+                    ev.target.appendChild(document.getElementById(data));
+                }
+                
+                oDiv1.ondragover = function(ev){
+                    ev.preventDefault();
+                }
+                oDiv2.ondrop = function(ev){
+                    ev.preventDefault();
+                    var data = ev.dataTransfer.getData("Text");
+                    ev.target.appendChild(document.getElementById(data));
+                }
+                
+                oDiv2.ondragover = function(ev){
+                    ev.preventDefault();
+                }
+                
+                oImg.ondragstart = function(ev){
+                    ev.dataTransfer.setData("Text",ev.target.id);
+                }
+            }
+        </script>
+    </body>
+</html>

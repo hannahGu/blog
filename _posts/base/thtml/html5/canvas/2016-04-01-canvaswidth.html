@@ -1,0 +1,41 @@
+---
+title: canva 宽高设置
+---
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body{
+                background: #ccc;
+            }
+            canvas{
+                background: #fff;
+                width:400px;
+                height:800px;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="cc" ></canvas>
+        <script>
+            window.onload = function(){
+                var oC = document.getElementById("cc");
+                var oCC = oC.getContext('2d');
+                oCC.fillStyle = 'green';
+                oCC.fillRect(0,0,100,100);
+            }
+        </script>
+        <pre>
+            canvas 的宽高应该写在html中，这样才是他事件的宽高
+             在《style》里面定义width300px，height：300px意思是在默认（300:150）基础上的放大比例是（1:2）
+        </pre>
+    </body>
+</html>

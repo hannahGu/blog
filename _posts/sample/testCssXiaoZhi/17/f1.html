@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            .float_box{
+                overflow:hidden;
+                /*width:500px;*/
+                background-color:pink;
+                zoom:1;
+            }
+            .son{
+                width:200px;
+                height:100px;
+            }
+            .float_left{
+                float:left;
+                border:1px solid #dcdcdc;
+            }
+            .float_right{
+                float:right;
+                border:1px solid #333333;
+            }
+            .no_float{
+                color:#ffffff;
+                background-color: #000000;
+/*                clear: both;*/
+            }
+        </style>
+    </head>
+    <body>
+        <div class="float_box">
+            <div class="float_left son">left</div>
+            <div class="float_right son">right</div>
+        </div>
+        
+        <div class='no_float'>be effected</div>
+    </body>
+</html>

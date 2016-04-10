@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>scale</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body{
+                background:#ccc;
+            }
+            canvas{
+                background:#fff;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="c1" width="800" height="800"></canvas>
+        <script>
+            window.onload = function(){
+                var oC = document.getElementById("c1");
+                var oCC = oC.getContext("2d");
+                oCC.strokeRect(100,100,100,100);
+                oCC.scale(2,2);//left，width,top,height全部变成2倍
+                oCC.strokeRect(100,100,100,100);
+            }
+        </script>
+    </body>
+</html>

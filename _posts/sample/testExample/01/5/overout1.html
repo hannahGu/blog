@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            #testDiv{
+                background-color: #000000;
+                color:#ffffff;
+                font:normal 15px/1.5em Arial;
+                height:180px;
+                width:180px;
+                border:10px solid #000000;
+                margin:0 auto;
+                padding:20px;
+                cursor: crosshair;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="testDiv">mouseover change style,mouseout recover.</div>
+        <script>
+            var oDiv = document.getElementById('testDiv');
+            oDiv.onmouseover = function(){
+                this.style.backgroundColor = '#f0f0f0';
+                this.style.color = '#ff0000';
+                this.style.border = '10px solid #ff0000';
+            }
+            oDiv.onmouseout = function(){
+                this.style.cssText = '';
+            }
+        </script>
+    </body>
+</html>

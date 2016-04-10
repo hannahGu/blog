@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Circle</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body{
+                background:#000;
+            }
+            canvas{
+                background:#fff;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="c1" width="400" height="400"></canvas>
+        <script>
+            window.onload = function(){
+                var oC = document.getElementById("c1");
+                var oCC = oC.getContext("2d");
+                
+                function toDraw(){
+                    var x = 200,
+                        y = 200,
+                        r = 150;
+                
+                    oCC.clearRect(0,0,oC.width,oC.height);//清除
+                    var oDate = new Date();
+                    var sH = oDate.getHours();
+                    var sM = oDate.getMinutes();
+                    var sS = oDate.getSeconds();
+                    
+                    var sHv = (sH+sM/2-90)*Math.PI/180;
+                    var sMv = (sM*6+sS/10-90)*Math.PI/180;
+                    var sSv = (sS*6-90)*Math.PI/180;
+                    
+                    
+                    //画出所有的刻度 分钟 刻度线
+                    oCC.beginPath();
+                    for(var i=0;i<60;i++){
+                        oCC.moveTo(x,y);
+                        oCC.arc(x,y,r,i*6*Math.PI/180,(i+1)*6*Math.PI/180,false);
+                    }
+                    oCC.closePath();
+                    oCC.stroke();
+                    
+                    
+                    //画大圆盘盖住不需要的刻度线 分钟线刻度线
+                    oCC.fillStyle = '#fff';
+                    oCC.beginPath();
+                    oCC.moveTo(x,y);
+                    oCC.arc(x,y,r*19/20,0,360*Math.PI/180,false);
+                    oCC.closePath();
+                    oCC.fill();
+                    
+                    
+                    //画出所有的刻度 时钟刻度线
+                    oCC.lineWidth = 3;
+                    oCC.beginPath();
+                    for(var i=0;i<12;i++){
+                        oCC.moveTo(x,y);
+                        oCC.arc(x,y,r,i*30*Math.PI/180,(i+1)*30*Math.PI/180,false);
+                    }
+                    oCC.closePath();
+                    oCC.stroke();
+                    
+                    
+                    //画大圆盘盖住不需要的刻度线 时钟刻度线
+                    oCC.fillStyle = '#fff';
+                    oCC.beginPath();
+                    oCC.moveTo(x,y);
+                    oCC.arc(x,y,r*18/20,0,360*Math.PI/180,false);
+                    oCC.closePath();
+                    oCC.fill();
+                    
+                    
+                    //时钟线
+                    oCC.lineWidth = 5;
+                    oCC.beginPath();
+                    oCC.moveTo(x,y);
+                    oCC.arc(x,y,r*10/20,sHv,sHv,false);
+                    oCC.closePath();
+                    oCC.stroke();
+                    
+                    //分钟线
+                    oCC.lineWidth = 3;
+                    oCC.beginPath();
+                    oCC.moveTo(x,y);
+                    oCC.arc(x,y,r*14/20,sMv,sMv,false);
+                    oCC.closePath();
+                    oCC.stroke();
+                    
+                    //秒钟线
+                    oCC.lineWidth = 1;
+                    oCC.beginPath();
+                    oCC.moveTo(x,y);
+                    oCC.arc(x,y,r*19/20,sSv,sSv,false);
+                    oCC.closePath();
+                    oCC.stroke();
+                    
+                }
+                setInterval(function(){
+                    toDraw();
+                },1000);
+                
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,102 @@
+---
+title: table行悬浮变色
+---
+
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>table行悬浮变色</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/prism.css"/>
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/base.css"/>
+        <style>
+            table{
+                margin-top:10px;
+                border-collapse: collapse;
+            }
+            table thead{
+                font-weight: bold;
+            }
+            table td{
+                border:1px solid #000;
+                padding:4px 12px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="show">
+            <table>
+                <thead>
+                    <td>id</td>
+                    <td>age</td>
+                    <td>name</td>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>11</td>
+                        <td>Angle</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>22</td>
+                        <td>Banle</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>33</td>
+                        <td>CC</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <pre id="show_code">
+            <code class="language-js">
+            table行悬浮变色
+            window.onload = function(){
+                var tab = document.getElementsByTagName("table")[0];
+                for(var i=0;i&lt;tab.tBodies[0].rows.length;i++){//tab.tBodies[0].rows.length
+                    if(i/2==0){
+                        tab.tBodies[0].rows[i].style.backgroundColor="red";
+                    }
+                    var oldColor = '';
+                    tab.tBodies[0].rows[i].onmouseover = function(){
+                        oldColor = this.style.backgroundColor;
+                        this.style.backgroundColor = "green";
+                    }
+                    tab.tBodies[0].rows[i].onmouseout = function(){
+                        this.style.backgroundColor = oldColor;
+                    }
+                } 
+              
+            }
+            </code>
+        </pre>
+        <script src="{{ site.baseurl }}/public/js/prism.js"></script>
+        <script>
+            window.onload = function(){
+                var tab = document.getElementsByTagName("table")[0];
+                for(var i=0;i<tab.tBodies[0].rows.length;i++){//tab.tBodies[0].rows.length
+                    if(i/2==0){
+                        tab.tBodies[0].rows[i].style.backgroundColor="red";
+                    }
+                    var oldColor = '';
+                    tab.tBodies[0].rows[i].onmouseover = function(){
+                        oldColor = this.style.backgroundColor;
+                        this.style.backgroundColor = "green";
+                    }
+                    tab.tBodies[0].rows[i].onmouseout = function(){
+                        this.style.backgroundColor = oldColor;
+                    }
+                } 
+              
+            }
+        </script>
+    </body>
+</html>

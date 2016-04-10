@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body{
+                background: #ccc;
+            }
+            canvas{
+                background: #fff;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="c1" width="400" height="400"></canvas>
+        <script>
+            window.onload = function(){
+                var oC = document.getElementById("c1");
+                var oCC = oC.getContext("2d");
+                oCC.fillRect(0,0,100,100);
+                var oImg = oCC.getImageData(0,0,100,100);//作用：获取图像数据；(x,y,w,h)起始点，宽度，高度
+                console.log(oImg.width);//一行的像素个数
+                console.log(oImg.data);//Array 整体像素的数组集合
+                console.log(oImg.data.length);//40000 每个像素由rgba组成 4*10000 颜色+透明度
+                for(var i=0;i<oC.width*oC.height;i++){
+                    oImg.data[i*4] = 255;
+                    oImg.data[i*4+1] = 0;
+                    oImg.data[i*4+2] = 0;
+                    oImg.data[i*4+3] = 100;
+                }
+                oCC.putImageData(oImg,200,200);//作用：设置图像数据；obj ,x,y 把obj放在（x，y）处
+                
+                var aImg = oCC.createImageData(100,100);//作用生成新的像素矩阵
+                for(var i=0;i<oC.width*oC.height;i++){
+                    aImg.data[i*4] = 0;
+                    aImg.data[i*4+1] = 255;
+                    aImg.data[i*4+2] = 0;
+                    aImg.data[i*4+3] = 100;
+                }
+                oCC.putImageData(aImg,100,100);
+            }
+        </script>
+    </body>
+</html>

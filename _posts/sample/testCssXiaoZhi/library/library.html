@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="datatable/DT_bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="timepicker/css/bootstrap-datetimepicker.min.css" />
+        <link rel="stylesheet" type="text/css" href="library.css" />
+    </head>
+    <body>
+        <header>
+            <div id="pic1"><a><img src="img/funtorologo_green.png"/></a></div>
+            <ul class="nav nav-tabs">
+                <li role="presentation" class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                      Dropdown <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a href="#">Action</a></li>
+                      <li><a href="#">Another action</a></li>
+                      <li><a href="#">Something else here</a></li>
+                      <li role="separator" class="divider"></li>
+                      <li><a href="#">Separated link</a></li>
+                    </ul>
+                </li>
+                <li role="presentation" class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                      Dropdown <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a href="#">Action</a></li>
+                      <li><a href="#">Another action</a></li>
+                      <li><a href="#">Something else here</a></li>
+                      <li role="separator" class="divider"></li>
+                      <li><a href="#">Separated link</a></li>
+                    </ul>
+                </li>
+                <li role="presentation" class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                      Dropdown <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a href="#">Action</a></li>
+                      <li><a href="#">Another action</a></li>
+                      <li><a href="#">Something else here</a></li>
+                      <li role="separator" class="divider"></li>
+                      <li><a href="#">Separated link</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="clear"></div>
+        </header>
+        <div id="container">
+            <div class="panel panel-default">
+                <div class="panel-heading">Book List</div>
+                <div class="panel-body">
+                    <button class="btn btn-primary" id="add_new">Add</button>
+                    <table id="book_record" class="table table-hover table-striped table-bordered" width="100%">
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- add/edit book Modal -->
+        <div class="modal fade" id="add_book_dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog ">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title"></h4>
+                    </div>
+                    <div class="modal-body">
+                        <div id="sche_list">
+                            <table class="table">
+                                <tbody>
+                                    <tr class="fi_td">
+                                        <td>
+                                            <label>Name:</label>
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control name_msg"/>
+                                            <span class="valid_inf"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="first_td">
+                                            <label>Writer:</label>
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control writer_msg"/>
+                                            <span class="valid_inf"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="first_td">
+                                            <label>Num:</label>
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control num_msg"/>
+                                            <span class="valid_inf"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="first_td">
+                                            <label>Time:</label>
+                                        </td>
+                                        <td>
+                                            <div class="input-group date sche_time">
+                                                <input type="text" class="form-control" readonly="readonly">
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                          <span class="valid_inf"></span>
+                                        </td>
+                                    </tr>
+                                    <input type="hidden" id="book_uuid" value=""/>
+                                </tbody>
+                            </table>
+                            <i class="del_sche_btn fa fa-times fun_a_style"></i>
+                        </div>
+                        <div id="add_btn_div">
+                            <button class="btn btn-primary" id="add_sche_btn">Add</button>
+                        </div>
+                        <div id="page_move">
+                            <ul class="pagination"></ul>
+                        </div>
+                        <div class="clear"></div>
+                    </div>    
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="save_popup_btn">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.min.js" ></script>
+    <script type="text/javascript" src="datatable/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="datatable/DT_bootstrap.js"></script>
+    <script type="text/javascript" src="timepicker/js/moment.js"></script>
+    <script type="text/javascript" src="timepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/base.js"></script>
+    <script type="text/javascript" src="js/library.js"></script>
+</html>

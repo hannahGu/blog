@@ -1,0 +1,104 @@
+---
+title: nav,子菜单为子元素，仅css实现
+---
+
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>nav,子菜单为子元素，仅css实现</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/prism.css"/>
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/base.css"/>
+        <style>
+            #nav{
+                margin:0 auto;
+                width:400px;
+            }
+            #nav div{
+                display: inline-block;
+            }
+            #nav ul{
+                list-style: none;
+            }
+            #nav>div>ul{
+                padding:0;
+                margin:0;
+                display:none;
+                position: absolute;
+            }
+            #nav>div:hover>ul{
+                display:block;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="show">
+            <div id="nav">
+                <div><label>home  |</label>
+                    <ul>
+                        <li>000</a>
+                        <li>001</a>
+                        <li>002</a>
+                    </ul>
+                </div>
+                <div><label>Tech  |</label>
+                    <ul>
+                        <li>100</a>
+                        <li>101</a>
+                        <li>102</a>
+                    </ul>
+                </div>
+                <div><label>support  |</label>
+                    <ul>
+                        <li>200</a>
+                        <li>201</a>
+                        <li>202</a>
+                    </ul>
+                </div>
+                <div><label>Contact</label>
+                    <ul>
+                        <li>300</a>
+                        <li>301</a>
+                        <li>302</a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <pre id="show_code">
+            <code class="language-js">
+                二级菜单在一级菜单的相应的子元素下面
+                    1.位置问题不用担心（偏移省了）
+                    2.二级菜单要加position absolute(飞到空中去，不占位置？！)
+                    3.css中加hover，省了写mouseout这样的
+                    4.直接子元素的调用方法
+
+                #nav{
+                    margin:0 auto;
+                    width:400px;
+                }
+                #nav div{
+                    display: inline-block;
+                }
+                #nav ul{
+                    list-style: none;
+                }
+                #nav>div>ul{
+                    padding:0;
+                    margin:0;
+                    display:none;
+                    position: absolute;
+                }
+                #nav>div:hover>ul{
+                    display:block;
+                }
+            </code>
+        </pre>
+        <script src="{{ site.baseurl }}/public/js/prism.js"></script>
+    </body>
+</html>

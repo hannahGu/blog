@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            *{
+                margin:0;
+                padding:0;
+            }
+            .news-box{
+                width:580px;
+                padding:10px;
+                font:normal 14px/1.5em simsun;
+                color:#000;
+                border:1px #333 solid;
+                background-color: #f6fafd;
+/*                overflow: auto;*/
+            }
+            .news-box h1{
+                float:left;
+                padding:5px 20px 5px 0;
+                background: url(../square.png)no-repeat right 10px;
+                height:20px;
+                line-height: 26px;
+                overflow: hidden;
+                font-size: 20px;
+            }
+            .news-box .info{
+                clear:both;
+                height:20px;
+                margin-bottom: 15px;
+                font-size: 12px;
+            }
+            .news-box .summary{
+                padding:5px;
+                margin-bottom: 10px;
+                text-indent: 2em;
+                border:1px solid #dcdddd;
+                background-color: #fffff;
+            }
+            .news-box img{
+                float:left;
+                margin-right: 10px;
+            }
+            .news-box .content p{
+                margin:0 auto 0 auto;
+                line-height: 22px;
+                text-indent: 2em;
+                word-wrap: break-word;
+                word-break: normal;
+            }
+            .news-box h2{
+                display:none;
+            }
+            .news-box .comments{
+                height:30px;
+                padding:0 5px;
+                line-height: 30px;
+                border-top:1px dashed #AFAFB0;
+                border-bottom: 1px dashed #AFAFB0;
+                background-color: #fffff;
+            }
+            a{
+                color:#1e50a2;
+            }
+            a:hover{
+                color:#BA2636;
+                text-decoration: none;
+            }
+            a.comments_num{
+                color:#ba2636;
+            }
+            .content a em{
+                font-style:normal;
+            }
+            
+        </style> 
+    </head>
+    <body>
+        <div class="news-box">
+            <h1>Big title</h1>
+            
+            <div class="info">
+                <span class="date">2009-01-01</span>
+                <span class="from">source:<a href="#">Xinhua</a></span>
+                <a href="#" class="comments_num">total 23</a>
+                <a href="#">see news by phone</a>
+            </div>
+            
+            <div class="summary">
+                <h2>summary of news</h2>
+                <p>main parts remainder:</p>
+            </div>
+            
+            <div class="content">
+                <h2>news contents:</h2>
+                <img src="../7.1.png" alt="new pic" class="news_pic"/>
+                <p class="p1"><strong>from 23th,May</strong>111111111111111</p>
+                <p class="p2">222222222222222222222222222222222
+                    2222222222222222222222222222222222222222222222222222</p>
+                <p class="p3">333333333333333333333333333333333333333333333333333
+                    333333333333333333333333333333333333</p>
+                <p class="p4">4444444444444444444444444
+                    44444444444444444444444444444444444444444444444444444444444444444</p>
+            </div>
+            
+            <div class="comments"><a href="#">23 friends have published their comments</a></div>
+        </div>
+    </body>
+</html>

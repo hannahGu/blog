@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            div{
+                margin:0 auto;
+                width:200px;
+                
+            }
+            ul{
+                margin:0;
+                padding:0;
+                background: greenyellow;
+                list-style: none;
+            }
+            #content{
+                position: absolute;
+                display:none;
+                position: absolute;
+            }
+            #list{
+                border:1px solid #000;
+                width:200px;
+                
+            }
+            #list .son{
+                padding:5px 10px;
+                border-bottom: 1px dotted #000;
+                margin:0;
+                position: relative;
+            }
+            #list ul{
+                list-style:none;
+                border:1px solid #000;
+                position:absolute;
+                display:none;
+            }
+            #list ul li{
+                width:100px;
+                text-align: right;
+            }
+            #list ul li.active{
+                background: #ccc;
+            }
+        </style>
+    </head>
+    <body>
+        <div>defined right click</div>
+        <div id="content">
+            <ul id="list">
+                <li class="son">first lesson
+                    <ul>
+                        <li>111</li>
+                        <li>112</li>
+                        <li>113</li>
+                    </ul>
+                </li>
+                <li class="son">second lesson
+                    <ul>
+                        <li>211</li>
+                        <li>212</li>
+                        <li>213</li>
+                    </ul>
+                </li>
+                <li class="son">third lesson
+                    <ul>
+                        <li>311</li>
+                        <li>312</li>
+                        <li>313</li>
+                    </ul>
+                </li>
+                <li class="son">fourth lesson
+                    <ul>
+                        <li>411</li>
+                        <li>412</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <script>
+            function byClass(sClass,oParent){
+                var list = [];
+                var obj = (oParent || document).getElementsByTagName('*');
+                for(var i=0;i<obj.length;i++){
+                    obj[i].className==sClass && list.push(obj[i]);
+                }
+                return list;
+            }
+            window.onload = function(){
+                var oUl = document.getElementById("list");
+                var oMain = document.getElementById("content"); 
+                var oLi = byClass("son",oUl);
+                
+                
+                window.oncontextmenu = function(event){
+                    var event = event || window.event;
+                    var iLeft = event.clientX;
+                    var iTop = event.clientY;
+                    oMain.style.left = iLeft + 'px';
+                    oMain.style.top = iTop + 'px';
+                    oMain.style.display = "block";
+                    var osonUl = oUl.getElementsByTagName('ul');
+                                        
+                    for(var i=0;i<oLi.length;i++){
+                        oLi[i].index = i;
+                        osonUl[i].style.left = oLi[0].offsetWidth + "px";
+                        osonUl[i].style.top = 0;
+                        osonUl[i].index = i;
+                        osonUl[i].onmouseover = oLi[i].onmouseover = function(){
+                            osonUl[this.index].style.display = "block";
+                            var oSlist = osonUl[this.index].getElementsByTagName('li');
+                            for(var i=0;i<oSlist.length;i++){//******** for mouseout
+                                oSlist[i].onmouseover = function(){
+                                    this.className = "active";
+                                }
+                                oSlist[i].onmouseout = function(){
+                                    this.className = "";
+                                }
+                            }
+                        }
+                        osonUl[i].onmouseout = oLi[i].onmouseout = function(){
+                            osonUl[this.index].style.display = "none";
+                        }
+                    }
+                    return false;
+                }
+   
+                document.onclick = function(){
+                    oMain.style.display = "none";
+                }
+            }
+        </script>
+    </body>
+</html>

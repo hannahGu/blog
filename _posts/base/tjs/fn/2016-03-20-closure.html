@@ -1,0 +1,100 @@
+---
+title: closure
+---
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>closure</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/prism.css"/>
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/base.css"/>
+    </head>
+    <body>
+        <h1>闭包</h1>
+        <pre id="show_code">
+            <code class="language-js">
+            &lt;script&gt;
+                function closure(){
+                    var arr = [];
+                    for(var i=0;i<10;i++){
+                        arr[i] = function(){//arr[i]是function，返回i值得function
+                            return i;
+                        };
+                    }
+                    return arr;
+                }
+                console.log(closure()[2]());//10
+                <hr>
+                function closure1(){
+                    var arr = [];
+                    for(var i=0;i<10;i++){
+                        arr[i] = (function(num){//arr[i]=i，arr【i】是数字
+                            return num;
+                        })(i);
+                    }
+                    return arr;
+                }
+                console.log(closure1()[2]);//2
+                <hr>
+                function closure2(){
+                    var arr = [];
+                    for(var i=0;i<10;i++){
+                        arr[i] = (function(num){
+                            return function(){//arr[i]是函数
+                                return num;
+                            }
+
+                        })(i);
+                    }
+                    return arr;
+                }
+                console.log(closure2()[2]());//2
+            &lt;/script&gt;
+            </code>
+        </pre>
+        <script src="{{ site.baseurl }}/public/js/prism.js"></script>
+        <script>
+            function closure(){
+                var arr = [];
+                for(var i=0;i<10;i++){
+                    arr[i] = function(){//arr[i]是function，返回i值得function
+                        return i;
+                    };
+                }
+                return arr;
+            }
+            console.log(closure()[2]());//10
+            
+            function closure1(){
+                var arr = [];
+                for(var i=0;i<10;i++){
+                    arr[i] = (function(num){//arr[i]=i，arr【i】是数字
+                        return num;
+                    })(i);
+                }
+                return arr;
+            }
+            console.log(closure1()[2]);//2
+            
+            function closure2(){
+                var arr = [];
+                for(var i=0;i<10;i++){
+                    arr[i] = (function(num){
+                        return function(){//arr[i]是函数
+                            return num;
+                        }
+                        
+                    })(i);
+                }
+                return arr;
+            }
+            console.log(closure2()[2]());//2
+        </script>
+    </body>
+</html>

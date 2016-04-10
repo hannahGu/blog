@@ -1,0 +1,12 @@
+#about_list{
+    list-style: none;
+}
+#about_list .sub{
+    background: url('icon_rss_large.png') no-repeat left center;
+}
+#about_list .fol{
+    background: url('icon_twitter_large.png') no-repeat left center;
+}
+#about_list .lik{
+    background: url('icon_facebook_large.png') no-repeat left center;
+}

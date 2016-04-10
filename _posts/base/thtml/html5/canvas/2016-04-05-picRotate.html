@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body{
+                background:#ccc;
+            }
+            canvas{
+                background: pink;
+            }
+        </style>
+    </head>
+    <body>
+        <input type="button" value="<-"/>
+        <input type="button" value="->"/>
+        <div>
+            <img src='../img/1.jpg' id="img1"/>
+        </div>
+        
+        <script>
+            window.onload = function(){
+               var oImg = document.getElementsByTagName("img")[0];
+               var oInput = document.getElementsByTagName("input");
+               var yImg = new Image();
+               var iNow = 0;
+               var oC = null;
+               var oCC= null;
+               yImg.onload = function(){
+                   draw(oImg);
+               }
+               yImg.src=oImg.src;
+               
+               function draw(obj){
+                   oC = document.createElement("canvas");
+                   oC.width = obj.width;
+                   oC.height = obj.height;
+                   oCC = oC.getContext("2d");
+ 
+                   obj.parentNode.replaceChild(oC,obj);//????
+                   oCC.drawImage(obj,0,0);
+                   //drawImage(当前图片,x,y,w,h) 坐标x y；wh宽高
+                   //drwaImage方法要放在img.onload里面
+                   oInput[1].onclick = function(){
+                        iNow++;
+                        toChange();
+                    }
+                    oInput[0].onclick = function(){
+                        if(iNow == 0){
+                            iNow = 3;
+                        }else{
+                            iNow--;
+                        }
+                        
+                        toChange();
+                    }
+               }
+               
+               
+               function toChange(){
+                   switch(iNow%4){
+                        case 1:
+                           oC.width = oImg.height;
+                           oC.height = oImg.width;
+                           //画布需要跟着旋转，不然会出现放不下的情况
+                           oCC.rotate(90*Math.PI/180);
+                           oCC.drawImage(oImg,0,-oImg.height);///*****************
+                           //改变图片的坐标
+                           break;
+                        case 2:
+                           oC.width = oImg.width;
+                           oC.height = oImg.height;
+                           oCC.rotate(180*Math.PI/180);
+                           oCC.drawImage(oImg,-oImg.width,-oImg.height);
+                           //改变图片的坐标
+                           break;
+                        case 3:
+                           oC.width = oImg.height;
+                           oC.height = oImg.width;
+                           oCC.rotate(270*Math.PI/180);
+                           oCC.drawImage(oImg,-oImg.width,0);
+                           break;
+                        case 0:
+                           oC.width = oImg.width;
+                           oC.height = oImg.height;
+                           oCC.rotate(0);
+                           oCC.drawImage(oImg,0,0);
+                           break;
+                   }
+               }
+            }
+        </script>
+    </body>
+</html>

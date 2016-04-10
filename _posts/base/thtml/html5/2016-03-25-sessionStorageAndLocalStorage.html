@@ -1,0 +1,79 @@
+---
+title: session
+---
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>session</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/prism.css"/>
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/base.css"/>
+    </head>
+    <body>
+        <div id="show">
+            <div id="contain">
+                <input type="text" id="enter">
+                <input type="button" id="get" value="Show" onclick="getValue()">
+                <input type="button" id="set" value="Serve" onclick="setValue()">
+                <div id="info"></div>
+            </div>
+        </div>
+        <pre id="show_code">
+            <code class="language-js">
+            所谓session，是指用户在浏览某个网站时，从进入网站到浏览器关闭所经过的这段时
+            间，也就是用户浏览这个网站所花费的时间。session对象可以用来保存这段时间内所要求保
+            存的任何数据。特点：临时保存，将数据保存再session对象中，当用户关闭浏览器窗口后，数据会被删除。
+            使用方法：
+
+                保存数据：sessionStorage.setItem(key, value);
+
+                读取数据：变量 = sessionStorage.getItem(key);
+
+
+            cookie不适合大量数据的存储，因为他们由对每个服务器的请求来传递，这使得cookie速度很慢效率也不高。cookie存储机制主要有以下几方面的问题：
+
+            大小：    cookies的大小被限制在4KB。
+
+            带宽：    cookies是随HTTPS事务一起被发送的，因此会浪费一部分发送cookies时使用的带宽。
+
+            复杂性： 要正确地操作cookies还是很困难的
+
+            var oEnter = document.getElementById('enter');
+            var oGet = document.getElementById('get');
+            var oSet = document.getElementById('set');
+            var oInfo = document.getElementById('info');
+            
+            function getValue(){
+                //oInfo.innerHTML = sessionStorage.getItem('name');//关闭broswer重新打开，没有值
+                oInfo.innerHTML = localStorage.getItem('name');//关闭broswer重新打开，有值
+            }
+            function setValue(){
+                //sessionStorage.setItem('name',oEnter.value);
+                localStorage.setItem('name',oEnter.value);
+            }
+            </code>
+        </pre>
+        <script src="{{ site.baseurl }}/public/js/prism.js"></script>
+        <script>
+            var oEnter = document.getElementById('enter');
+            var oGet = document.getElementById('get');
+            var oSet = document.getElementById('set');
+            var oInfo = document.getElementById('info');
+            
+            function getValue(){
+                //oInfo.innerHTML = sessionStorage.getItem('name');//关闭broswer重新打开，没有值
+                oInfo.innerHTML = localStorage.getItem('name');//关闭broswer重新打开，有值
+            }
+            function setValue(){
+                //sessionStorage.setItem('name',oEnter.value);
+                localStorage.setItem('name',oEnter.value);
+            }
+        </script>
+    </body>
+</html>

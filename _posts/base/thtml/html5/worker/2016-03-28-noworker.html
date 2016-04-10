@@ -1,0 +1,43 @@
+---
+title:no web worker 
+---
+
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>no worker</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/prism.css"/>
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/base.css"/>
+    </head>
+    <body>
+        <div id="div1"></div>
+        <pre id="show_code">
+            <code class="language-js">
+                window.onload = function(){
+                    var oDiv = document.getElementById("div1");
+                    function f(n){
+                        return n>2 ? arguments.callee(n-1)+arguments.callee(n-2):n;
+                    }
+                    oDiv.innerHTML = 'the result is '+f(40);
+                }
+            </code>
+        </pre>
+        <script src="{{ site.baseurl }}/public/js/prism.js"></script>
+        <script>
+            window.onload = function(){
+                var oDiv = document.getElementById("div1");
+                function f(n){
+                    return n>2 ? arguments.callee(n-1)+arguments.callee(n-2):n;
+                }
+                oDiv.innerHTML = 'the result is '+f(40);
+            }
+        </script>
+    </body>
+</html>

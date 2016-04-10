@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body{
+                background: #ccc;
+            }
+            canvas{
+                background: #fff;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="c1" width="400" height="400"></canvas>
+        <ul style="float:left;font-size: 20px;">
+            <li>你</li>
+            <li>最</li>
+            <li>棒</li>
+        </ul>
+        <script>
+            window.onload = function(){
+                var pp = [2];
+                console.log(pp*3);
+                var oC = document.getElementById("c1");
+                var oCC = oC.getContext("2d");
+
+                var oLi = document.getElementsByTagName("li");
+                for(var i=0;i<oLi.length;i++){
+                    oLi[i].onclick = function(){
+                        var str = this.innerHTML;
+                        var h = 180;
+                        oCC.clearRect(0,0,oC.width,oC.height);
+                        oCC.font = h + 'px impact';
+                        oCC.fillStyle = 'green';
+                        oCC.textBaseline = 'top';
+                        var w = oCC.measureText(str).width;
+                        oCC.fillText(str,(oC.width-w)/2,(oC.height-h)/2);
+                        
+                        var oImg = oCC.getImageData((oC.width-w)/2,(oC.height-h)/2,w,h);
+                        oCC.clearRect(0,0,oC.width,oC.height);
+                        var arr = randomArr(w*h,w*h/10);
+                        var newImg = oCC.createImageData(w,h);
+                        for(var i=0;i<arr.length;i++){
+                            //console.log(arr[i]);// arr[i]=[123]; [123]*2=246
+                            newImg.data[arr[i]*4] = oImg.data[arr[i]*4];
+                            newImg.data[arr[i]*4+1] = oImg.data[arr[i]*4+1];
+                            newImg.data[arr[i]*4+2] = oImg.data[arr[i]*4+2];
+                            newImg.data[arr[i]*4+3] = oImg.data[arr[i]*4+3];
+                        }
+                        oCC.putImageData(newImg,(oC.width-w)/2,(oC.height-h)/2);
+                    }
+                }
+                
+                
+                
+                function randomArr(iArr,iNow){
+                    var arr = [];
+                    var newArr = [];
+                    for(var i=0;i<iArr;i++){
+                        arr.push(i);
+                    }
+                    for(var i=0;i<iNow;i++){
+                        newArr.push(arr.splice(Math.floor(Math.random()*arr.length),1));//??splice
+                    }
+                    return newArr;
+                }
+            }
+        </script>
+    </body>
+</html>

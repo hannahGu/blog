@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>?1.click,2pic position</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            #picshow *{
+                padding:0;
+                margin:0;
+            }
+            #picshow{
+                
+                background-color: pink;
+                width:200px;
+            }
+            .content{
+                float:right;
+            }
+            .content div{
+                position:relative;
+            }
+            .content div img{
+                display:block;
+                width:20px;
+                height:20px;
+/*                position:absolute;
+                left:0;
+                top:0;*/
+            }
+        </style>
+    </head>
+    <body>
+        <div id="picshow">
+            <h3>Pic show</h3>
+            <div class="content">
+                <div class="small-pic"><a><img src="../2.png" alt="2"></a></div>
+                <div class="small-pic"><a><img src="../3.png" alt="3"></a></div>
+                <div class="small-pic"><a><img src="../square.png" alt="square"></a></div>
+            </div>
+        </div>
+    </body>
+</html>

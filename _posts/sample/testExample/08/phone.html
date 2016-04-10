@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            #phone{
+                width:426px;
+                height:640px;
+                position: relative;
+                background: url(img/1.jpg);
+                margin:0 auto;
+            }
+            #lock{
+                position: absolute;
+                /*background: blue;*/
+                width:360px;
+                height:65px;
+                left:33px;
+                bottom:30px;
+            }
+            #btn{
+                position:absolute;
+                width:94px;
+                height:65px;
+                background: url(img/btn.jpg) no-repeat;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="phone">
+            <div id="lock">
+                <span id="btn"></span>
+            </div>
+        </div>
+        <script>
+            window.onload = function(){
+                var oPhone = document.getElementById("phone");
+                var oLock = document.getElementById("lock");
+                var oBtn = document.getElementById("btn");
+                oBtn.onmousedown = function(ev){
+                    var event = ev || window.event;
+                    var max = oLock.offsetWidth - oBtn.offsetWidth;
+                    var x = event.clientX - oBtn.offsetLeft;
+                    var iTarget = oLock.offsetLeft + oLock.offsetWidth - oBtn.offsetWidth;
+                    document.onmousemove = function(ev){
+                        var event = ev || window.event;
+                        var l = event.clientX - x;
+                        l<0 && (l =0);
+                        l>max && (l=max);
+                        oBtn.style.left = l + 'px';
+                        l==max &&(oPhone.style.background="url(img/2.jpg)",  oLock.style.display = 'none');
+                        return false;//禁止默认行为
+                    }
+                    document.onmouseup = function(){
+                        document.onmousemove = null;
+                        document.onmouseup = null;
+                        //拖到最后是一种行为，拖到50%自动处理处亦是一种行为
+                        btn.offsetLeft > max/2 ? startMove(iTarget,function(){
+                            oPhone.style.background="url(img/2.jpg)";
+                            oLock.style.display = 'none';
+                        }):startMove(0);
+                    }
+                    //CCCCCCCCCCCCCCCCCCCCCCCCCCCCCompare -self
+//                    function startMove(iTarget,ofnEnd){
+//                        var speed = (iTarget - oBtn.offsetLeft)/5;
+//                        clearInterval(oBtn.timer);
+//                        oBtn.timer = setInterval(function(){
+//                            if(oBtn.offsetLeft >= iTarget){//z左右怎么同时顾及
+//                                clearInterval(oBtn.time
+//                                r);
+//                                oBtn.style.left = max + 'px';//尾部处理的不好看
+//                            }
+//                            oBtn.style.left = oBtn.offsetLeft + speed + 'px';
+//                            
+//                        },30);
+//                    }
+                    //CCCCCCCCCCCCCCCCCCCCCCCCCCCCCompare -
+                    function startMove(iTarget,ofnEnd){
+                        clearInterval(oBtn.timer);
+                        oBtn.timer = setInterval(function(){
+                            var iSpeed  = (iTarget - oBtn.offsetLeft)/5;
+                            iSpeed = iSpeed > 0 ? Math.ceil(iSpeed):Math.floor(iSpeed);
+                            iTarget == oBtn.offsetLeft ? (clearInterval(oBtn.timer),onEnd && onEnd()):
+                                    oBtn.style.left = iSpeed + oBtn.offsetLeft + 'px';
+                        });
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>

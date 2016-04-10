@@ -1,0 +1,97 @@
+---
+title: js动画之opacity渐变
+---
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>js动画之opacity渐变</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/prism.css"/>
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/base.css"/>
+        <style>
+            #content{
+                height:300px;
+            }
+            #div1{
+                width:200px;
+                height:200px;
+                background: #ff0000;
+                opacity: 0.3;
+                filter:alpha(opacity:30);
+            }
+        </style>
+    </head>
+    <body>
+        <div id="content">
+            <div id="div1"></div>
+        </div>
+        <pre id="show_code">
+            <code class="language-js">
+            js动画之opacity渐变
+                opacity:兼容
+                opacity:0.3 VS filter:alpha(opacity:30)
+                oDiv.style.opacity VS oDiv.style.filter='alpha(opacity:30)'
+            //一次mouseout 和一次mouseover都调用一次startMove，startMove前面的判断只执行一次
+            //alpha是全局变量,里面保存是的动态更新的opacity值
+            function startMove(iTarget){
+                    var speed = 0;
+                    if(iTarget>alpha){
+                        speed = 1;
+                    }else{
+                        speed = -1;
+                    }
+                    clearInterval(timer);
+                    timer = setInterval(function(){
+                        if(alpha == iTarget){
+                            clearInterval(timer);
+                        }
+                        else{
+                            alpha += speed;
+                            oDiv.style.opacity = alpha/100;
+                            oDiv.style.filter = 'alpha(opacity:'+alpha+')';
+                        }
+                    },30);
+                }
+            </code>
+        </pre>
+        <script src="{{ site.baseurl }}/public/js/prism.js"></script>
+        <script>
+            window.onload = function(){
+                var oDiv =document.getElementById("div1");
+                var alpha = 30;
+                var timer = null;
+                oDiv.onmouseout=function(){
+                    startMove(30);
+                }
+                oDiv.onmouseover=function(){
+                    startMove(100);
+                }
+                function startMove(iTarget){
+                    var speed = 0;
+                    if(iTarget>alpha){
+                        speed = 1;
+                    }else{
+                        speed = -1;
+                    }
+                    clearInterval(timer);
+                    timer = setInterval(function(){
+                        if(alpha == iTarget){
+                            clearInterval(timer);
+                        }
+                        else{
+                            alpha += speed;
+                            oDiv.style.opacity = alpha/100;
+                            oDiv.style.filter = 'alpha(opacity:'+alpha+')';
+                        }
+                    },30);
+                }
+            }
+        </script>
+    </body>
+</html>

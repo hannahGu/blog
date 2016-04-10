@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body{background:#000;}
+            #c1{background:#fff;}
+            span{color:#fff;}
+        </style>
+    </head>
+    <body>
+        <canvas id="c1" width="400" height="400">
+            <span>not support canvas</span>
+        </canvas>
+        <!--default:width:300,height:150-->
+        <script>
+            window.onload = function(){
+                var oC = document.getElementById("c1");
+                var oCC = oC.getContext('2d');
+                
+                oCC.beginPath();
+                oCC.rect(0.5,0.5,100,100);
+                oCC.stroke(); 
+               ///fillrect d的 分解
+               
+              // oCC.clearRect(0,0,oC.width,oC.height);
+               //用处：运动的物体，清楚之前的路线，看起来像运动
+               //从（0,0）开始清除宽高为整个画布空间
+                //////******************
+                oCC.save();
+                oCC.fillStyle = 'red';
+                oCC.beginPath();
+                oCC.moveTo(100,100);
+                oCC.lineTo(200,200);
+                oCC.lineTo(300,200);
+                oCC.closePath();
+                oCC.fill(); 
+                oCC.restore();
+                
+                
+                oCC.beginPath();
+                oCC.moveTo(100,200);
+                oCC.lineTo(200,300);
+                oCC.lineTo(300,300);
+                oCC.closePath();
+                oCC.fill(); 
+
+                
+                ///oCC.save();
+                //oCC.fillStyle = 'red';
+                //oCC.restore();
+                //三句话制作一个局部变量
+ 
+    }
+        </script>
+    </body>
+</html>

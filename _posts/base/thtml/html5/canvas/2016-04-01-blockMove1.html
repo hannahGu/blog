@@ -1,0 +1,43 @@
+---
+title: 木块运动canva
+---
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body{background:#000;}
+            #c1{background:#fff;}
+            span{color:#fff;}
+            
+        </style>
+    </head>
+    <body>
+        <canvas id="c1" width="400" height="400">
+            <span>not support canvas</span>
+        </canvas>
+        <!--default:width:300,height:150-->
+        <script>
+            window.onload = function(){
+                var oC = document.getElementById("c1");
+                var oCC = oC.getContext('2d');
+                oCC.fillStyle = 'red';
+                oCC.fillRect(0,0,20,20);
+                var num = 0;
+                setInterval(function(){
+                    num++;
+                    oCC.clearRect(0,0,oC.width,oC.height);
+                    oCC.fillRect(num,num,20,20);
+                },30);
+
+    }
+        </script>
+    </body>
+</html>

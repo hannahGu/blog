@@ -1,0 +1,77 @@
+body{
+    margin:0px;
+    padding: 0px;
+}
+#pic1{
+    float:left;
+    padding:10px 15px 0px;
+}
+#pic1 img{
+    bottom:-10px;
+}
+.nav-tabs{
+
+    width: 100%;
+    padding-left: 200px;
+}
+.nav-tabs > li {
+    margin-bottom: 0px;
+}
+.nav,.dropdown:hover,.dropdown{
+    background-color: black;
+
+}
+.nav .dropdown  > a:hover, .nav .dropdown > a:focus{
+    background-color:black;
+    color:white;
+    font-weight:bold;
+}
+.nav .dropdown > a{
+    background-color:black;
+    color:white;
+}
+.clear{
+    clear:both;
+}
+#container{
+    padding-top:15px;
+    width: 1170px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.panel-default{
+   border-color: #ddd; 
+}
+.panel-heading{
+    padding:10px 15px;
+    border-bottom: 1px solid transparent;
+}
+
+.fun_a_style {
+  cursor: pointer;
+  color: #428bca;
+  font-size: 1.5em;
+}
+
+#add_new{
+    margin-bottom: 15px;
+}
+
+#add_book_dialog .fi_td{
+    border-top: 1px white solid;
+}
+#page_move li{
+    height:15px;
+    width:15px;
+}
+#page_move li.active{
+    color: red;
+}
+
+.del_sche_btn{
+    position: absolute;
+    top:5px;
+    right: 6px;
+}

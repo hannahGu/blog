@@ -1,0 +1,105 @@
+---
+title: 多物体透明度变化
+---
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>多物体透明度变化</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/prism.css"/>
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/base.css"/>
+        <style>
+            #content{
+                height:400px;
+                position: relative;
+            }
+            div{
+                height:200px;
+                width:200px;
+                background:#ff0000;
+                margin:20px;
+                display:inline-block;
+                opacity:0.3;
+                filter :alpha(opacity:30);
+            }
+        </style>
+    </head>
+    <body>
+        <div id="content">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <pre id="show_code">
+            <code class="language-js">
+                多物体透明度变化
+                window.onload = function(){
+                    var oDiv = document.getElementsByTagName('div');
+                    for(var i=0;i&lt;oDiv.length;i++){
+                        oDiv[i].alpha = 30;
+                        oDiv[i].timer = null;
+                        oDiv[i].onmouseover = function(){
+                            startMove(this,100);
+                        }
+                         oDiv[i].onmouseout = function(){
+                            startMove(this,30);
+                        }
+                    }
+                }
+                function startMove(obj,iTarget){
+                    var speed  =0;
+                    clearInterval(obj.timer);
+                    obj.timer = setInterval(function(){
+                        speed = (iTarget - obj.alpha)/6;
+                        speed = speed>0? Math.ceil(speed):Math.floor(speed);
+                        if(obj.alpha == iTarget){
+                            clearInterval(obj.timer);
+                        }else{
+                            obj.alpha += speed;
+                            obj.style.opacity = obj.alpha/100;
+                            obj.style.filter = 'alpha(opacity:'+obj.alpha+')';
+                        }
+                    },30);
+                }
+            </code>
+        </pre>
+        <script src="{{ site.baseurl }}/public/js/prism.js"></script>
+        <script>
+            window.onload = function(){
+                var oDiv = document.getElementsByTagName('div');
+                for(var i=0;i<oDiv.length;i++){
+                    oDiv[i].alpha = 30;
+                    oDiv[i].timer = null;
+                    oDiv[i].onmouseover = function(){
+                        startMove(this,100);
+                    }
+                     oDiv[i].onmouseout = function(){
+                        startMove(this,30);
+                    }
+                }
+            }
+            function startMove(obj,iTarget){
+                var speed  =0;
+                clearInterval(obj.timer);
+                obj.timer = setInterval(function(){
+                    speed = (iTarget - obj.alpha)/6;
+                    speed = speed>0? Math.ceil(speed):Math.floor(speed);
+                    if(obj.alpha == iTarget){
+                        clearInterval(obj.timer);
+                    }else{
+                        obj.alpha += speed;
+                        obj.style.opacity = obj.alpha/100;
+                        obj.style.filter = 'alpha(opacity:'+obj.alpha+')';
+                    }
+                },30);
+            }
+        </script>
+    </body>
+</html>

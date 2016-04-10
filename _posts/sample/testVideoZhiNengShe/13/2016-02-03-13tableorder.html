@@ -1,0 +1,106 @@
+---
+title: table排序
+---
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>table排序</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/prism.css"/>
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/base.css"/>
+        <style>
+            table{
+                margin-top:10px;
+                border-collapse: collapse;
+            }
+            table thead{
+                font-weight: bold;
+            }
+            table td{
+                border:1px solid #000;
+                padding:4px 12px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="show">
+            <input value="Apply" id="button" type="button"/>
+            <table id="tab1">
+                <thead>
+                    <td>id</td>
+                    <td>age</td>
+                    <td>name</td>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>3</td>
+                        <td>42</td>
+                        <td>CC</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>12</td>
+                        <td>Angle</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>132</td>
+                        <td>Banle</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <pre id="show_code">
+            <code class="language-js">
+            table排序
+            window.onload = function(){
+                var oBtn = document.getElementById("button");
+                var oTab = document.getElementById("tab1");
+                var oTr = oTab.getElementsByTagName('tr');
+                oBtn.onclick = function(){
+                    var arr = [];
+                    for (var i=0;i&lt;oTr.length;i++){
+                        arr[i]=oTr[i];
+                    }
+                    arr.sort(function(l1,l2){
+                        var v1 = parseInt(l1.getElementsByTagName('td')[0].innerHTML);
+                        var v2 = parseInt(l2.getElementsByTagName('td')[0].innerHTML);
+                        return v1 - v2;
+                    });
+                    for(var i=0;i&lt;arr.length;i++){
+                        oTab.appendChild(arr[i]);//oLi[i]对象在整个文档中只有一个。所以不必先删除再append
+                    }
+                }
+            }
+            </code>
+        </pre>
+        <script src="{{ site.baseurl }}/public/js/prism.js"></script>
+        <script>
+            window.onload = function(){
+                var oBtn = document.getElementById("button");
+                var oTab = document.getElementById("tab1");
+                var oTr = oTab.getElementsByTagName('tr');
+                oBtn.onclick = function(){
+                    var arr = [];
+                    for (var i=0;i<oTr.length;i++){
+                        arr[i]=oTr[i];
+                    }
+                    arr.sort(function(l1,l2){
+                        var v1 = parseInt(l1.getElementsByTagName('td')[0].innerHTML);
+                        var v2 = parseInt(l2.getElementsByTagName('td')[0].innerHTML);
+                        return v1 - v2;
+                    });
+                    for(var i=0;i<arr.length;i++){
+                        oTab.appendChild(arr[i]);//oLi[i]对象在整个文档中只有一个。所以不必先删除再append
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>

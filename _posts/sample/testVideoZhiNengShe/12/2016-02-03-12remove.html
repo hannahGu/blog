@@ -1,0 +1,54 @@
+---
+title: 删除某一项（子加事件，删除父）
+---
+
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>删除某一项（子加事件，删除父）</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/prism.css"/>
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/base.css"/>
+    </head>
+    <body>
+        <div id="show">
+            <ul>
+                <li>111<a href="javascript:;"> delete</a></li>
+                <li>222<a href="javascript:;"> delete</a></li>
+                <li>333<a href="javascript:;"> delete</a></li>
+            </ul>
+        </div>
+        <pre id="show_code">
+            <code class="language-js">
+            删除某一项（子加事件，删除父）
+            window.onload = function(){
+                    var aA = document.getElementsByTagName('a');
+                    var oUl = document.getElementsByTagName("ul")[0];
+                    for(var i=0;i&lt;aA.length;i++){
+                        aA[i].onclick = function(){
+                            oUl.removeChild(this.parentNode);//从子元素找父元素，删除
+                        };
+                    }
+                }
+            </code>
+        </pre>
+        <script src="{{ site.baseurl }}/public/js/prism.js"></script>
+        <script>
+            window.onload = function(){
+                var aA = document.getElementsByTagName('a');
+                var oUl = document.getElementsByTagName("ul")[0];
+                for(var i=0;i<aA.length;i++){
+                    aA[i].onclick = function(){
+                        oUl.removeChild(this.parentNode);//从子元素找父元素，删除
+                    };
+                }
+            }
+        </script>
+    </body>
+</html>

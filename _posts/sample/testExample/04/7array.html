@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<!--
+To change this licbody{
+                font:normal 16px/1.5em Arial;
+            }
+            pre{
+                border:1px dotted #000;
+                background:#eee;
+                color:#015287;
+                padding:10px 20px;
+                margin:0;
+            }ense header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body{
+                font:normal 16px/1.5em Arial;
+            }
+            pre{
+                border:1px dotted #000;
+                background:#eee;
+                color:#015287;
+                padding:10px 20px;
+                margin:0;
+            }
+            input{
+                margin:15px 20px 20px 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="div1">
+            <pre>J(1),F(2),M(3),A(1),M(5),J(6),J(7),A(8),S(9),O(10),N(11),D(12)</pre>
+            <input type="button" id="c11" value="DELETE1" class="del"/>
+            <input type="button" id="c12" value="DELETE12" class="del"/>
+        </div>
+        <div id="div2">
+            <pre>0,1,2,3,4,5,6,7,8,9</pre>
+            <input type="button" id="c21" value="COPY"/>
+            <input type="button" id="c22" value="BACK"/>
+        </div>
+        <div id="div3">
+            <pre>#FFFFFF1, #FFFFF02, #FFFFE03, #FFFF004, #FFFAFA5, #FFFAF06, #FFFACD7,#FFF8DC8, #FFF68F9, #FFF5EE10</pre>
+            <input type="button" id="c31" value="BACK" />
+            <input type="button" id="c32" value="DELETE3AHEAD" />
+            <input type="button" id="c33" value="DELSECONDTHIRD" />
+            <input type="button" id="c34" value="INSERT(orange,purple)" />
+            <input type="button" id="c35" value="REPLACE(red,apple)" />
+        </div>
+        <script>
+            window.onload = function(){
+                var oDiv1 = document.getElementById("div1");
+                var oInput1 = oDiv1.getElementsByTagName("input");
+                
+                var oDiv2 = document.getElementById("div2");
+                var oInput2 = oDiv2.getElementsByTagName("input");
+                
+                var oDiv3 = document.getElementById("div3");
+                var oInput3 = oDiv3.getElementsByTagName("input");
+                
+                var oPre = document.getElementsByTagName("pre");
+                var list1 = ["J(1)","F(2)","M(3)","A(1)","M(5)","J(6)","J(7)","A(8)","S(9)","O(10)","N(11)","D(12)"];
+                var list_opr = [];
+                for(var i = 0;i<oInput1.length;i++){
+                    
+                    oInput1[i].index = i;
+                    oInput1[i].onclick = function(){
+                        if(this.className == 'del'){
+                            list_opr = this.index == 0 ? list1.shift():list1.pop();
+                            this.className = ""
+                            this.value = "ADD" + list_opr.toString()
+                        }else{
+                            list_opr = this.index == 0 ? list1.unshift("J(1)"):list1.push("D(12)");
+                            this.className = "del"
+                            this.value = "DELETE" + list_opr.toString()
+                        }
+                        oPre[0].innerText = list1.toString();
+                    }
+                }
+                
+                /////////////////////////////////2
+                var list2 = [0,1,2,3,4,5,6,7,8,9];
+                oInput2[0].onclick = function(){
+                     list2 = list2.concat(list2)
+                     oPre[1].innerHTML = list2.toString();
+                }
+                oInput2[1].onclick = function(){
+                    list2.length = 10;
+                     oPre[1].innerHTML = list2.toString();
+                }
+                /////////////////////////////////3
+                var list3 = ["#FFFFFF1", "#FFFFF02", "#FFFFE03", "#FFFF004", "#FFFAFA5", "#FFFAF06", "#FFFACD7","#FFF8DC8", "#FFF68F9", "#FFF5EE10"];
+                var list_3_copy = ["#FFFFFF1", "#FFFFF02", "#FFFFE03", "#FFFF004", "#FFFAFA5", "#FFFAF06", "#FFFACD7","#FFF8DC8", "#FFF68F9", "#FFF5EE10"];
+                for(var i = 0;i<oInput3.length;i++){
+                    oInput3[i].index = i;
+                    oInput3[i].onclick = function(){
+                       switch(this.index){
+                           case 0:
+                                oPre[2].innerHTML = list_3_copy.toString();
+                                break;
+                            case 1:
+                                list3.splice(0,3);
+                                oPre[2].innerHTML = list3.toString();
+                                break;
+                            case 2:
+                                list3.splice(1,2);
+                                oPre[2].innerText = list3.toString();
+                                break;
+                            case 3:
+                                 list3.splice(1,0,"orange","purple");
+                                oPre[2].innerText = list3.toString();
+                                break;
+                            case 4:
+                                list3.splice(1,2,"red","apple");
+                                oPre[2].innerText = list3.toString();
+                                break;
+                            default:
+                                oPre[2].innerText = list_3_copy.toString();
+                       }
+      
+                    }
+                }
+                
+            }
+
+            
+        </script>
+    </body>
+</html>

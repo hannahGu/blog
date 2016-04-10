@@ -1,0 +1,81 @@
+---
+title: 改变背景色
+---
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>改变背景色</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/prism.css"/>
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/base.css"/>
+        <link id="link1" href="1.css" rel="stylesheet"/>
+        <style>
+            #div1{
+                width:200px;
+                height:200px;
+                background:black;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="show">
+            <input type="button" value="click1" id="btn1" onclick="changeColor('1.css')"/>
+            <input type="button" value="click2" id="btn2" onclick="changeColor('2.css')"/>
+            <input type="button" value="click3" id="btn3" onclick="showDiv()"/>
+            <div id="div1"></div>
+        </div>
+        <pre id="show_code">
+            <code class="language-js">
+                html中onlick=“fn()”,fn定义在非document.ready中
+                click，同一个动作可以做出相反的事，隐藏和显现
+                ==用来判断2边是否相等
+                nc,a中href="javascript:;">，添加空的js代码，比#好，#会跳到页头
+                nc,html中怎么写，js中就怎么写，class列外，用className,原因，class有它用
+
+                function changeColor(file) {
+                    var oLink = document.getElementById("link1");
+                    oLink.href=file;
+                }
+                function showDiv(){
+                    var oDiv = document.getElementById("div1");
+                    if(oDiv.style.display=="none"){
+                        oDiv.style.display="block";
+                    }else{
+                        oDiv.style.display="none";
+                    }
+                }
+                window.onload = function(){
+                    var oBtn1 = document.getElementById("btn1");
+                    var oBtn2 = document.getElementById("btn2");
+
+                }
+            </code>
+        </pre>
+    </body>
+    <script src="{{ site.baseurl }}/public/js/prism.js"></script>
+    <script>
+        function changeColor(file) {
+            var oLink = document.getElementById("link1");
+            oLink.href=file;
+        }
+        function showDiv(){
+            var oDiv = document.getElementById("div1");
+            if(oDiv.style.display=="none"){
+                oDiv.style.display="block";
+            }else{
+                oDiv.style.display="none";
+            }
+        }
+        window.onload = function(){
+            var oBtn1 = document.getElementById("btn1");
+            var oBtn2 = document.getElementById("btn2");
+            
+        }
+    </script>
+</html>

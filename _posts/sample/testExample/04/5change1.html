@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body{
+                color:#fff;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="container" style="height:200px;width: 400px;border:1px solid sandybrown;background: palegoldenrod;margin:0 auto;">
+            <input type="button" style="background-color: sandybrown;" value="GET"/>
+            <input type="button" style="background-color: sandybrown;" value="SET"/>
+            <input type="button" style="background-color: sandybrown;" value="DEFAULT"/>
+        </div>
+        <script>
+            window.onload = function(){
+                
+                var container = document.getElementById('container');
+                var oBtn = document.getElementsByTagName('input');
+                oBtn[0].onclick = function(){
+                    alert("height:" + css(container,'height') +"\n"
+                          +"width:" + css(container,'width') +"\n"
+                          +"background:" + css(container,'backgroundColor') +"\n"
+                    );
+                }
+                oBtn[1].onclick = function(){
+                    css(container,{'borderColor':"#0084ff",'backgroundColor':"#eff8ff"})
+                    for(var i=0;i<oBtn.length;i++){
+                        css(oBtn[i],'backgroundColor','#0084ff')
+                    }
+                }
+                var color1 = container.style.borderColor;
+                var color2 = container.style.backgroundColor;
+                oBtn[2].onclick = function(){
+                    css(container,{'borderColor':color1,'backgroundColor':color2})
+                    for(var i=0;i<oBtn.length;i++){
+                        css(oBtn[i],'backgroundColor',color1)
+                    }
+                }
+                
+                function css(obj,attr,value){
+                    switch(arguments.length){
+                        case 2:
+                            if(typeof arguments[1] == 'object'){
+                                for(key in attr){
+                                    obj.style[key] = attr[key];
+                                }
+                            }else{
+                                return obj.currentStyle ? obj.currentStyle[attr]:getComputedStyle(obj, null)[attr];
+                            }
+                            break;
+                        case 3:
+                            obj.style[attr]= value;
+                            break;
+                        default:
+                            obj.style[attr]= value;
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,236 @@
+---
+title: 继承若干种法子
+---
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>继承若干种法子</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/prism.css"/>
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/base.css"/>
+    </head>
+    <body>
+        <div>
+            有时，你可能想创建一个不能直接使用的基类，它只是用于给子类提供通用的函数。在这种情况下，基类被看作<strong>抽象类</strong>。
+        </div>
+        <pre id="show_code">
+            <code class="language-js">
+            /////////////////继承的方法1： 对象冒充
+                function ClassA1(name){
+                    this.name = name;
+                    this.say = function(){
+                        console.log(this.name);
+                    }
+                }
+
+                function ClassB1(sname,age){
+                    //使ClassA构造函数成为ClassB的方法
+                    this.newMethod = ClassA1;//把构造函数当普通函数用
+                    this.newMethod(sname);
+                    delete this.newMethod;
+                    /////在delete之后添加下面的代码，防止覆盖超类中的方法和属性
+                    this.age = age;
+                    this.sayAge = function(){
+                        console.log(this.age);
+                    }
+                }
+                var ss = new ClassB1("Jim",12);
+                console.log(1212);
+                console.log(ss);
+                ss.say();
+                ss.sayAge();
+
+                <hr>
+                //////////////继承2：call() apply
+                function showColor(str1,str2){
+                    console.log(str1+ this.color + str2);
+                }
+                var bb = {
+                    color:'green'
+                }
+                console.log("SHOW　COLOR");
+                showColor.call(bb,'This is ',' color');//
+                showColor.apply(bb,['This is ',' color']);//第一个参数做this对象，第二个是要传递给函数的的参数数组
+
+                ///////////apply apply
+                function ClassA2(name){
+                        this.name = name;
+                        this.show = function(){
+                            console.log(this.name);
+                        }
+                }
+                function ClassB2(sName){
+                    ClassA2.apply(this,arguments);////!!!!!!!!!!classB传进来，参数传进来
+                    this.name = sName;
+                    this.sayName = function(){
+                        console.log(this.name);
+                    }
+                }
+
+                    var oA = new ClassA2("aa");
+                    var oB = new ClassB2("bb");
+                    oA.show();//aa
+                    oB.show();//bb
+                    oB.sayName();//bb
+                    <hr>
+                    /////////////////////方法3；原型链
+                    function ClassA3(){}
+                    ClassA3.prototype.color = "blue";
+                    ClassA3.prototype.sayColor = function(){
+                        console.log(this.color);
+                    };
+                    function ClassB3(){}
+                    ClassB3.prototype = new ClassA3();//ClassB的prototype是ClassA的实例,不能有参数
+                    ClassB3.prototype.name = 'Joe';
+                    ClassB3.prototype.sayName = function(){
+                        console.log(this.name);
+                    }
+
+                    var oA = new ClassA3();
+                    var oB = new ClassB3();
+                    oA.color = 'purple';
+                    oB.color = 'yellow';
+                    console.log('PROTOTYPE');
+                    oA.sayColor();
+                    oB.sayColor();
+                    oB.sayName();
+                    console.log(oB instanceof ClassA3);
+                    console.log(oB instanceof ClassB3);
+                    <hr>
+                    //////////////////////////方法4：混合
+                    function ClassA4(scolor){
+                        this.color = scolor;
+                    }
+                    ClassA4.prototype.sayColor = function(){
+                        console.log(this.color);
+                    }
+                    function ClassB4(scolor,sName){
+                        ClassA4.call(this,scolor);//用构造函数定义属性
+                        this.name = sName;
+                    }
+                    ClassB4.prototype = new ClassA4();//用原型定义方法
+                    ClassB4.prototype.sayName = function(){
+                        console.log(this.name);
+                    }
+
+                    var oB = new ClassB4('red','jj');
+                    oB.sayColor();//red
+                    oB.sayName();//jj
+            </code>    
+        </pre>
+        <script src="{{ site.baseurl }}/public/js/prism.js"></script>
+        <script>
+            window.onload = function(){
+                /////////////////继承的方法1： 对象冒充
+                function ClassA1(name){
+                    this.name = name;
+                    this.say = function(){
+                        console.log(this.name);
+                    }
+                }
+
+                function ClassB1(sname,age){
+                    //使ClassA构造函数成为ClassB的方法
+                    this.newMethod = ClassA1;//把构造函数当普通函数用
+                    this.newMethod(sname);
+                    delete this.newMethod;
+                    /////在delete之后添加下面的代码，防止覆盖超类中的方法和属性
+                    this.age = age;
+                    this.sayAge = function(){
+                        console.log(this.age);
+                    }
+                }
+                var ss = new ClassB1("Jim",12);
+                console.log(1212);
+                console.log(ss);
+                ss.say();
+                ss.sayAge();
+
+
+                //////////////继承2：call()
+                function showColor(str1,str2){
+                    console.log(str1+ this.color + str2);
+                }
+                var bb = {
+                    color:'green'
+                }
+                console.log("SHOW　COLOR");
+                showColor.call(bb,'This is ',' color');//
+                showColor.apply(bb,['This is ',' color']);//第一个参数做this对象，第二个是要传递给函数的的参数数组
+
+                ///////////apply apply
+                function ClassA2(name){
+                        this.name = name;
+                        this.show = function(){
+                            console.log(this.name);
+                        }
+                }
+                function ClassB2(sName){
+                    ClassA2.apply(this,arguments);////!!!!!!!!!!classB传进来，参数传进来
+                    this.name = sName;
+                    this.sayName = function(){
+                        console.log(this.name);
+                    }
+                }
+
+                    var oA = new ClassA2("aa");
+                    var oB = new ClassB2("bb");
+                    oA.show();//aa
+                    oB.show();//bb
+                    oB.sayName();//bb
+
+                    /////////////////////原型链
+                    function ClassA3(){}
+                    ClassA3.prototype.color = "blue";
+                    ClassA3.prototype.sayColor = function(){
+                        console.log(this.color);
+                    };
+                    function ClassB3(){}
+                    ClassB3.prototype = new ClassA3();//ClassB的prototype是ClassA的实例,不能有参数
+                    ClassB3.prototype.name = 'Joe';
+                    ClassB3.prototype.sayName = function(){
+                        console.log(this.name);
+                    }
+
+                    var oA = new ClassA3();
+                    var oB = new ClassB3();
+                    oA.color = 'purple';
+                    oB.color = 'yellow';
+                    console.log('PROTOTYPE');
+                    oA.sayColor();
+                    oB.sayColor();
+                    oB.sayName();
+                    console.log(oB instanceof ClassA4);
+                    console.log(oB instanceof ClassB4);
+
+                    //////////////////////////混合
+                    function ClassA4(scolor){
+                        this.color = scolor;
+                    }
+                    ClassA4.prototype.sayColor = function(){
+                        console.log(this.color);
+                    }
+                    function ClassB4(scolor,sName){
+                        ClassA4.call(this,scolor);//用构造函数定义属性
+                        this.name = sName;
+                    }
+                    ClassB4.prototype = new ClassA4();//用原型定义方法
+                    ClassB4.prototype.sayName = function(){
+                        console.log(this.name);
+                    }
+
+                    var oB = new ClassB4('red','jj');
+                    oB.sayColor();//red
+                    oB.sayName();//jj
+            }
+            
+            
+        </script>
+    </body>
+</html>

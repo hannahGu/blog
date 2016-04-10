@@ -1,0 +1,97 @@
+---
+title: 鼠标跟随运动-串
+---
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>鼠标跟随运动-串</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/prism.css"/>
+        <link rel="stylesheet" href="{{ site.baseurl }}/public/css/base.css"/>
+        <style>
+            *{
+                margin:0;
+                padding:0;
+            }
+            body{
+                height:2000px;
+            }
+            #content{
+                height:400px;
+                position: relative;
+            }
+            #content div{
+                width:20px;
+                height:20px;
+                background-color: red;
+                position:absolute;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="content">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <pre id="show_code">
+            <code class="language-js">
+                鼠标跟随运动-串
+                document.onmousemove = function(event){
+                    var event = event || window.event;
+                    var oMain = document.getElementById("content");
+                    var oDiv = oMain.getElementsByTagName("div");
+                    var pos = getPos(event);
+                    oDiv[0].style.left = pos.x + 'px';
+                    oDiv[0].style.top = pos.y + 'px';
+                    for(var i=oDiv.length-1;i&gt;0;i--){
+                        oDiv[i].style.left = oDiv[i-1].offsetLeft+ 'px';
+                        oDiv[i].style.top = oDiv[i-1].offsetTop + 'px';
+                    }
+                }
+                //不取目前没发现错
+                function getPos(ev){
+                    var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                    var scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
+                    //return {"x":ev.clientX+scrollLeft,"y":ev.clientY+scrollTop};
+                    return {"x":ev.clientX,"y":ev.clientY};
+                }
+            </code>
+        </pre>
+        <script src="{{ site.baseurl }}/public/js/prism.js"></script>
+        <script>
+            window.onload = function(){
+                document.onmousemove = function(event){
+                    var event = event || window.event;
+                    var oMain = document.getElementById("content");
+                    var oDiv = oMain.getElementsByTagName("div");
+                    var pos = getPos(event);
+                    oDiv[0].style.left = pos.x + 'px';
+                    oDiv[0].style.top = pos.y + 'px';
+                    for(var i=oDiv.length-1;i>0;i--){
+                        oDiv[i].style.left = oDiv[i-1].offsetLeft+ 'px';
+                        oDiv[i].style.top = oDiv[i-1].offsetTop + 'px';
+                    }
+                }
+            }
+            function getPos(ev){
+                var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                var scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
+                return {"x":ev.clientX+scrollLeft,"y":ev.clientY+scrollTop};
+            }
+        </script>
+    </body>
+</html>
