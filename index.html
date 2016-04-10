@@ -16,17 +16,18 @@ title: 我的Blog
                 font-family:"Helvetica Neue", Helvetica,serif;
             }
             a {
-                color: #a85641;
+                color: #4D85D1;
                 text-decoration: none;
                 font-weight:normal;
             }
-
+            
             a:hover,
             a:focus {
                 text-decoration: underline;
             }
             small{
                 color:#999;
+                width:150px;
             }
         </style>
     </head>
@@ -43,8 +44,9 @@ title: 我的Blog
   <li>
     <h4>
       <a href="{{ site.baseurl }}{{ post.url }}">
-        <span>{{ post.title }}</span>
-        <small>{{ post.date | date: "%m/%d" }}</small>
+          <small>{{ post.date | date: "%Y-%m-%d" }}</small>
+          <span>{{ post.title }}</span>
+        
       </a>
     </h4>
   </li>
