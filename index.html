@@ -26,8 +26,8 @@ title: 我的Blog
                 text-decoration: underline;
             }
             small{
-                color:#999;
-                width:150px;
+                color:#b6c0ce;
+                margin-right:50px;
             }
         </style>
     </head>
@@ -43,10 +43,9 @@ title: 我的Blog
   {% endif %}
   <li>
     <h4>
-      <a href="{{ site.baseurl }}{{ post.url }}">
-          <small>{{ post.date | date: "%Y-%m-%d" }}</small>
+        <small>{{ post.date | date: "%Y-%m-%d" }}</small>
+        <a href="{{ site.baseurl }}{{ post.url }}">
           <span>{{ post.title }}</span>
-        
       </a>
     </h4>
   </li>
