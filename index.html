@@ -9,11 +9,13 @@ title: 我的Blog
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <title>{{ page.title }}</title>
         <style>
+            body{
+                font-family:"Helvetica Neue", Helvetica,serif;
+            }
             ul{
                 list-style:none;
             }
             h4{
-                font-family:"Helvetica Neue", Helvetica,serif;
                 font-weight:normal;
             }
             a {
@@ -32,25 +34,25 @@ title: 我的Blog
         </style>
     </head>
     <body>
-
+       <h1>知识点列表</h1>
         {% for post in site.posts %}
-  {% assign currentdate = post.date | date: "%Y-%m" %}
-  {% if currentdate != date %}
-    {% unless forloop.first %}</ul><hr/>{% endunless %}
-    <h2 id="y{{post.date | date: "%Y"}}" class="page-title">{{ currentdate }}</h2>
-    <ul class="related-posts">
-    {% assign date = currentdate %}
-  {% endif %}
-  <li>
-    <h4>
-        <small>{{ post.date | date: "%Y-%m-%d" }}</small>
-        <a href="{{ site.baseurl }}{{ post.url }}">
-          <span>{{ post.title }}</span>
-      </a>
-    </h4>
-  </li>
-  {% if forloop.last %}</ul><hr/>{% endif %}
-{% endfor %}
+        {% assign currentdate = post.date | date: "%Y-%m" %}
+        {% if currentdate != date %}
+          {% unless forloop.first %}</ul><hr/>{% endunless %}
+          <h2 id="y{{post.date | date: "%Y"}}" class="page-title">{{ currentdate }}</h2>
+          <ul class="related-posts">
+          {% assign date = currentdate %}
+        {% endif %}
+        <li>
+          <h4>
+              <small>{{ post.date | date: "%Y-%m-%d" }}</small>
+              <a href="{{ site.baseurl }}{{ post.url }}">
+                <span>{{ post.title }}</span>
+            </a>
+          </h4>
+        </li>
+        {% if forloop.last %}</ul><hr/>{% endif %}
+      {% endfor %}
 
     </body>
 </html>
