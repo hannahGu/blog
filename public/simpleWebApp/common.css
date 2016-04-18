@@ -1,0 +1,162 @@
+
+html { -webkit-text-size-adjust: none; }
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; }
+
+img { max-width: 100%; height: auto; width: auto\9; /* ie8 */ }
+.video embed, .video object, .video iframe { width: 100%; height: auto; }
+ 
+
+a { text-decoration: none; cursor: pointer; }
+li { list-style: none; }
+a { text-decoration: none; color: #555756; }
+a:hover { color: #141414; text-decoration: none; }
+a img { border: none; }
+a > img { vertical-align: bottom; }
+.min-height { min-height: 0; height: auto; _height: 0; overflow: hidden; _overflow: visible; }
+.float-left { float: left; }
+.float-right { float: right; }
+.clear { clear: both; }
+.position-absolute { position: absolute; }
+.position-relative { position: relative; }
+.position-fixed { position: fixed; }
+.overflow-hidden { overflow: hidden; }
+.display-inline-block { display: inline-block; }
+ 
+ 
+
+body { font: 14px/22px "Georgia", Helvetica, Arial, sans-serif; background: #fff; color: #595959; overflow-y: scroll; overflow-x: hidden; *overflow-y: auto !important; }
+
+.page-container { max-width: 640px; margin: 0 auto; padding-bottom: 60px; }
+ 
+
+#banner { width: 100%; overflow: hidden; position: relative; }
+#banner ul{overflow:hidden;}
+#banner ul li { display: none; float: left; }
+#banner ul li:first-of-type { display: block; }
+ 
+.menu a span { padding: 5px; }
+.menu a{ display: block; float: left; width: 23.125%; height: 80px; margin: 5px 0 0 1.5%; color: #fff; background:pink;}
+
+
+.menu a:nth-child(1) { background: #666666; width: 47.75%; height: 165px; display: block;}
+.menu a:nth-child(2) { background: #1673d2; }
+.menu a:nth-child(3) { background: #008a00; }
+.menu a:nth-child(4) { background: #8d0196; width: 47.75%; }
+.menu a:nth-child(5) { background: #59d5e6; }
+.menu a:nth-child(6) { background: #fd5c04; }
+.menu a:nth-child(7) { background: #e86eb2; }
+.menu a:nth-child(8) { background: #666666; }
+.copyright { padding: 8px; text-align: center; color: #444; }
+#footer { bottom: 0; height: 40px; width: 100%; z-index: 101; background: #333333; overflow:hidden;left:0;}
+#footer ul li { width: 33%; height: 40px; margin: 0 0 0 0.25%; float: left; line-height: 40px; text-align: center; }
+#footer ul li a { color: #fff; }
+
+ 
+ 
+ 
+
+ 
+/*
+ * -----------------------------------------
+ *  320 ~ 480
+ * -----------------------------------------
+ */
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+}
+ 
+/*
+ * -----------------------------------------
+ *  321 ~   宽大于321的设备
+ * -----------------------------------------
+ */
+@media only screen and (min-width: 321px) {
+}
+ 
+/*
+ * -----------------------------------------
+ *  ~ 320  宽小于320的设备
+ * -----------------------------------------
+ */
+@media only screen and (max-width: 320px) {
+}
+ 
+/*
+ * -----------------------------------------
+ *  ~ 480  宽小于480的设备
+ * -----------------------------------------
+ */
+@media only screen and (max-width: 480px) {
+}
+ 
+/* medium screens (excludes iPad & iPhone) */
+/*
+ * -----------------------------------------
+ * 481 ~ 767  宽大于480且小于767的iPad和iPhone
+ * -----------------------------------------
+ */
+@media only screen and (min-width: 481px) and (max-width: 767px) {
+}
+ 
+/* ipads (portrait and landscape) */
+/*
+ * -----------------------------------------
+ * 768 ~ 1024  宽大于480且小于1024的iPad和iPhone
+ * -----------------------------------------
+ */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+}
+ 
+/* ipads (landscape) */
+/*
+ * -----------------------------------------
+ * 768 ~ 1024  宽大于480且小于1024的iPad和iPhone
+ * -----------------------------------------
+ */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+}
+ 
+/* ipads (portrait) */
+/*
+ * -----------------------------------------
+ * 768 ~ 1024  宽大于480且小于1024的iPad和iPhone
+ * -----------------------------------------
+ */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+}
+ 
+/*
+ * -----------------------------------------
+ * 1444 ~ 1824  宽大于1444且小于1824的设备
+ * -----------------------------------------
+ */
+@media only screen and (min-width: 1444px) and (max-width: 1824px) {
+}
+ 
+/*
+ * -----------------------------------------
+ * 1824 ~  宽大于1824的设备
+ * -----------------------------------------
+ */
+@media only screen and (min-width: 1824px) {
+}
+ 
+/*
+ * -----------------------------------------
+ * 2224 ~  宽大于2224的设备
+ * -----------------------------------------
+ */
+@media only screen and (min-width: 2224px) {
+}
+ 
+/* iphone 4 and high pixel ratio (1.5+) devices */
+/*
+ * -----------------------------------------
+ * iphone4 ~
+ * -----------------------------------------
+ */
+@media only screen and (-webkit-min-device-pixel-ratio : 1.5), only screen and (min-device-pixel-ratio : 1.5) {
+}
+/* iphone 4 and higher pixel ratio (2+) devices (retina) */
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2) {
+}

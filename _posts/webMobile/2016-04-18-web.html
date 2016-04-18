@@ -1,0 +1,87 @@
+---
+title: 简单的移动端页面
+---
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!--禁止浏览器缩放-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type" />
+    <!--清除浏览器缓存-->
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+    <meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT">
+    <!--iPhone 手机上设置手机号码不被显示为拨号链接）-->
+    <meta content="telephone=no, address=no" name="format-detection" />
+    <!--IOS私有属性，可以添加到主屏幕-->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!--屏幕顶部条的颜色-->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>simple</title>
+    <!-- 重置样式 -->
+    <link type="text/css" href="{{ site.baseurl }}/public/simpleWebApp/reset.css" rel="stylesheet" />
+    <!-- 主样式 -->
+    <link type="text/css" href="{{ site.baseurl }}/public/simpleWebApp/common.css" rel="stylesheet" />
+    <!-- Jquery库 -->
+    <script type="text/javascript" src="{{ site.baseurl }}/public/simpleWebApp/jquery.js"></script>
+    <!-- 手机触摸插件 -->
+    <script type="text/javascript" src="{{ site.baseurl }}/public/simpleWebApp/hammer.min.js"></script>
+    <!--公共脚本库-->
+    <script type="text/javascript" src="{{ site.baseurl }}/public/simpleWebApp/common.js"></script>
+    <!--让IE8，IE9，支持Html5和Css3-->
+    <!--[if lte IE 8]>
+        <script src="scripts/selectivizr.js"></script>
+    <![endif]-->
+    <!--[if lt IE 9]>
+        <script src="scripts/css3-mediaqueries.js"></script>
+        <script src="scripts/html5shiv.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <!--页面容器-->
+    <div class="page-container min-height">
+        <!--头部-->
+        <div id="head"></div>
+        <!--幻灯片-->
+        <div id="banner" class="position-relative">
+            <ul>
+                <li><a href="#" title=""><img src="{{ site.baseurl }}/public/simpleWebApp/img/t640@320/0.jpg" alt="" title="" /></a></li>
+                <li><a href="#" title=""><img src="{{ site.baseurl }}/public/simpleWebApp/img/t640@320/7.jpg" alt="" title="" /></a></li>
+                <li><a href="#" title=""><img src="{{ site.baseurl }}/public/simpleWebApp/img/t640@320/8.jpg" alt="" title="" /></a></li>
+            </ul>
+        </div>
+        <!--主体-->
+        <div id="main">
+            <!--方块菜单-->
+            <div class="menu min-height" id="mm1">
+                <a href="" title="关于我们"><span>关于我们</span></a>
+                <a href="" title="设计团队"><span>设计团队</span></a>
+                <a href="" title="经典案例"><span>经典案例</span></a>
+                <a href="" title="服务保障"><span>服务保障</span></a>
+                <a href="" title="优惠活动"><span>优惠活动</span></a>
+                <a href="" title="装饰课堂"><span>装饰课堂</span></a>
+                <a href="" title="会议中心"><span>会议中心</span></a>
+                <a href="" title="联系我们"><span>联系我们</span></a>
+            </div>
+            <!--描述-->
+            <div class="copyright clear">
+                保留解释权
+            </div>
+        </div>
+        <div id="footer" class="position-fixed">
+            <ul>
+                <li><a href="" title="">网站地图</a></li>
+                <li><a href="" title="">关于我们</a></li>
+                <li><a href="" title="">联系我们</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(function () {
+            $.banner("#banner");
+        })
+    </script>
+</body>
+</html>
