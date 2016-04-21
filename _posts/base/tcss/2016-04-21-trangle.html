@@ -1,0 +1,46 @@
+---
+title: css制作三角形
+---
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>css 制作三角形</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            .top{
+                border-top:100px #000 solid;border-left:100px #fff solid;border-right:100px #fff solid;width:0;
+            }
+            .left{
+                border-left:100px #000 solid;border-top:100px #fff solid;border-bottom:100px #fff solid;width:0;
+            }
+            .bottom{
+                border-bottom:100px #000 solid;border-left:100px #fff solid;border-right:100px #fff solid;width:0;
+            }
+            .right{
+                border-right:100px #000 solid;border-top:100px #fff solid;border-bottom:100px #fff solid;width:0;
+            }
+/*            #container{
+                position: relative;
+            }*/
+/*            #container div{
+                position: absolute;
+            }
+            #container >div:nth-child(2){
+            }*/
+        </style>
+    </head>
+    <body>
+        <div id="container">
+            <div class="top"></div>
+            <div class="left"></div>
+            <div class="right"></div>
+            <div class="bottom"></div>
+        </div>
+    </body>
+</html>
