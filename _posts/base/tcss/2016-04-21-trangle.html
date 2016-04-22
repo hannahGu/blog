@@ -1,5 +1,5 @@
 ---
-title: css制作三角形
+title: css制作矢量三角形表示方向
 ---
 <!DOCTYPE html>
 <!--
@@ -25,22 +25,93 @@ and open the template in the editor.
             .right{
                 border-right:100px #000 solid;border-top:100px #fff solid;border-bottom:100px #fff solid;width:0;
             }
-/*            #container{
+            #container{
                 position: relative;
-            }*/
-/*            #container div{
+            }
+            #container div{
+                position: absolute;
+            }/*
+*/            #container div:nth-child(1){
+                left:200px;
+            }
+            #container div:nth-child(2){
+               top:100px;
+               left:90px;
+            }
+            #container div:nth-child(3){
+                top:100px;
+                left:410px;
+            }
+            #container div:nth-child(4){
+                top:300px;
+                left:200px;
+            }
+            #example{
+                top:400px;
                 position: absolute;
             }
-            #container >div:nth-child(2){
-            }*/
+            a{
+                display:block;
+                width:150px;
+                height:20px;
+                line-height: 20px;
+                
+            }
+            .small_top{
+                 border-top:10px #000 solid;border-left:10px #fff solid;border-right:10px #fff solid;width:0;
+            }
+            .small_bottom{
+                 border-bottom:10px #000 solid;border-left:10px #fff solid;border-right:10px #fff solid;width:0;
+            }
+            #test{
+                position:absolute;
+                top:10px;
+                right:0;
+            }
+            #list{
+                display:none;
+                position: absolute;
+                list-style: none;
+                top:0;
+                left:0;
+            }
+            #list li{
+                height:20px;
+                line-height: 20px;
+            }
         </style>
     </head>
     <body>
         <div id="container">
-            <div class="top"></div>
-            <div class="left"></div>
-            <div class="right"></div>
             <div class="bottom"></div>
+            <div class="right"></div>
+            <div class="left"></div>
+            <div class="top"></div>
         </div>
+        <div id="example">
+            <a href="javascript:;">狠狠的戳三角形
+                    <span id="test" class="small_top"></span>
+                </a>
+            <ul id="list">
+                <li>111</li>
+                <li>222</li>
+                <li>333</li>
+                <li>444</li>
+            </ul>
+        </div>
+        <script>
+            var oSt = document.getElementById("test");
+            oSt.onclick = function(){
+                
+                var oUl = document.getElementById("list");
+                if(oSt.className == 'small_top'){
+                    oSt.className = 'small_bottom';
+                    oUl.style.display = 'block';
+                }else{
+                    oSt.className = 'small_top';
+                    oUl.style.display = 'none';
+                }
+            }
+        </script>
     </body>
 </html>
