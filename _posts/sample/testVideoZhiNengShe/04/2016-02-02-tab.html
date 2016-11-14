@@ -68,10 +68,10 @@ and open the template in the editor.
             用闭包解决
             window.onload = function(){
               var oBtn = document.getElementsByTagName("input");
-              for(var i=0;i<oBtn.length;i++){
+              for(var i=0;i&lt;oBtn.length;i++){
                 (function(j){
                   oBtn[j].onclick = function(){
-                  for(var i=0;i<oBtn.length;i++){
+                  for(var i=0;i&lt;oBtn.length;i++){
                     oBtn[i].className="btn"
                   };
                   oBtn[j].className="btn active"
