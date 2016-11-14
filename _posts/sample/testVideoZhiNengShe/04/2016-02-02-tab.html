@@ -28,11 +28,11 @@ and open the template in the editor.
             #container .active_div{
                 display:block;
             }
-            
+
         </style>
     </head>
     <body>
-        
+
         <div id='container'>
             <input type='button' value='11'/>
             <input type='button' value='22'/>
@@ -51,7 +51,7 @@ and open the template in the editor.
                 var oInput= document.getElementsByTagName("input");
                 var oContainer = document.getElementById("container");
                 var oDiv = oContainer.getElementsByTagName("div");
-                
+
                 for(var i=0;i&lt;oInput.length;i++){
                     oInput[i].index = i;
                     oInput[i].onclick = function(){
@@ -64,6 +64,21 @@ and open the template in the editor.
                     }
                 }
             }
+
+            用闭包解决
+            window.onload = function(){
+              var oBtn = document.getElementsByTagName("input");
+              for(var i=0;i<oBtn.length;i++){
+                (function(j){
+                  oBtn[j].onclick = function(){
+                  for(var i=0;i<oBtn.length;i++){
+                    oBtn[i].className="btn"
+                  };
+                  oBtn[j].className="btn active"
+                }
+                })(i);
+              }
+            }
             </code>
         </pre>
         <script src="{{ site.baseurl }}/public/js/prism.js"></script>
@@ -72,7 +87,7 @@ and open the template in the editor.
                 var oInput= document.getElementsByTagName("input");
                 var oContainer = document.getElementById("container");
                 var oDiv = oContainer.getElementsByTagName("div");
-                
+
                 for(var i=0;i<oInput.length;i++){
                     oInput[i].index = i;
                     oInput[i].onclick = function(){
@@ -85,7 +100,7 @@ and open the template in the editor.
                     }
                 }
             }
-            
+
         </script>
     </body>
 </html>
